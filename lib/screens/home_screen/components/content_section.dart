@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movie_db/components/movie_card.dart';
 import 'package:movie_db/models/data_content.dart';
 import 'package:movie_db/utils/app_colors.dart';
@@ -37,18 +38,22 @@ class _ContentSectionState extends State<ContentSection> {
             selectedIndex: selectedIndex,
             contents: widget.contents,
           ),
-          body: ListView.separated(
-            padding: const EdgeInsets.only(top: kDefaultPadding),
-            separatorBuilder: (context, index) => SizedBox(
-              width: 10,
-            ),
-            scrollDirection: Axis.horizontal,
-            itemCount: widget.contents[selectedIndex].movies.length,
-            itemBuilder: (context, index) => MovieCardWidget(
-              dataContent: widget?.contents
-                  ?.elementAt(selectedIndex)
-                  ?.movies
-                  ?.elementAt(index),
+          body: SafeArea(
+            child: Obx(
+              () => ListView.separated(
+                padding: const EdgeInsets.only(top: kDefaultPadding),
+                separatorBuilder: (context, index) => SizedBox(
+                  width: 10,
+                ),
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.contents[selectedIndex].movies.length,
+                itemBuilder: (context, index) => MovieCardWidget(
+                  dataContent: widget?.contents
+                      ?.elementAt(selectedIndex)
+                      ?.movies
+                      ?.elementAt(index),
+                ),
+              ),
             ),
           ),
         ),
