@@ -1,4 +1,9 @@
-export 'account_section/account_section.dart';
-export 'configurations_section/configurations_section.dart';
-export 'movie_section/movie_section.dart';
-export 'tv_section/tv_section.dart';
+export 'account.dart';
+export 'configuration.dart';
+export 'core.dart';
+export 'episode.dart';
+export 'movie.dart';
+export 'network.dart';
+export 'people.dart';
+export 'season.dart';
+export 'tv.dart';

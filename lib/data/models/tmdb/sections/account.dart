@@ -1,5 +1,3 @@
-import 'package:movie_db/lib.dart';
-
 class Account {
   Account({
     this.avatar,
@@ -37,5 +35,37 @@ class Account {
         "name": name,
         "include_adult": includeAdult,
         "username": username,
+      };
+}
+
+class Gravatar {
+  Gravatar({
+    this.hash,
+  });
+
+  String hash;
+
+  factory Gravatar.fromJson(Map<String, dynamic> json) => Gravatar(
+        hash: json["hash"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "hash": hash,
+      };
+}
+
+class Avatar {
+  Avatar({
+    this.gravatar,
+  });
+
+  Gravatar gravatar;
+
+  factory Avatar.fromJson(Map<String, dynamic> json) => Avatar(
+        gravatar: Gravatar.fromJson(json["gravatar"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "gravatar": gravatar.toJson(),
       };
 }

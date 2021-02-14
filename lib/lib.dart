@@ -1,4 +1,3 @@
-export 'common/common.dart';
 export 'controllers/controllers.dart';
 export 'data/data.dart';
 export 'extentsions/extentsions.dart';
