@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dios;
-import 'package:movie_db/lib.dart';
+import 'package:movie_db/data/core/api_constants.dart';
+import 'package:movie_db/data/models/tmdb/data_content.dart';
 
 const String getMovieBaseUrl = '${ApiConstants.TMDBBaseUrlV3}/movie';
 const String getNowPlayingMoviesUrl = '$getMovieBaseUrl/now_playing';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie_db/lib.dart';
+import 'package:movie_db/presentation/home/home_screen.dart';
 
 void main() {
   runApp(MyApp());

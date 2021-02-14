@@ -4,7 +4,12 @@
 
 import 'dart:convert';
 
-import 'package:movie_db/lib.dart';
+import 'package:movie_db/data/models/tmdb/sections/season.dart';
+
+import 'configuration.dart';
+import 'core.dart';
+import 'episode.dart';
+import 'network.dart';
 
 TvDetails tvDetailsFromJson(String str) => TvDetails.fromJson(json.decode(str));
 

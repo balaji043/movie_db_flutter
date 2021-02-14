@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:movie_db/lib.dart';
 import 'package:dio/dio.dart' as dios;
+import 'package:movie_db/data/core/api_constants.dart';
+import 'package:movie_db/data/models/tmdb/data_content.dart';
 
 const String getTVShowsBaseUrl = '${ApiConstants.TMDBBaseUrlV3}/tv';
 

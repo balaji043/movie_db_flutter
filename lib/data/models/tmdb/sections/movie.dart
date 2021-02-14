@@ -1,4 +1,5 @@
-import 'package:movie_db/lib.dart';
+import 'configuration.dart';
+import 'core.dart';
 
 class MovieDetails {
   MovieDetails({
@@ -41,7 +42,7 @@ class MovieDetails {
   String originalTitle;
   String overview;
   double popularity;
-  dynamic posterPath;
+  String posterPath;
   List<ProductionCompany> productionCompanies;
   List<Country> productionCountries;
   DateTime releaseDate;

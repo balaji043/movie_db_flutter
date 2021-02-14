@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_db/lib.dart';
+import 'package:movie_db/controllers/configuration_controller.dart';
+import 'package:movie_db/presentation/components/rating_widget.dart';
+
+import '../app_colors.dart';
 
 final double width = 154;
 

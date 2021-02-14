@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_db/lib.dart';
+import 'package:movie_db/data/models/tmdb/data_content.dart';
+import 'package:movie_db/presentation/app_colors.dart';
+import 'package:movie_db/presentation/components/movie_card.dart';
 
 class Content {
   final String name;

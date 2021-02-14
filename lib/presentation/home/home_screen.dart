@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_db/controllers/configuration_controller.dart';
-import 'package:movie_db/controllers/movie_list_controller.dart';
-import 'package:movie_db/controllers/tv_shows_controller.dart';
+import '../../controllers/configuration_controller.dart';
+import '../../controllers/movie_list_controller.dart';
+import '../../controllers/tv_shows_controller.dart';
 
 import 'components/content_section.dart';
 

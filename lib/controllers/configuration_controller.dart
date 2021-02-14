@@ -1,6 +1,7 @@
-import 'package:get/state_manager.dart';
 import 'package:dio/dio.dart' as dios;
-import 'package:movie_db/lib.dart';
+import 'package:get/state_manager.dart';
+import '../data/core/api_constants.dart';
+import '../data/models/tmdb/sections/configuration.dart';
 
 final getConfigurationUrl = '${ApiConstants.TMDBBaseUrlV3}/configuration';
 

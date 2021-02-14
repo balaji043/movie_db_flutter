@@ -3,7 +3,8 @@
 //     final season = seasonFromJson(jsonString);
 
 import 'dart:convert';
-import 'package:movie_db/lib.dart';
+
+import 'episode.dart';
 
 Season seasonFromJson(String str) => Season.fromJson(json.decode(str));
 
