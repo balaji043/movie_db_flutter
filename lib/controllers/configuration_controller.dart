@@ -1,9 +1,8 @@
 import 'package:get/state_manager.dart';
 import 'package:dio/dio.dart' as dios;
-import 'package:movie_db/common/utils/constants.dart';
-import 'package:movie_db/data/models/app_configuration.dart';
+import 'package:movie_db/lib.dart';
 
-final getConfigurationUrl = '$mainURL/configuration';
+final getConfigurationUrl = '${ApiConstants.TMDBBaseUrlV3}/configuration';
 
 class ConfigurationController extends GetxController {
   final dios.Dio dio = dios.Dio();
@@ -19,7 +18,7 @@ class ConfigurationController extends GetxController {
   void _getAppCongfiguration() async {
     try {
       var params = {
-        'api_key': api_key,
+        'api_key': ApiConstants.apiKey,
         'language': 'en-US',
       };
       dios.Response response = await dio.get(

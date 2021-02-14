@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_db/common/utils/app_colors.dart';
-import 'package:movie_db/data/models/data_content.dart';
-import 'package:movie_db/presentation/components/movie_card.dart';
+import 'package:movie_db/lib.dart';
 
 class Content {
   final String name;
   final RxList<DataContent> movies;
 
-  Content({@required this.name, @required this.movies});
+  Content({
+    @required this.name,
+    @required this.movies,
+  });
 }
 
 class ContentSection extends StatefulWidget {
@@ -47,12 +48,18 @@ class _ContentSectionState extends State<ContentSection> {
                 ),
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.contents[selectedIndex].movies.length,
-                itemBuilder: (context, index) => MovieCardWidget(
-                  dataContent: widget?.contents
+                itemBuilder: (context, index) {
+                  final DataContent dataContent = widget?.contents
                       ?.elementAt(selectedIndex)
                       ?.movies
-                      ?.elementAt(index),
-                ),
+                      ?.elementAt(index);
+                  return MovieCardWidget(
+                    posterPath: dataContent.posterPath,
+                    releaseDate: dataContent.releaseDate,
+                    title: dataContent.title,
+                    voteAverage: (dataContent.voteAverage * 10).toString(),
+                  );
+                },
               ),
             ),
           ),

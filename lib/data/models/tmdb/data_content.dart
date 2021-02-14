@@ -1,8 +1,3 @@
-enum DataContentType {
-  movie,
-  tv_shows,
-}
-
 class MovieListResponse {
   int page;
   List<DataContent> results;
@@ -16,8 +11,7 @@ class MovieListResponse {
     this.totalResults,
   });
 
-  MovieListResponse.fromJson(
-      Map<String, dynamic> json, DataContentType dataContentType) {
+  MovieListResponse.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
@@ -25,7 +19,7 @@ class MovieListResponse {
       var resultList = json['results'] as List;
       results = resultList
           .map(
-            (v) => DataContent.fromJson(v, dataContentType),
+            (v) => DataContent.fromJson(v),
           )
           .toList();
     }
@@ -78,7 +72,6 @@ class DataContent {
 
   DataContent.fromJson(
     Map<String, dynamic> json,
-    DataContentType dataContentType,
   ) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
@@ -93,13 +86,8 @@ class DataContent {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
 
-    if (dataContentType == DataContentType.movie) {
-      releaseDate = json['release_date'];
-      title = json['title'];
-    } else {
-      releaseDate = json['first_air_date'];
-      title = json['name'];
-    }
+    releaseDate = json['release_date'];
+    title = json['title'];
   }
 
   Map<String, dynamic> toJson() {

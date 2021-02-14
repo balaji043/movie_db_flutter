@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_db/common/utils/app_colors.dart';
+import 'package:movie_db/lib.dart';
 
 class RatingWidget extends StatelessWidget {
-  final num voteAverage;
+  final String voteAverage;
 
   const RatingWidget({Key key, this.voteAverage}) : super(key: key);
 
@@ -23,7 +23,7 @@ class RatingWidget extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          '$voteAverage',
+          voteAverage,
           style: Theme.of(context).textTheme.bodyText1.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Colors.black,

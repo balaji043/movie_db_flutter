@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_db/common/utils/app_colors.dart';
-import 'package:movie_db/controllers/configuration_controller.dart';
-import 'package:movie_db/data/models/data_content.dart';
-import 'package:movie_db/presentation/components/rating_widget.dart';
+import 'package:movie_db/lib.dart';
 
 final double width = 154;
 
 class MovieCardWidget extends StatelessWidget {
-  final DataContent dataContent;
-  MovieCardWidget({
+  final String title;
+  final String voteAverage;
+  final String posterPath;
+  final String releaseDate;
+
+  const MovieCardWidget({
     Key key,
-    this.dataContent,
+    @required this.title,
+    @required this.voteAverage,
+    @required this.posterPath,
+    @required this.releaseDate,
   }) : super(key: key);
 
   @override
@@ -27,7 +31,7 @@ class MovieCardWidget extends StatelessWidget {
             child: Stack(
               children: [
                 _Poster(
-                  posterPath: dataContent?.posterPath,
+                  posterPath: posterPath,
                 ),
                 Positioned(
                   top: 0,
@@ -38,7 +42,7 @@ class MovieCardWidget extends StatelessWidget {
                   bottom: 0,
                   right: 0,
                   child: RatingWidget(
-                    voteAverage: dataContent.voteAverage * 10,
+                    voteAverage: voteAverage,
                   ),
                 ),
               ],
@@ -46,17 +50,17 @@ class MovieCardWidget extends StatelessWidget {
           ),
           Container(
             child: Text(
-              dataContent.title,
+              title ?? "",
               style: Theme.of(context).textTheme.subtitle2.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
-              semanticsLabel: dataContent.title,
+              semanticsLabel: title,
               textAlign: TextAlign.start,
               overflow: TextOverflow.fade,
             ),
           ),
           Text(
-            dataContent.releaseDate,
+            releaseDate ?? "",
             style: Theme.of(context).textTheme.overline,
             textAlign: TextAlign.start,
           )

@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dios;
-import 'package:movie_db/common/utils/constants.dart';
-import 'package:movie_db/data/models/data_content.dart';
+import 'package:movie_db/lib.dart';
 
-const String getMovieBaseUrl = '$mainURL/movie';
+const String getMovieBaseUrl = '${ApiConstants.TMDBBaseUrlV3}/movie';
 const String getNowPlayingMoviesUrl = '$getMovieBaseUrl/now_playing';
 const String getPopularMoviesUrl = '$getMovieBaseUrl/popular';
 const String getTopRatedMoviesUrl = '$getMovieBaseUrl/top_rated';
@@ -11,7 +10,6 @@ const String getUpcomingMoviesUrl = '$getMovieBaseUrl/upcoming';
 
 class MovieListController extends GetxController {
   final dios.Dio _dio = dios.Dio();
-  final DataContentType dataContentType = DataContentType.movie;
 
   var nowPlayingMovies = <DataContent>[].obs;
   var popularMovies = <DataContent>[].obs;
@@ -55,11 +53,10 @@ class MovieListController extends GetxController {
     try {
       dios.Response response = await _dio.get(
         movieUrl,
-        queryParameters: params,
+        queryParameters: ApiConstants.params,
       );
       var movieResponse = MovieListResponse.fromJson(
         response.data,
-        dataContentType,
       );
       return movieResponse;
     } catch (error, stackTrace) {

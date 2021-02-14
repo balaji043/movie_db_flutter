@@ -1,2 +1,1 @@
-export 'app_configuration.dart';
-export 'data_content.dart';
+export 'tmdb/tmdb.dart';
