@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_db/components/movie_card.dart';
-import 'package:movie_db/models/data_content.dart';
-import 'package:movie_db/utils/app_colors.dart';
+import 'package:movie_db/common/utils/app_colors.dart';
+import 'package:movie_db/data/models/data_content.dart';
+import 'package:movie_db/presentation/components/movie_card.dart';
 
 class Content {
   final String name;
-  final List<DataContent> movies;
+  final RxList<DataContent> movies;
 
   Content({@required this.name, @required this.movies});
 }

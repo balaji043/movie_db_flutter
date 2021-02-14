@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:movie_db/models/data_content.dart';
-import 'package:movie_db/utils/constants.dart';
+import 'package:movie_db/common/utils/constants.dart';
+import 'package:movie_db/data/models/data_content.dart';
 import 'package:dio/dio.dart' as dios;
 
 const String getTVShowsBaseUrl = '$mainURL/tv';

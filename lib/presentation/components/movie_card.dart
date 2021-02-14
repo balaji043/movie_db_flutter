@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_db/components/rating_widget.dart';
+import 'package:movie_db/common/utils/app_colors.dart';
 import 'package:movie_db/controllers/configuration_controller.dart';
-import 'package:movie_db/models/data_content.dart';
-import 'package:movie_db/utils/app_colors.dart';
+import 'package:movie_db/data/models/data_content.dart';
+import 'package:movie_db/presentation/components/rating_widget.dart';
 
 final double width = 154;
 
@@ -81,9 +81,7 @@ class _MoreVertButton extends StatelessWidget {
         size: 20,
         color: kPrimaryColor,
       ),
-      onPressed: () {
-        //TODO: Add option
-      },
+      onPressed: () {},
       fillColor: kBgLightColor,
       shape: CircleBorder(),
     );

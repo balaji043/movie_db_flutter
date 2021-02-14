@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:movie_db/models/data_content.dart';
-import 'package:movie_db/utils/constants.dart';
 import 'package:dio/dio.dart' as dios;
+import 'package:movie_db/common/utils/constants.dart';
+import 'package:movie_db/data/models/data_content.dart';
 
 const String getMovieBaseUrl = '$mainURL/movie';
 const String getNowPlayingMoviesUrl = '$getMovieBaseUrl/now_playing';
@@ -57,7 +57,6 @@ class MovieListController extends GetxController {
         movieUrl,
         queryParameters: params,
       );
-      print('$movieUrl ${response.data['results'].length}');
       var movieResponse = MovieListResponse.fromJson(
         response.data,
         dataContentType,

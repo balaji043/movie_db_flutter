@@ -1,7 +1,7 @@
 import 'package:get/state_manager.dart';
-import 'package:movie_db/models/models.dart';
 import 'package:dio/dio.dart' as dios;
-import 'package:movie_db/utils/constants.dart';
+import 'package:movie_db/common/utils/constants.dart';
+import 'package:movie_db/data/models/app_configuration.dart';
 
 final getConfigurationUrl = '$mainURL/configuration';
 

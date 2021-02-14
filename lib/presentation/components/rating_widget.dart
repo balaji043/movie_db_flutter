@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_db/utils/app_colors.dart';
+import 'package:movie_db/common/utils/app_colors.dart';
 
 class RatingWidget extends StatelessWidget {
   final num voteAverage;

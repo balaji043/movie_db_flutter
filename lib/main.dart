@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie_db/screens/home_screen/home_screen.dart';
+import 'package:movie_db/presentation/home_screen/home_screen.dart';
+
+import 'common/utils/constants.dart';
 
 void main() {
+  print(api_key);
   runApp(MyApp());
 }
 
