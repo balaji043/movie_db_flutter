@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:movie_db/src/controllers/configuration_controller.dart';
+import 'package:movie_db/src/controllers/movie_list_controller.dart';
+import 'package:movie_db/src/controllers/tv_shows_controller.dart';
 
 // Project imports:
-import '../../controllers/configuration_controller.dart';
-import '../../controllers/movie_list_controller.dart';
-import '../../controllers/tv_shows_controller.dart';
+
 import 'components/content_section.dart';
 
 class HomeScreen extends StatelessWidget {

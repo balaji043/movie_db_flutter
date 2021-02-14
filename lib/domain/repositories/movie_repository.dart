@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:dartz/dartz.dart';
-import 'package:movie_db/data/models/tmdb/sections/core.dart';
+import 'package:movie_db/data/models/core.dart';
 
 // Project imports:
-import '../../../../core/failures.dart';
+import '../../core/failures.dart';
 import '../entities/movie_entity.dart';
 
 abstract class MovieRepository {

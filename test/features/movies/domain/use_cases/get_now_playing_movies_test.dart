@@ -2,13 +2,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:movie_db/core/failures.dart';
-import 'package:movie_db/data/models/tmdb/sections/core.dart';
-import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
 
 // Project imports:
-import 'package:movie_db/features/movies/domain/repositories/movie_repository.dart';
-import 'package:movie_db/features/movies/domain/use_cases/get_now_playing_movies.dart';
+import 'package:movie_db/core/failures.dart';
+import 'package:movie_db/data/models/core.dart';
+import 'package:movie_db/domain/entities/movie_entity.dart';
+import 'package:movie_db/domain/entities/no_params.dart';
+import 'package:movie_db/domain/repositories/movie_repository.dart';
+import 'package:movie_db/domain/use_cases/get_now_playing_movies.dart';
 
 class MockMovieRepository extends Mock implements MovieRepository {}
 
@@ -53,7 +54,7 @@ void main() {
       // test call
 
       final Either<Failure, PaginatedResponse<MovieEntity>>
-          actualPageResponseMovie = await useCase.execute();
+          actualPageResponseMovie = await useCase(noParams);
 
       // asserts
       expect(

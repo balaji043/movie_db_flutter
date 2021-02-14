@@ -1,10 +1,11 @@
 // Package imports:
 import 'package:dio/dio.dart' as dios;
 import 'package:get/get.dart';
+import 'package:movie_db/data/core/api_constants.dart';
+import 'package:movie_db/data/models/core.dart';
+import 'package:movie_db/domain/entities/movie_entity.dart';
 
 // Project imports:
-import '../data/core/api_constants.dart';
-import '../data/models/tmdb/data_content.dart';
 
 const String getTVShowsBaseUrl = '${ApiConstants.TMDBBaseUrlV3}/tv';
 
@@ -16,10 +17,10 @@ const String getTopRatedTVShowsUrl = '$getTVShowsBaseUrl/top_rated';
 class TVShowsListController extends GetxController {
   final dios.Dio _dio = dios.Dio();
 
-  var popularTVShows = <DataContent>[].obs;
-  var airingTodayTVShows = <DataContent>[].obs;
-  var onTheAirTVShows = <DataContent>[].obs;
-  var topRatedTVShows = <DataContent>[].obs;
+  var popularTVShows = <MovieEntity>[].obs;
+  var airingTodayTVShows = <MovieEntity>[].obs;
+  var onTheAirTVShows = <MovieEntity>[].obs;
+  var topRatedTVShows = <MovieEntity>[].obs;
 
   @override
   void onInit() {
@@ -54,20 +55,22 @@ class TVShowsListController extends GetxController {
     topRatedTVShows.addAll(getMoviesByUrl.results);
   }
 
-  Future<MovieListResponse> _getTVShowsByUrl(String tvShowUrl) async {
+  Future<PaginatedResponse<MovieEntity>> _getTVShowsByUrl(
+      String tvShowUrl) async {
     try {
       dios.Response response = await _dio.get(
         tvShowUrl,
         queryParameters: ApiConstants.params,
       );
       print('$tvShowUrl ${response.data['results'].length}');
-      var movieResponse = MovieListResponse.fromJson(
+      var movieResponse = PaginatedResponse<MovieEntity>.fromJson(
         response.data,
+        (map) => MovieEntity.fromMap(map),
       );
       return movieResponse;
     } catch (error, stackTrace) {
       printException(error, stackTrace);
     }
-    return Future.value(MovieListResponse(results: List.empty()));
+    return Future.value(PaginatedResponse<MovieEntity>(results: List.empty()));
   }
 }

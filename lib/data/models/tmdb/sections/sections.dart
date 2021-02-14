@@ -1,9 +1,0 @@
-export 'account.dart';
-export 'configuration.dart';
-export 'core.dart';
-export 'episode.dart';
-export 'movie.dart';
-export 'network.dart';
-export 'people.dart';
-export 'season.dart';
-export 'tv.dart';

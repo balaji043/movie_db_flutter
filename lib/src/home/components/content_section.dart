@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // Project imports:
-import '../../../data/models/tmdb/data_content.dart';
-import '../../app_colors.dart';
-import '../../components/movie_card.dart';
+import 'package:movie_db/domain/entities/movie_entity.dart';
+import 'package:movie_db/presentation/app_colors.dart';
+import 'package:movie_db/src/components/movie_card.dart';
 
 class Content {
   final String name;
-  final RxList<DataContent> movies;
+  final RxList<MovieEntity> movies;
 
   Content({
     @required this.name,
@@ -56,7 +56,7 @@ class _ContentSectionState extends State<ContentSection> {
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.contents[selectedIndex].movies.length,
                 itemBuilder: (context, index) {
-                  final DataContent dataContent = widget?.contents
+                  final MovieEntity dataContent = widget?.contents
                       ?.elementAt(selectedIndex)
                       ?.movies
                       ?.elementAt(index);

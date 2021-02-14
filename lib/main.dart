@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
-import 'presentation/home/home_screen.dart';
+import 'package:movie_db/src/home/home_screen.dart';
 
 void main() {
   runApp(MyApp());

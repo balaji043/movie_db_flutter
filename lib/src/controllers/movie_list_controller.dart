@@ -1,10 +1,11 @@
 // Package imports:
 import 'package:dio/dio.dart' as dios;
 import 'package:get/get.dart';
+import 'package:movie_db/data/core/api_constants.dart';
+import 'package:movie_db/data/models/core.dart';
+import 'package:movie_db/domain/entities/movie_entity.dart';
 
 // Project imports:
-import '../data/core/api_constants.dart';
-import '../data/models/tmdb/data_content.dart';
 
 const String getMovieBaseUrl = '${ApiConstants.TMDBBaseUrlV3}/movie';
 const String getNowPlayingMoviesUrl = '$getMovieBaseUrl/now_playing';
@@ -15,10 +16,10 @@ const String getUpcomingMoviesUrl = '$getMovieBaseUrl/upcoming';
 class MovieListController extends GetxController {
   final dios.Dio _dio = dios.Dio();
 
-  var nowPlayingMovies = <DataContent>[].obs;
-  var popularMovies = <DataContent>[].obs;
-  var topRatedMovies = <DataContent>[].obs;
-  var upcomingMovies = <DataContent>[].obs;
+  var nowPlayingMovies = <MovieEntity>[].obs;
+  var popularMovies = <MovieEntity>[].obs;
+  var topRatedMovies = <MovieEntity>[].obs;
+  var upcomingMovies = <MovieEntity>[].obs;
 
   @override
   void onInit() {
@@ -53,19 +54,21 @@ class MovieListController extends GetxController {
     upcomingMovies.addAll(getMoviesByUrl.results);
   }
 
-  Future<MovieListResponse> _getMoviesByUrl(String movieUrl) async {
+  Future<PaginatedResponse<MovieEntity>> _getMoviesByUrl(
+      String movieUrl) async {
     try {
       dios.Response response = await _dio.get(
         movieUrl,
         queryParameters: ApiConstants.params,
       );
-      var movieResponse = MovieListResponse.fromJson(
+      var movieResponse = PaginatedResponse<MovieEntity>.fromJson(
         response.data,
+        (map) => MovieEntity.fromMap(map),
       );
       return movieResponse;
     } catch (error, stackTrace) {
       printException(error, stackTrace);
     }
-    return Future.value(MovieListResponse(results: List.empty()));
+    return Future.value(PaginatedResponse<MovieEntity>(results: List.empty()));
   }
 }

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import '../app_colors.dart';
+import 'package:movie_db/presentation/app_colors.dart';
 
 class RatingWidget extends StatelessWidget {
   final String voteAverage;
