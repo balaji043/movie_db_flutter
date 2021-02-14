@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import '../app_colors.dart';
 
 class RatingWidget extends StatelessWidget {

@@ -1,9 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import '../../controllers/configuration_controller.dart';
 import '../../controllers/movie_list_controller.dart';
 import '../../controllers/tv_shows_controller.dart';
-
 import 'components/content_section.dart';
 
 class HomeScreen extends StatelessWidget {

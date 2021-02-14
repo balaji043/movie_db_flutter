@@ -2,8 +2,10 @@
 //
 //     final season = seasonFromJson(jsonString);
 
+// Dart imports:
 import 'dart:convert';
 
+// Project imports:
 import 'episode.dart';
 
 Season seasonFromJson(String str) => Season.fromJson(json.decode(str));

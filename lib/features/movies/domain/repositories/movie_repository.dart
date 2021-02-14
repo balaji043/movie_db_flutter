@@ -1,6 +1,9 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
 import '../../../../core/failures.dart';
-import '../entities/movie.dart';
+import '../entities/movie_entity.dart';
 
 abstract class MovieRepository {
   Future<Either<Failure, MovieEntity>> getNowPlayingMovies();

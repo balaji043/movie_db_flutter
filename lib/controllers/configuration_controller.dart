@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:dio/dio.dart' as dios;
 import 'package:get/state_manager.dart';
+
+// Project imports:
 import '../data/core/api_constants.dart';
 import '../data/models/tmdb/sections/configuration.dart';
 

@@ -2,10 +2,11 @@
 //
 //     final tvDetails = tvDetailsFromJson(jsonString);
 
+// Dart imports:
 import 'dart:convert';
 
+// Project imports:
 import 'package:movie_db/data/models/tmdb/sections/season.dart';
-
 import 'configuration.dart';
 import 'core.dart';
 import 'episode.dart';
