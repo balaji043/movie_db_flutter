@@ -1,3 +1,45 @@
+class PaginatedResponse<T> {
+  int page;
+  List<T> results;
+  int totalPages;
+  int totalResults;
+
+  PaginatedResponse({
+    this.page,
+    this.results,
+    this.totalPages,
+    this.totalResults,
+  });
+
+  PaginatedResponse.fromJson(
+    Map<String, dynamic> json,
+    T Function(Map<String, dynamic> json) fromJson,
+  ) {
+    page = json['page'];
+    totalPages = json['total_pages'];
+    totalResults = json['total_results'];
+    if (json['results'] != null) {
+      var resultList = json['results'] as List;
+      results = resultList
+          .map(
+            (v) => fromJson(v),
+          )
+          .toList();
+    }
+  }
+
+  Map<String, dynamic> toJson(Map<String, dynamic> Function() toJsonModel) {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['page'] = this.page;
+    if (this.results != null) {
+      data['results'] = this.results.map((v) => toJsonModel()).toList();
+    }
+    data['total_pages'] = this.totalPages;
+    data['total_results'] = this.totalResults;
+    return data;
+  }
+}
+
 class CreatedBy {
   int id;
   String creditId;
