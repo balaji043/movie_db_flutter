@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 // Project imports:
 import 'package:movie_db/domain/entities/movie_entity.dart';
-import 'package:movie_db/presentation/app_colors.dart';
+import 'package:movie_db/src/app_colors.dart';
 import 'package:movie_db/src/components/movie_card.dart';
 
 class Content {
@@ -23,7 +23,7 @@ class ContentSection extends StatefulWidget {
   final String title;
   final List<Content> contents;
 
-  ContentSection({Key key, @required this.title, @required this.contents})
+  const ContentSection({Key key, @required this.title, @required this.contents})
       : super(key: key);
 
   @override
@@ -37,37 +37,38 @@ class _ContentSectionState extends State<ContentSection> {
   Widget build(BuildContext context) {
     return Container(
       height: 410,
-      margin: EdgeInsets.all(20),
-      child: Container(
-        child: Scaffold(
-          appBar: _ContentBar(
-            onPressed: onOptionPressed,
+      margin: const EdgeInsets.all(20),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size(0, 45),
+          child: _ContentBar(
+            onPressed: _onOptionPressed,
             title: widget.title,
             selectedIndex: selectedIndex,
             contents: widget.contents,
           ),
-          body: SafeArea(
-            child: Obx(
-              () => ListView.separated(
-                padding: const EdgeInsets.only(top: kDefaultPadding),
-                separatorBuilder: (context, index) => SizedBox(
-                  width: 10,
-                ),
-                scrollDirection: Axis.horizontal,
-                itemCount: widget.contents[selectedIndex].movies.length,
-                itemBuilder: (context, index) {
-                  final MovieEntity dataContent = widget?.contents
-                      ?.elementAt(selectedIndex)
-                      ?.movies
-                      ?.elementAt(index);
-                  return MovieCardWidget(
-                    posterPath: dataContent.posterPath,
-                    releaseDate: dataContent.releaseDate,
-                    title: dataContent.title,
-                    voteAverage: (dataContent.voteAverage * 10).toString(),
-                  );
-                },
+        ),
+        body: SafeArea(
+          child: Obx(
+            () => ListView.separated(
+              padding: const EdgeInsets.only(top: kDefaultPadding),
+              separatorBuilder: (context, index) => const SizedBox(
+                width: 10,
               ),
+              scrollDirection: Axis.horizontal,
+              itemCount: widget.contents[selectedIndex].movies.length,
+              itemBuilder: (context, index) {
+                final MovieEntity dataContent = widget?.contents
+                    ?.elementAt(selectedIndex)
+                    ?.movies
+                    ?.elementAt(index);
+                return MovieCardWidget(
+                  posterPath: dataContent.posterPath,
+                  releaseDate: dataContent.releaseDate,
+                  title: dataContent.title,
+                  voteAverage: (dataContent?.voteAverage ?? 0 * 10).toString(),
+                );
+              },
             ),
           ),
         ),
@@ -75,27 +76,24 @@ class _ContentSectionState extends State<ContentSection> {
     );
   }
 
-  onOptionPressed(int i) {
+  void _onOptionPressed(int i) {
     if (i == selectedIndex) return;
     setState(() => selectedIndex = i);
   }
 }
 
-class _ContentBar extends PreferredSize {
+class _ContentBar extends StatelessWidget {
   final String title;
   final int selectedIndex;
   final List<Content> contents;
   final Function(int) onPressed;
 
-  _ContentBar({
+  const _ContentBar({
     @required this.contents,
     @required this.title,
     @required this.selectedIndex,
     @required this.onPressed,
   });
-
-  @override
-  final Size preferredSize = Size(0, 45);
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +107,7 @@ class _ContentBar extends PreferredSize {
           ),
         ),
         Expanded(
-          child: Container(
+          child: SizedBox(
             height: 45,
             child: ListView(
               padding: const EdgeInsets.only(top: 2, bottom: 8),
@@ -119,7 +117,7 @@ class _ContentBar extends PreferredSize {
                   .map(
                     (i, element) => MapEntry(
                       i,
-                      Container(
+                      SizedBox(
                         height: 35,
                         width: 100,
                         child: RawMaterialButton(

@@ -12,7 +12,8 @@ import 'episode.dart';
 import 'network.dart';
 import 'season.dart';
 
-TvDetails tvDetailsFromJson(String str) => TvDetails.fromJson(json.decode(str));
+TvDetails tvDetailsFromJson(String str) =>
+    TvDetails.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String tvDetailsToJson(TvDetails data) => json.encode(data.toJson());
 
@@ -84,84 +85,90 @@ class TvDetails {
   int voteCount;
 
   factory TvDetails.fromJson(Map<String, dynamic> json) => TvDetails(
-        backdropPath:
-            json["backdrop_path"] == null ? null : json["backdrop_path"],
+        backdropPath: json["backdrop_path"] as String,
         createdBy: json["created_by"] == null
             ? null
-            : List<CreatedBy>.from(
-                json["created_by"].map((x) => CreatedBy.fromJson(x))),
+            : List<CreatedBy>.from((json["created_by"] as List)
+                .map((x) => CreatedBy.fromJson(x as Map<String, dynamic>))),
         episodeRunTime: json["episode_run_time"] == null
             ? null
-            : List<int>.from(json["episode_run_time"].map((x) => x)),
+            : List<int>.from((json["episode_run_time"] as List).map((x) => x)),
         firstAirDate: json["first_air_date"] == null
             ? null
-            : DateTime.parse(json["first_air_date"]),
+            : DateTime.parse(json["first_air_date"] as String),
         genres: json["genres"] == null
             ? null
-            : List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
-        homepage: json["homepage"] == null ? null : json["homepage"],
-        id: json["id"] == null ? null : json["id"],
-        inProduction:
-            json["in_production"] == null ? null : json["in_production"],
+            : List<Genre>.from((json["genres"] as List)
+                .map((x) => Genre.fromJson(x as Map<String, dynamic>))),
+        homepage: json["homepage"] as String,
+        id: json["id"] as int,
+        inProduction: json["in_production"] as bool,
         languages: json["languages"] == null
             ? null
-            : List<String>.from(json["languages"].map((x) => x)),
+            : List<String>.from((json["languages"] as List).map((x) => x)),
         lastAirDate: json["last_air_date"] == null
             ? null
-            : DateTime.parse(json["last_air_date"]),
+            : DateTime.parse(json["last_air_date"] as String),
         lastEpisodeToAir: json["last_episode_to_air"] == null
             ? null
-            : Episode.fromJson(json["last_episode_to_air"]),
-        name: json["name"] == null ? null : json["name"],
+            : Episode.fromJson(
+                json["last_episode_to_air"] as Map<String, dynamic>),
+        name: json["name"] as String,
         nextEpisodeToAir: json["next_episode_to_air"],
         networks: json["networks"] == null
             ? null
-            : List<Network>.from(
-                json["networks"].map((x) => Network.fromJson(x))),
-        numberOfEpisodes: json["number_of_episodes"] == null
-            ? null
-            : json["number_of_episodes"],
-        numberOfSeasons: json["number_of_seasons"] == null
-            ? null
-            : json["number_of_seasons"],
+            : List<Network>.from((json["networks"] as List)
+                .map((x) => Network.fromJson(x as Map<String, dynamic>))),
+        numberOfEpisodes: json["number_of_episodes"] as int,
+        numberOfSeasons: json["number_of_seasons"] as int,
         originCountry: json["origin_country"] == null
             ? null
-            : List<String>.from(json["origin_country"].map((x) => x)),
-        originalLanguage: json["original_language"] == null
-            ? null
-            : json["original_language"],
-        originalName:
-            json["original_name"] == null ? null : json["original_name"],
-        overview: json["overview"] == null ? null : json["overview"],
+            : List<String>.from((json["origin_country"] as List).map((x) => x)),
+        originalLanguage: json["original_language"] as String,
+        originalName: json["original_name"] as String,
+        overview: json["overview"] as String,
         popularity:
-            json["popularity"] == null ? null : json["popularity"].toDouble(),
-        posterPath: json["poster_path"] == null ? null : json["poster_path"],
+            json["popularity"] == null ? null : json["popularity"] as double,
+        posterPath: json["poster_path"] as String,
         productionCompanies: json["production_companies"] == null
             ? null
             : List<Network>.from(
-                json["production_companies"].map((x) => Network.fromJson(x))),
+                (json["production_companies"] as List).map(
+                  (x) => Network.fromJson(x as Map<String, dynamic>),
+                ),
+              ),
         productionCountries: json["production_countries"] == null
             ? null
             : List<Country>.from(
-                json["production_countries"].map((x) => Country.fromJson(x))),
+                (json["production_countries"] as List).map(
+                  (x) => Country.fromJson(x as Map<String, dynamic>),
+                ),
+              ),
         seasons: json["seasons"] == null
             ? null
-            : List<Season>.from(json["seasons"].map((x) => Season.fromJson(x))),
+            : List<Season>.from(
+                (json["seasons"] as List).map(
+                  (x) => Season.fromJson(x as Map<String, dynamic>),
+                ),
+              ),
         spokenLanguages: json["spoken_languages"] == null
             ? null
             : List<Language>.from(
-                json["spoken_languages"].map((x) => Language.fromJson(x))),
-        status: json["status"] == null ? null : json["status"],
-        tagline: json["tagline"] == null ? null : json["tagline"],
-        type: json["type"] == null ? null : json["type"],
+                (json["spoken_languages"] as List).map(
+                  (x) => Language.fromJson(x as Map<String, dynamic>),
+                ),
+              ),
+        status: json["status"] as String,
+        tagline: json["tagline"] as String,
+        type: json["type"] as String,
         voteAverage: json["vote_average"] == null
             ? null
-            : json["vote_average"].toDouble(),
-        voteCount: json["vote_count"] == null ? null : json["vote_count"],
+            : json["vote_average"] as double,
+        voteCount: json["vote_count"] as int,
       );
 
   Map<String, dynamic> toJson() => {
-        "backdrop_path": backdropPath == null ? null : backdropPath,
+        "backdrop_path": backdropPath,
         "created_by": createdBy == null
             ? null
             : List<dynamic>.from(createdBy.map((x) => x.toJson())),
@@ -174,33 +181,31 @@ class TvDetails {
         "genres": genres == null
             ? null
             : List<dynamic>.from(genres.map((x) => x.toJson())),
-        "homepage": homepage == null ? null : homepage,
-        "id": id == null ? null : id,
-        "in_production": inProduction == null ? null : inProduction,
+        "homepage": homepage,
+        "id": id,
+        "in_production": inProduction,
         "languages": languages == null
             ? null
             : List<dynamic>.from(languages.map((x) => x)),
         "last_air_date": lastAirDate == null
             ? null
             : "${lastAirDate.year.toString().padLeft(4, '0')}-${lastAirDate.month.toString().padLeft(2, '0')}-${lastAirDate.day.toString().padLeft(2, '0')}",
-        "last_episode_to_air":
-            lastEpisodeToAir == null ? null : lastEpisodeToAir.toJson(),
-        "name": name == null ? null : name,
+        "last_episode_to_air": lastEpisodeToAir?.toJson(),
+        "name": name,
         "next_episode_to_air": nextEpisodeToAir,
         "networks": networks == null
             ? null
             : List<dynamic>.from(networks.map((x) => x.toJson())),
-        "number_of_episodes":
-            numberOfEpisodes == null ? null : numberOfEpisodes,
-        "number_of_seasons": numberOfSeasons == null ? null : numberOfSeasons,
+        "number_of_episodes": numberOfEpisodes,
+        "number_of_seasons": numberOfSeasons,
         "origin_country": originCountry == null
             ? null
             : List<dynamic>.from(originCountry.map((x) => x)),
-        "original_language": originalLanguage == null ? null : originalLanguage,
-        "original_name": originalName == null ? null : originalName,
-        "overview": overview == null ? null : overview,
-        "popularity": popularity == null ? null : popularity,
-        "poster_path": posterPath == null ? null : posterPath,
+        "original_language": originalLanguage,
+        "original_name": originalName,
+        "overview": overview,
+        "popularity": popularity,
+        "poster_path": posterPath,
         "production_companies": productionCompanies == null
             ? null
             : List<dynamic>.from(productionCompanies.map((x) => x.toJson())),
@@ -213,10 +218,10 @@ class TvDetails {
         "spoken_languages": spokenLanguages == null
             ? null
             : List<dynamic>.from(spokenLanguages.map((x) => x.toJson())),
-        "status": status == null ? null : status,
-        "tagline": tagline == null ? null : tagline,
-        "type": type == null ? null : type,
-        "vote_average": voteAverage == null ? null : voteAverage,
-        "vote_count": voteCount == null ? null : voteCount,
+        "status": status,
+        "tagline": tagline,
+        "type": type,
+        "vote_average": voteAverage,
+        "vote_count": voteCount,
       };
 }

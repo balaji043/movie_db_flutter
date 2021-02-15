@@ -7,7 +7,7 @@ import 'package:movie_db/domain/entities/movie_entity.dart';
 
 // Project imports:
 
-const String getMovieBaseUrl = '${ApiConstants.TMDBBaseUrlV3}/movie';
+const String getMovieBaseUrl = '${ApiConstants.tMDBBaseUrlV3}/movie';
 const String getNowPlayingMoviesUrl = '$getMovieBaseUrl/now_playing';
 const String getPopularMoviesUrl = '$getMovieBaseUrl/popular';
 const String getTopRatedMoviesUrl = '$getMovieBaseUrl/top_rated';
@@ -16,10 +16,10 @@ const String getUpcomingMoviesUrl = '$getMovieBaseUrl/upcoming';
 class MovieListController extends GetxController {
   final dios.Dio _dio = dios.Dio();
 
-  var nowPlayingMovies = <MovieEntity>[].obs;
-  var popularMovies = <MovieEntity>[].obs;
-  var topRatedMovies = <MovieEntity>[].obs;
-  var upcomingMovies = <MovieEntity>[].obs;
+  final nowPlayingMovies = <MovieEntity>[].obs;
+  final popularMovies = <MovieEntity>[].obs;
+  final topRatedMovies = <MovieEntity>[].obs;
+  final upcomingMovies = <MovieEntity>[].obs;
 
   @override
   void onInit() {
@@ -30,26 +30,26 @@ class MovieListController extends GetxController {
     super.onInit();
   }
 
-  void _getNowPlayingMovies() async {
-    var getMoviesByUrl = await _getMoviesByUrl(getNowPlayingMoviesUrl);
+  Future<void> _getNowPlayingMovies() async {
+    final getMoviesByUrl = await _getMoviesByUrl(getNowPlayingMoviesUrl);
     nowPlayingMovies.clear();
     nowPlayingMovies.addAll(getMoviesByUrl.results);
   }
 
-  void _getPopularMovies() async {
-    var getMoviesByUrl = await _getMoviesByUrl(getPopularMoviesUrl);
+  Future<void> _getPopularMovies() async {
+    final getMoviesByUrl = await _getMoviesByUrl(getPopularMoviesUrl);
     popularMovies.clear();
     popularMovies.addAll(getMoviesByUrl.results);
   }
 
-  void _getTopRatedMovies() async {
-    var getMoviesByUrl = await _getMoviesByUrl(getTopRatedMoviesUrl);
+  Future<void> _getTopRatedMovies() async {
+    final getMoviesByUrl = await _getMoviesByUrl(getTopRatedMoviesUrl);
     topRatedMovies.clear();
     topRatedMovies.addAll(getMoviesByUrl.results);
   }
 
-  void _getUpcomingMovies() async {
-    var getMoviesByUrl = await _getMoviesByUrl(getUpcomingMoviesUrl);
+  Future<void> _getUpcomingMovies() async {
+    final getMoviesByUrl = await _getMoviesByUrl(getUpcomingMoviesUrl);
     upcomingMovies.clear();
     upcomingMovies.addAll(getMoviesByUrl.results);
   }
@@ -57,12 +57,12 @@ class MovieListController extends GetxController {
   Future<PaginatedResponse<MovieEntity>> _getMoviesByUrl(
       String movieUrl) async {
     try {
-      dios.Response response = await _dio.get(
+      final dios.Response response = await _dio.get(
         movieUrl,
         queryParameters: ApiConstants.params,
       );
-      var movieResponse = PaginatedResponse<MovieEntity>.fromJson(
-        response.data,
+      final movieResponse = PaginatedResponse<MovieEntity>.fromJson(
+        response.data as Map<String, dynamic>,
         (map) => MovieEntity.fromMap(map),
       );
       return movieResponse;

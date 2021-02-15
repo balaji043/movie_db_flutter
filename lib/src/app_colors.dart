@@ -13,12 +13,12 @@ const kTitleTextColor = Color(0xFF30384D);
 const kTextColor = Color(0xFF4D5875);
 
 const kDefaultPadding = 20.0;
-
-final Shader linearGradient = LinearGradient(
-  colors: <Color>[
-    Color(0xffc0fecf),
-    Color(0xff1ed5a9),
-  ],
+const colors = <Color>[
+  Color(0xffc0fecf),
+  Color(0xff1ed5a9),
+];
+final Shader linearGradient = const LinearGradient(
+  colors: colors,
 ).createShader(
-  Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
+  const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
 );

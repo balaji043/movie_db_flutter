@@ -2,8 +2,8 @@
 import 'package:dartz/dartz.dart';
 
 // Project imports:
-import '../../core/failures.dart';
+import '../entities/api_error.dart';
 
 abstract class UseCase<Type, Params> {
-  Future<Either<Failure, Type>> call(Params params);
+  Future<Either<ApiError, Type>> call(Params params);
 }

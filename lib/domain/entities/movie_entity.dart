@@ -11,7 +11,7 @@ class MovieEntity extends Equatable {
   final String posterPath;
   final String releaseDate;
 
-  MovieEntity({
+  const MovieEntity({
     @required this.id,
     @required this.title,
     @required this.voteAverage,
@@ -39,16 +39,18 @@ class MovieEntity extends Equatable {
     if (map == null) return null;
 
     return MovieEntity(
-      id: map['id'],
-      title: map['title'],
-      voteAverage: map['voteAverage'],
-      posterPath: map['posterPath'],
-      releaseDate: map['releaseDate'],
+      id: map['id'] == null ? null : map["id"] as int,
+      title: map["title"] == null ? null : map["title"] as String,
+      voteAverage:
+          map["vote_average"] == null ? null : map["vote_average"] as double,
+      posterPath: map["poster_path"] as String,
+      releaseDate:
+          map["release_date"] == null ? null : map["release_date"] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory MovieEntity.fromJson(String source) =>
-      MovieEntity.fromMap(json.decode(source));
+      MovieEntity.fromMap(json.decode(source) as Map<String, dynamic>);
 }

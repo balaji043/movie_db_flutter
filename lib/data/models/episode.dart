@@ -5,7 +5,8 @@
 // Dart imports:
 import 'dart:convert';
 
-Episode episodeFromJson(String str) => Episode.fromJson(json.decode(str));
+Episode episodeFromJson(String str) =>
+    Episode.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String episodeToJson(Episode data) => json.encode(data.toJson());
 
@@ -39,29 +40,33 @@ class Episode {
   int voteCount;
 
   factory Episode.fromJson(Map<String, dynamic> json) => Episode(
-        airDate:
-            json["air_date"] == null ? null : DateTime.parse(json["air_date"]),
+        airDate: json["air_date"] == null
+            ? null
+            : DateTime.parse(json["air_date"] as String),
         crew: json["crew"] == null
             ? null
-            : List<Crew>.from(json["crew"].map((x) => Crew.fromJson(x))),
-        episodeNumber:
-            json["episode_number"] == null ? null : json["episode_number"],
+            : List<Crew>.from((json["crew"] as List)
+                .map((x) => Crew.fromJson(x as Map<String, dynamic>))),
+        episodeNumber: json["episode_number"] as int,
         guestStars: json["guest_stars"] == null
             ? null
             : List<GuestStar>.from(
-                json["guest_stars"].map((x) => GuestStar.fromJson(x))),
-        name: json["name"] == null ? null : json["name"],
-        overview: json["overview"] == null ? null : json["overview"],
-        id: json["id"] == null ? null : json["id"],
-        productionCode:
-            json["production_code"] == null ? null : json["production_code"],
-        seasonNumber:
-            json["season_number"] == null ? null : json["season_number"],
-        stillPath: json["still_path"] == null ? null : json["still_path"],
+                (json["guest_stars"] as List).map(
+                  (x) => GuestStar.fromJson(
+                    x as Map<String, dynamic>,
+                  ),
+                ),
+              ),
+        name: json["name"] as String,
+        overview: json["overview"] as String,
+        id: json["id"] as int,
+        productionCode: json["production_code"] as String,
+        seasonNumber: json["season_number"] as int ?? 0,
+        stillPath: json["still_path"] as String,
         voteAverage: json["vote_average"] == null
             ? null
-            : json["vote_average"].toDouble(),
-        voteCount: json["vote_count"] == null ? null : json["vote_count"],
+            : json["vote_average"] as double,
+        voteCount: json["vote_count"] as int,
       );
 
   Map<String, dynamic> toJson() => {
@@ -71,18 +76,18 @@ class Episode {
         "crew": crew == null
             ? null
             : List<dynamic>.from(crew.map((x) => x.toJson())),
-        "episode_number": episodeNumber == null ? null : episodeNumber,
+        "episode_number": episodeNumber,
         "guest_stars": guestStars == null
             ? null
             : List<dynamic>.from(guestStars.map((x) => x.toJson())),
-        "name": name == null ? null : name,
-        "overview": overview == null ? null : overview,
-        "id": id == null ? null : id,
-        "production_code": productionCode == null ? null : productionCode,
-        "season_number": seasonNumber == null ? null : seasonNumber,
-        "still_path": stillPath == null ? null : stillPath,
-        "vote_average": voteAverage == null ? null : voteAverage,
-        "vote_count": voteCount == null ? null : voteCount,
+        "name": name,
+        "overview": overview,
+        "id": id,
+        "production_code": productionCode,
+        "season_number": seasonNumber,
+        "still_path": stillPath,
+        "vote_average": voteAverage,
+        "vote_count": voteCount,
       };
 }
 
@@ -104,21 +109,21 @@ class Crew {
   String profilePath;
 
   factory Crew.fromJson(Map<String, dynamic> json) => Crew(
-        id: json["id"] == null ? null : json["id"],
-        creditId: json["credit_id"] == null ? null : json["credit_id"],
-        name: json["name"] == null ? null : json["name"],
-        department: json["department"] == null ? null : json["department"],
-        job: json["job"] == null ? null : json["job"],
-        profilePath: json["profile_path"] == null ? null : json["profile_path"],
+        id: json["id"] as int,
+        creditId: json["credit_id"] as String,
+        name: json["name"] as String,
+        department: json["department"] as String,
+        job: json["job"] as String,
+        profilePath: json["profile_path"] as String,
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "credit_id": creditId == null ? null : creditId,
-        "name": name == null ? null : name,
-        "department": department == null ? null : department,
-        "job": job == null ? null : job,
-        "profile_path": profilePath == null ? null : profilePath,
+        "id": id,
+        "credit_id": creditId,
+        "name": name,
+        "department": department,
+        "job": job,
+        "profile_path": profilePath,
       };
 }
 
@@ -140,20 +145,20 @@ class GuestStar {
   String profilePath;
 
   factory GuestStar.fromJson(Map<String, dynamic> json) => GuestStar(
-        id: json["id"] == null ? null : json["id"],
-        name: json["name"] == null ? null : json["name"],
-        creditId: json["credit_id"] == null ? null : json["credit_id"],
-        character: json["character"] == null ? null : json["character"],
-        order: json["order"] == null ? null : json["order"],
-        profilePath: json["profile_path"] == null ? null : json["profile_path"],
+        id: json["id"] as int,
+        name: json["name"] as String,
+        creditId: json["credit_id"] as String,
+        character: json["character"] as String,
+        order: json["order"] as int,
+        profilePath: json["profile_path"] as String,
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "name": name == null ? null : name,
-        "credit_id": creditId == null ? null : creditId,
-        "character": character == null ? null : character,
-        "order": order == null ? null : order,
-        "profile_path": profilePath == null ? null : profilePath,
+        "id": id,
+        "name": name,
+        "credit_id": creditId,
+        "character": character,
+        "order": order,
+        "profile_path": profilePath,
       };
 }

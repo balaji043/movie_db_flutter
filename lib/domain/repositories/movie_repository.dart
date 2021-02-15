@@ -1,14 +1,16 @@
 // Package imports:
 import 'package:dartz/dartz.dart';
 import 'package:movie_db/data/models/core.dart';
+import 'package:movie_db/data/models/movie_details.dart';
 
 // Project imports:
-import '../../core/failures.dart';
-import '../entities/movie_entity.dart';
+import '../entities/api_error.dart';
 
 abstract class MovieRepository {
-  Future<Either<Failure, PaginatedResponse<MovieEntity>>> getNowPlayingMovies();
-  Future<Either<Failure, PaginatedResponse<MovieEntity>>> getPopularMovies();
-  Future<Either<Failure, PaginatedResponse<MovieEntity>>> getTopRatedMovies();
-  Future<Either<Failure, PaginatedResponse<MovieEntity>>> getUpcomingMovies();
+  Future<Either<ApiError, PaginatedResponse<MovieDetails>>>
+      getNowPlayingMovies();
+  Future<Either<ApiError, PaginatedResponse<MovieDetails>>> getPopularMovies();
+  Future<Either<ApiError, PaginatedResponse<MovieDetails>>> getTopRatedMovies();
+  Future<Either<ApiError, PaginatedResponse<MovieDetails>>> getUpcomingMovies();
+  Future<Either<ApiError, PaginatedResponse<MovieDetails>>> getTrendingMovies();
 }

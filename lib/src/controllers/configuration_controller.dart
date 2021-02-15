@@ -6,12 +6,12 @@ import 'package:movie_db/data/models/configuration.dart';
 
 // Project imports:
 
-final getConfigurationUrl = '${ApiConstants.TMDBBaseUrlV3}/configuration';
+const getConfigurationUrl = '${ApiConstants.tMDBBaseUrlV3}/configuration';
 
 class ConfigurationController extends GetxController {
   final dios.Dio dio = dios.Dio();
 
-  var appConfiguration = AppConfiguration().obs;
+  final appConfiguration = AppConfiguration().obs;
 
   @override
   void onInit() {
@@ -19,17 +19,18 @@ class ConfigurationController extends GetxController {
     super.onInit();
   }
 
-  void _getAppCongfiguration() async {
+  Future<void> _getAppCongfiguration() async {
     try {
-      var params = {
+      final params = {
         'api_key': ApiConstants.apiKey,
         'language': 'en-US',
       };
-      dios.Response response = await dio.get(
+      final dios.Response response = await dio.get(
         getConfigurationUrl,
         queryParameters: params,
       );
-      var appConfig = AppConfiguration.fromJson(response.data);
+      final appConfig =
+          AppConfiguration.fromJson(response.data as Map<String, dynamic>);
       appConfiguration.value = appConfig;
     } catch (error, stackTrace) {
       printException(error, stackTrace);

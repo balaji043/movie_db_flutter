@@ -18,13 +18,13 @@ class Account {
   String username;
 
   factory Account.fromJson(Map<String, dynamic> json) => Account(
-        avatar: Avatar.fromJson(json["avatar"]),
-        id: json["id"],
-        iso6391: json["iso_639_1"],
-        iso31661: json["iso_3166_1"],
-        name: json["name"],
-        includeAdult: json["include_adult"],
-        username: json["username"],
+        avatar: Avatar.fromJson(json["avatar"] as Map<String, dynamic>),
+        id: json["id"] as int,
+        iso6391: json["iso_639_1"] as String,
+        iso31661: json["iso_3166_1"] as String,
+        name: json["name"] as String,
+        includeAdult: json["include_adult"] as bool,
+        username: json["username"] as String,
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,7 +46,7 @@ class Gravatar {
   String hash;
 
   factory Gravatar.fromJson(Map<String, dynamic> json) => Gravatar(
-        hash: json["hash"],
+        hash: json["hash"] as String,
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,7 +62,7 @@ class Avatar {
   Gravatar gravatar;
 
   factory Avatar.fromJson(Map<String, dynamic> json) => Avatar(
-        gravatar: Gravatar.fromJson(json["gravatar"]),
+        gravatar: Gravatar.fromJson(json["gravatar"] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {

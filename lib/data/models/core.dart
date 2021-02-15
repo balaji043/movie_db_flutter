@@ -15,27 +15,29 @@ class PaginatedResponse<T> {
     Map<String, dynamic> json,
     T Function(Map<String, dynamic> json) fromJson,
   ) {
-    page = json['page'];
-    totalPages = json['total_pages'];
-    totalResults = json['total_results'];
+    page = json['page'] as int;
+    totalPages = json['total_pages'] as int;
+    totalResults = json['total_results'] as int;
     if (json['results'] != null) {
-      var resultList = json['results'] as List;
+      final resultList = json['results'] as List;
       results = resultList
           .map(
-            (v) => fromJson(v),
+            (v) => fromJson(
+              v as Map<String, dynamic>,
+            ),
           )
           .toList();
     }
   }
 
   Map<String, dynamic> toJson(Map<String, dynamic> Function() toJsonModel) {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['page'] = this.page;
-    if (this.results != null) {
-      data['results'] = this.results.map((v) => toJsonModel()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['page'] = page;
+    if (results != null) {
+      data['results'] = results.map((v) => toJsonModel()).toList();
     }
-    data['total_pages'] = this.totalPages;
-    data['total_results'] = this.totalResults;
+    data['total_pages'] = totalPages;
+    data['total_results'] = totalResults;
     return data;
   }
 }
@@ -50,20 +52,20 @@ class CreatedBy {
   CreatedBy({this.id, this.creditId, this.name, this.gender, this.profilePath});
 
   CreatedBy.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    creditId = json['credit_id'];
-    name = json['name'];
-    gender = json['gender'];
-    profilePath = json['profile_path'];
+    id = json['id'] as int;
+    creditId = json['credit_id'] as String;
+    name = json['name'] as String;
+    gender = json['gender'] as int;
+    profilePath = json['profile_path'] as String;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['credit_id'] = this.creditId;
-    data['name'] = this.name;
-    data['gender'] = this.gender;
-    data['profile_path'] = this.profilePath;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['credit_id'] = creditId;
+    data['name'] = name;
+    data['gender'] = gender;
+    data['profile_path'] = profilePath;
     return data;
   }
 }
@@ -74,21 +76,26 @@ class ProductionCompany {
   String name;
   String originCountry;
 
-  ProductionCompany({this.id, this.logoPath, this.name, this.originCountry});
+  ProductionCompany({
+    this.id,
+    this.logoPath,
+    this.name,
+    this.originCountry,
+  });
 
   ProductionCompany.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    logoPath = json['logo_path'];
-    name = json['name'];
-    originCountry = json['origin_country'];
+    id = json['id'] as int;
+    logoPath = json['logo_path'] as String;
+    name = json['name'] as String;
+    originCountry = json['origin_country'] as String;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['logo_path'] = this.logoPath;
-    data['name'] = this.name;
-    data['origin_country'] = this.originCountry;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['logo_path'] = logoPath;
+    data['name'] = name;
+    data['origin_country'] = originCountry;
     return data;
   }
 }
@@ -100,14 +107,14 @@ class ProductionCountries {
   ProductionCountries({this.iso31661, this.name});
 
   ProductionCountries.fromJson(Map<String, dynamic> json) {
-    iso31661 = json['iso_3166_1'];
-    name = json['name'];
+    iso31661 = json['iso_3166_1'] as String;
+    name = json['name'] as String;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['iso_3166_1'] = this.iso31661;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['iso_3166_1'] = iso31661;
+    data['name'] = name;
     return data;
   }
 }
@@ -116,17 +123,20 @@ class Genre {
   int id;
   String name;
 
-  Genre({this.id, this.name});
+  Genre({
+    this.id,
+    this.name,
+  });
 
   Genre.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
+    id = json['id'] as int;
+    name = json['name'] as String;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
     return data;
   }
 }

@@ -22,28 +22,27 @@ class Network {
   String name;
   String originCountry;
 
-  factory Network.fromRawJson(String str) => Network.fromJson(json.decode(str));
+  factory Network.fromRawJson(String str) =>
+      Network.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String toRawJson() => json.encode(toJson());
 
   factory Network.fromJson(Map<String, dynamic> json) => Network(
-        headquarters:
-            json["headquarters"] == null ? null : json["headquarters"],
-        homepage: json["homepage"] == null ? null : json["homepage"],
-        id: json["id"] == null ? null : json["id"],
-        logoPath: json["logo_path"] == null ? null : json["logo_path"],
-        name: json["name"] == null ? null : json["name"],
-        originCountry:
-            json["origin_country"] == null ? null : json["origin_country"],
+        headquarters: json["headquarters"] as String,
+        homepage: json["homepage"] as String,
+        id: json["id"] as int,
+        logoPath: json["logo_path"] as String,
+        name: json["name"] as String,
+        originCountry: json["origin_country"] as String,
       );
 
   Map<String, dynamic> toJson() => {
-        "headquarters": headquarters == null ? null : headquarters,
-        "homepage": homepage == null ? null : homepage,
-        "id": id == null ? null : id,
-        "logo_path": logoPath == null ? null : logoPath,
-        "name": name == null ? null : name,
-        "origin_country": originCountry == null ? null : originCountry,
+        "headquarters": headquarters,
+        "homepage": homepage,
+        "id": id,
+        "logo_path": logoPath,
+        "name": name,
+        "origin_country": originCountry,
       };
 }
 
@@ -58,12 +57,12 @@ class AlternativeNetworkName {
 
   factory AlternativeNetworkName.fromJson(Map<String, dynamic> json) =>
       AlternativeNetworkName(
-        name: json["name"] == null ? null : json["name"],
-        type: json["type"] == null ? null : json["type"],
+        name: json["name"] as String,
+        type: json["type"] as String,
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name == null ? null : name,
-        "type": type == null ? null : type,
+        "name": name,
+        "type": type,
       };
 }

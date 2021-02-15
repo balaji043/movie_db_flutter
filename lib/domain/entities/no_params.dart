@@ -8,4 +8,4 @@ class NoParams extends Equatable {
   List<Object> get props => [];
 }
 
-final noParams = NoParams();
+const noParams = NoParams();

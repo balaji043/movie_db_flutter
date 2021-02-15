@@ -2,26 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import 'package:movie_db/di/get_di.dart' as get_di;
+import 'package:movie_db/presentation/movie_app.dart';
 // Project imports:
-import 'package:movie_db/src/home/home_screen.dart';
+import 'package:pedantic/pedantic.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Movie DB',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(),
-      ),
-      home: HomeScreen(),
-    );
-  }
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  unawaited(get_di.init());
+  runApp(const MovieApp());
 }

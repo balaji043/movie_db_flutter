@@ -1,7 +1,8 @@
 // Dart imports:
 import 'dart:convert';
 
-People peopleFromJson(String str) => People.fromJson(json.decode(str));
+People peopleFromJson(String str) =>
+    People.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String peopleToJson(People data) => json.encode(data.toJson());
 
@@ -39,26 +40,24 @@ class People {
   dynamic homepage;
 
   factory People.fromJson(Map<String, dynamic> json) => People(
-        birthday:
-            json["birthday"] == null ? null : DateTime.parse(json["birthday"]),
-        knownForDepartment: json["known_for_department"] == null
+        birthday: json["birthday"] == null
             ? null
-            : json["known_for_department"],
+            : DateTime.parse(json["birthday"] as String),
+        knownForDepartment: json["known_for_department"] as String,
         deathday: json["deathday"],
-        id: json["id"] == null ? null : json["id"],
-        name: json["name"] == null ? null : json["name"],
+        id: json["id"] as int,
+        name: json["name"] as String,
         alsoKnownAs: json["also_known_as"] == null
             ? null
-            : List<String>.from(json["also_known_as"].map((x) => x)),
-        gender: json["gender"] == null ? null : json["gender"],
-        biography: json["biography"] == null ? null : json["biography"],
+            : List<String>.from((json["also_known_as"] as List).map((x) => x)),
+        gender: json["gender"] as int,
+        biography: json["biography"] as String,
         popularity:
-            json["popularity"] == null ? null : json["popularity"].toDouble(),
-        placeOfBirth:
-            json["place_of_birth"] == null ? null : json["place_of_birth"],
-        profilePath: json["profile_path"] == null ? null : json["profile_path"],
-        adult: json["adult"] == null ? null : json["adult"],
-        imdbId: json["imdb_id"] == null ? null : json["imdb_id"],
+            json["popularity"] == null ? null : json["popularity"] as double,
+        placeOfBirth: json["place_of_birth"] as String,
+        profilePath: json["profile_path"] as String,
+        adult: json["adult"] as bool,
+        imdbId: json["imdb_id"] as String,
         homepage: json["homepage"],
       );
 
@@ -66,21 +65,20 @@ class People {
         "birthday": birthday == null
             ? null
             : "${birthday.year.toString().padLeft(4, '0')}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}",
-        "known_for_department":
-            knownForDepartment == null ? null : knownForDepartment,
+        "known_for_department": knownForDepartment,
         "deathday": deathday,
-        "id": id == null ? null : id,
-        "name": name == null ? null : name,
+        "id": id,
+        "name": name,
         "also_known_as": alsoKnownAs == null
             ? null
             : List<dynamic>.from(alsoKnownAs.map((x) => x)),
-        "gender": gender == null ? null : gender,
-        "biography": biography == null ? null : biography,
-        "popularity": popularity == null ? null : popularity,
-        "place_of_birth": placeOfBirth == null ? null : placeOfBirth,
-        "profile_path": profilePath == null ? null : profilePath,
-        "adult": adult == null ? null : adult,
-        "imdb_id": imdbId == null ? null : imdbId,
+        "gender": gender,
+        "biography": biography,
+        "popularity": popularity,
+        "place_of_birth": placeOfBirth,
+        "profile_path": profilePath,
+        "adult": adult,
+        "imdb_id": imdbId,
         "homepage": homepage,
       };
 }

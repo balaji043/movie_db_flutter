@@ -9,14 +9,14 @@ import 'package:movie_db/domain/entities/no_params.dart';
 import 'package:movie_db/domain/repositories/movie_repository.dart';
 import 'package:movie_db/domain/use_cases/usecase.dart';
 
-class GetNowPlayingMovies implements UseCase<PaginatedResponse, NoParams> {
+class GetTopRatedMovies implements UseCase<PaginatedResponse, NoParams> {
   final MovieRepository movieRepository;
 
-  GetNowPlayingMovies(this.movieRepository);
+  GetTopRatedMovies(this.movieRepository);
 
   @override
   Future<Either<ApiError, PaginatedResponse<MovieEntity>>> call(
     void params,
   ) =>
-      movieRepository.getNowPlayingMovies();
+      movieRepository.getTopRatedMovies();
 }

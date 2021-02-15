@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:movie_db/presentation/app_colors.dart';
+import 'package:movie_db/src/app_colors.dart';
 
 class RatingWidget extends StatelessWidget {
   final String voteAverage;
@@ -15,7 +15,7 @@ class RatingWidget extends StatelessWidget {
       height: 36,
       width: 36,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(50),
         ),
         color: Colors.white,

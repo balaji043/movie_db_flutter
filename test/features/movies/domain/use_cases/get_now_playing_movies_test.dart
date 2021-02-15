@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 // Project imports:
-import 'package:movie_db/core/failures.dart';
+import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/domain/entities/movie_entity.dart';
 import 'package:movie_db/domain/entities/no_params.dart';
@@ -20,12 +20,12 @@ void main() {
     () {
       mockMovieRepository = MockMovieRepository();
       useCase = GetNowPlayingMovies(
-        movieRepository: mockMovieRepository,
+        mockMovieRepository,
       );
     },
   );
 
-  final MovieEntity testMovieEntity = MovieEntity(
+  const MovieEntity testMovieEntity = MovieEntity(
     id: 464052,
     title: "Wonder Woman 1984",
     voteAverage: 9.0,
@@ -53,7 +53,7 @@ void main() {
 
       // test call
 
-      final Either<Failure, PaginatedResponse<MovieEntity>>
+      final Either<ApiError, PaginatedResponse<MovieEntity>>
           actualPageResponseMovie = await useCase(noParams);
 
       // asserts
