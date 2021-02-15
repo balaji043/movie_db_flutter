@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:dartz/dartz.dart';
-import 'package:movie_db/data/models/core.dart';
-import 'package:movie_db/data/models/movie_details.dart';
 
 // Project imports:
+import 'package:movie_db/data/models/core.dart';
+import 'package:movie_db/data/models/movie_details.dart';
 import '../entities/api_error.dart';
 
 abstract class MovieRepository {

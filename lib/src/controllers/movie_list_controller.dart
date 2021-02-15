@@ -1,11 +1,11 @@
 // Package imports:
 import 'package:dio/dio.dart' as dios;
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/domain/entities/movie_entity.dart';
-
-// Project imports:
 
 const String getMovieBaseUrl = '${ApiConstants.tMDBBaseUrlV3}/movie';
 const String getNowPlayingMoviesUrl = '$getMovieBaseUrl/now_playing';

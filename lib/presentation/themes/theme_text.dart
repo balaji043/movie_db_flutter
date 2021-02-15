@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:google_fonts/google_fonts.dart';
+
+// Project imports:
+import 'package:movie_db/core/extensions.dart';
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
-import 'package:movie_db/core/extensions.dart';
 
 class ThemeText {
   const ThemeText._();

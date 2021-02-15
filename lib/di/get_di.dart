@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+
+// Project imports:
 import 'package:movie_db/data/data_source/movie_data_source.dart';
 import 'package:movie_db/data/data_source/tmdb_movie_data_source.dart';
 import 'package:movie_db/domain/repositories/movie_repository.dart';

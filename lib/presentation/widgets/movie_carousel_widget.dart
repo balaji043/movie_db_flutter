@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/domain/entities/movie_entity.dart';
 import 'package:movie_db/src/components/movie_card.dart';

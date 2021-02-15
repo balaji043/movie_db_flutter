@@ -1,8 +1,11 @@
+// Package imports:
 import 'package:dio/dio.dart';
+
+// Project imports:
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/data/data_source/movie_data_source.dart';
-import 'package:movie_db/data/models/movie_details.dart';
 import 'package:movie_db/data/models/core.dart';
+import 'package:movie_db/data/models/movie_details.dart';
 
 class TMDBMovieDataSource implements MovieDataSource {
   final Dio dio;

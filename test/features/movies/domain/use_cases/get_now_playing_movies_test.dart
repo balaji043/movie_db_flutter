@@ -4,8 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 // Project imports:
-import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/data/models/core.dart';
+import 'package:movie_db/data/models/movie_details.dart';
+import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/domain/entities/movie_entity.dart';
 import 'package:movie_db/domain/entities/no_params.dart';
 import 'package:movie_db/domain/repositories/movie_repository.dart';
@@ -25,15 +26,15 @@ void main() {
     },
   );
 
-  const MovieEntity testMovieEntity = MovieEntity(
+  const MovieDetails testMovieEntity = MovieDetails(
     id: 464052,
     title: "Wonder Woman 1984",
     voteAverage: 9.0,
     posterPath: "/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
     releaseDate: "2020-12-16",
   );
-  final PaginatedResponse<MovieEntity> testPaginatedMovieReponse =
-      PaginatedResponse<MovieEntity>(
+  final PaginatedResponse<MovieDetails> testPaginatedMovieReponse =
+      PaginatedResponse<MovieDetails>(
     page: 0,
     results: [testMovieEntity],
     totalPages: 1,

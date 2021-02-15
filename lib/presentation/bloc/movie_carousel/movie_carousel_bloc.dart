@@ -1,8 +1,14 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+
+// Package imports:
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+
+// Project imports:
 import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/domain/entities/movie_entity.dart';
 import 'package:movie_db/domain/use_cases/get_trending_movies.dart';

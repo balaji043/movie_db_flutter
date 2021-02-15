@@ -1,7 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:movie_db/core/extensions.dart';
 import 'package:movie_db/core/screen_util.dart';
 import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/core/extensions.dart';
 import 'package:movie_db/presentation/widgets/logo.dart';
 
 class MoviAppBar extends StatelessWidget {

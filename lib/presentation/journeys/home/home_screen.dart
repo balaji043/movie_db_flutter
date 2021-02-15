@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:movie_db/di/get_di.dart';
 import 'package:movie_db/presentation/bloc/movie_carousel/movie_carousel_bloc.dart';
 import 'package:movie_db/presentation/widgets/movie_carousel_widget.dart';

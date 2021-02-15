@@ -1,5 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:movie_db/core/screen_util.dart';
 
 // Our design contains Neumorphism design and i made a extention for it

@@ -1,6 +1,5 @@
 // Project imports:
 import 'package:movie_db/domain/entities/movie_entity.dart';
-
 import 'configuration.dart';
 import 'core.dart';
 

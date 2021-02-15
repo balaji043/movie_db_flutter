@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/data/models/movie_details.dart';
 

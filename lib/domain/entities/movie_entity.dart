@@ -1,6 +1,7 @@
-// Package imports:
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
