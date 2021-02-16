@@ -7,17 +7,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
-
+import 'package:flutter_driver/driver_extension.dart';
 import 'package:movie_db/main.dart' as app;
 
-void main() => run(_testMain);
+void main() {
+  enableFlutterDriverExtension();
+  // Build our app and trigger a frame.
+  app.main();
+  _testMain();
+}
 
 void _testMain() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    app.main();
-
     // Trigger a frame.
     await tester.pumpAndSettle();
 

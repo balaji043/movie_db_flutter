@@ -33,36 +33,34 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider<MovieCarouselBloc>(
-      create: (context) => movieCarouselBloc,
-      child: Scaffold(
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            FractionallySizedBox(
-              heightFactor: 0.6,
-              alignment: Alignment.topCenter,
-              child: BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
-                builder: (context, state) {
-                  if (state is MovieCarouselSuccess) {
-                    return MovieCarouselWidget(
-                      movies: state.movies,
-                      defaultIndex: state.defaultIndex,
-                    );
-                  }
-                  return SizedBox.fromSize();
-                },
+  Widget build(BuildContext context) => BlocProvider<MovieCarouselBloc>(
+        create: (BuildContext context) => movieCarouselBloc,
+        child: Scaffold(
+          body: Stack(
+            fit: StackFit.expand,
+            children: <FractionallySizedBox>[
+              FractionallySizedBox(
+                heightFactor: 0.6,
+                alignment: Alignment.topCenter,
+                child: BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
+                  builder: (BuildContext context, MovieCarouselState state) {
+                    if (state is MovieCarouselSuccess) {
+                      return MovieCarouselWidget(
+                        movies: state.movies,
+                        defaultIndex: state.defaultIndex,
+                      );
+                    }
+                    return SizedBox.fromSize();
+                  },
+                ),
               ),
-            ),
-            const FractionallySizedBox(
-              heightFactor: 0.4,
-              alignment: Alignment.bottomCenter,
-              child: Placeholder(),
-            )
-          ],
+              const FractionallySizedBox(
+                heightFactor: 0.4,
+                alignment: Alignment.bottomCenter,
+                child: Placeholder(),
+              )
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

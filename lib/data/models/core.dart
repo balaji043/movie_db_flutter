@@ -15,15 +15,15 @@ class PaginatedResponse<T> {
     Map<String, dynamic> json,
     T Function(Map<String, dynamic> json) fromJson,
   ) {
-    page = json['page'] as int;
-    totalPages = json['total_pages'] as int;
-    totalResults = json['total_results'] as int;
+    page = json['page'];
+    totalPages = json['total_pages'];
+    totalResults = json['total_results'];
     if (json['results'] != null) {
-      final resultList = json['results'] as List;
+      final List<dynamic> resultList = json['results'];
       results = resultList
           .map(
-            (v) => fromJson(
-              v as Map<String, dynamic>,
+            (dynamic v) => fromJson(
+              v,
             ),
           )
           .toList();
@@ -34,7 +34,11 @@ class PaginatedResponse<T> {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['page'] = page;
     if (results != null) {
-      data['results'] = results.map((v) => toJsonModel()).toList();
+      data['results'] = results
+          .map(
+            (dynamic v) => toJsonModel(),
+          )
+          .toList();
     }
     data['total_pages'] = totalPages;
     data['total_results'] = totalResults;
@@ -52,11 +56,11 @@ class CreatedBy {
   CreatedBy({this.id, this.creditId, this.name, this.gender, this.profilePath});
 
   CreatedBy.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    creditId = json['credit_id'] as String;
-    name = json['name'] as String;
-    gender = json['gender'] as int;
-    profilePath = json['profile_path'] as String;
+    id = json['id'];
+    creditId = json['credit_id'];
+    name = json['name'];
+    gender = json['gender'];
+    profilePath = json['profile_path'];
   }
 
   Map<String, dynamic> toJson() {
@@ -84,10 +88,10 @@ class ProductionCompany {
   });
 
   ProductionCompany.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    logoPath = json['logo_path'] as String;
-    name = json['name'] as String;
-    originCountry = json['origin_country'] as String;
+    id = json['id'];
+    logoPath = json['logo_path'];
+    name = json['name'];
+    originCountry = json['origin_country'];
   }
 
   Map<String, dynamic> toJson() {
@@ -107,8 +111,8 @@ class ProductionCountries {
   ProductionCountries({this.iso31661, this.name});
 
   ProductionCountries.fromJson(Map<String, dynamic> json) {
-    iso31661 = json['iso_3166_1'] as String;
-    name = json['name'] as String;
+    iso31661 = json['iso_3166_1'];
+    name = json['name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -129,8 +133,8 @@ class Genre {
   });
 
   Genre.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int;
-    name = json['name'] as String;
+    id = json['id'];
+    name = json['name'];
   }
 
   Map<String, dynamic> toJson() {

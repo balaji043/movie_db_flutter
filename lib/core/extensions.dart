@@ -4,38 +4,38 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:movie_db/core/screen_util.dart';
 
-// Our design contains Neumorphism design and i made a extention for it
-// We can apply it on any  widget
+/// Our design contains Neumorphism design and i made a extention for it
 
 extension Neumorphism on Widget {
+  /// We can apply it on any  widget
   Widget addNeumorphism({
     double borderRadius = 10.0,
     Offset offset = const Offset(5, 5),
     double blurRadius = 10,
     Color topShadowColor = Colors.white60,
     Color bottomShadowColor = const Color(0x26234395),
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-        boxShadow: [
-          BoxShadow(
-            offset: offset,
-            blurRadius: blurRadius,
-            color: bottomShadowColor,
-          ),
-          BoxShadow(
-            offset: Offset(-offset.dx, -offset.dx),
-            blurRadius: blurRadius,
-            color: topShadowColor,
-          ),
-        ],
-      ),
-      child: this,
-    );
-  }
+  }) =>
+      Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              offset: offset,
+              blurRadius: blurRadius,
+              color: bottomShadowColor,
+            ),
+            BoxShadow(
+              offset: Offset(-offset.dx, -offset.dx),
+              blurRadius: blurRadius,
+              color: topShadowColor,
+            ),
+          ],
+        ),
+        child: this,
+      );
 }
 
+/// Extension on num for getting the correct height and width
 extension SizeExtension on num {
   num get _w => ScreenUtil.get().setWidth(this);
 
@@ -43,11 +43,28 @@ extension SizeExtension on num {
 
   num get _sp => ScreenUtil.get().setSp(this);
 
-  int get wi => _w as int;
-  int get hi => _h as int;
-  int get spi => _sp as int;
+  /// get width
+  int get wi => _w;
 
-  double get wd => _w as double;
-  double get hd => _h as double;
-  double get spd => _sp as double;
+  /// get height
+  int get hi => _h;
+
+  /// get sp
+  int get spi => _sp;
+
+  /// get width
+  double get wd => _w;
+
+  /// get height
+  double get hd => _h;
+
+  /// get sp
+  double get spd => _sp;
+}
+
+extension DateTimeExtension on DateTime {
+  String get paddedString =>
+      '${_pad(year, 4)}-${_pad(month, 2)}-${_pad(day, 2)}';
+
+  String _pad(int i, int width) => i.toString().padLeft(width, '0');
 }

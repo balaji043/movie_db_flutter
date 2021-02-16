@@ -17,10 +17,11 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>>
       getNowPlayingMovies() async {
     try {
-      final movieResult = await dataSource.getNowPlayingMovies();
-      return Right(movieResult);
-    } catch (e) {
-      return Left(ApiError("$e"));
+      final PaginatedResponse<MovieDetails> movieResult =
+          await dataSource.getNowPlayingMovies();
+      return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
+    } on Exception catch (e) {
+      return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
     }
   }
 
@@ -28,10 +29,11 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>>
       getPopularMovies() async {
     try {
-      final movieResult = await dataSource.getNowPlayingMovies();
-      return Right(movieResult);
-    } catch (e) {
-      return Left(ApiError("$e"));
+      final PaginatedResponse<MovieDetails> movieResult =
+          await dataSource.getNowPlayingMovies();
+      return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
+    } on Exception catch (e) {
+      return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
     }
   }
 
@@ -39,10 +41,11 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>>
       getTopRatedMovies() async {
     try {
-      final movieResult = await dataSource.getNowPlayingMovies();
-      return Right(movieResult);
-    } catch (e) {
-      return Left(ApiError("$e"));
+      final PaginatedResponse<MovieDetails> movieResult =
+          await dataSource.getNowPlayingMovies();
+      return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
+    } on Exception catch (e) {
+      return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
     }
   }
 
@@ -50,10 +53,11 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>>
       getUpcomingMovies() async {
     try {
-      final movieResult = await dataSource.getNowPlayingMovies();
-      return Right(movieResult);
-    } catch (e) {
-      return Left(ApiError("$e"));
+      final PaginatedResponse<MovieDetails> movieResult =
+          await dataSource.getNowPlayingMovies();
+      return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
+    } on Exception catch (e) {
+      return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
     }
   }
 
@@ -61,10 +65,11 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>>
       getTrendingMovies() async {
     try {
-      final movieResult = await dataSource.getTrendingMovies();
-      return Right(movieResult);
-    } catch (e) {
-      return Left(ApiError("$e"));
+      final PaginatedResponse<MovieDetails> movieResult =
+          await dataSource.getTrendingMovies();
+      return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
+    } on Exception catch (e) {
+      return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
     }
   }
 }

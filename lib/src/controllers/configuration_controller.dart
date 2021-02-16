@@ -6,12 +6,13 @@ import 'package:get/state_manager.dart';
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/data/models/configuration.dart';
 
-const getConfigurationUrl = '${ApiConstants.tMDBBaseUrlV3}/configuration';
+const String getConfigurationUrl =
+    '${ApiConstants.tMDBBaseUrlV3}/configuration';
 
 class ConfigurationController extends GetxController {
   final dios.Dio dio = dios.Dio();
 
-  final appConfiguration = AppConfiguration().obs;
+  final Rx<AppConfiguration> appConfiguration = AppConfiguration().obs;
 
   @override
   void onInit() {
@@ -21,18 +22,18 @@ class ConfigurationController extends GetxController {
 
   Future<void> _getAppCongfiguration() async {
     try {
-      final params = {
+      final Map<String, String> params = <String, String>{
         'api_key': ApiConstants.apiKey,
         'language': 'en-US',
       };
-      final dios.Response response = await dio.get(
+      final dios.Response<Map<String, String>> response = await dio.get(
         getConfigurationUrl,
         queryParameters: params,
       );
-      final appConfig =
-          AppConfiguration.fromJson(response.data as Map<String, dynamic>);
+      final AppConfiguration appConfig =
+          AppConfiguration.fromJson(response.data);
       appConfiguration.value = appConfig;
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       printException(error, stackTrace);
     }
   }

@@ -7,3 +7,6 @@ import '../entities/api_error.dart';
 abstract class UseCase<Type, Params> {
   Future<Either<ApiError, Type>> call(Params params);
 }
+
+// typedef UseCase<Type, Params> = Future<Either<ApiError, Type>> Function(
+//     Params params);

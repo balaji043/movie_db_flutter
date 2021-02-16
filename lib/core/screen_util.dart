@@ -1,16 +1,24 @@
 // Dart imports:
 import 'dart:ui';
 
+/// for scaling the width and height to Screen size
 class ScreenUtil {
   static ScreenUtil _instance;
+
+  /// default width
   static const int defaultWidth = 414;
+
+  /// default height
   static const int defaultHeight = 896;
 
-  /// Size of the phone in UI Design , px
+  /// Width of the phone in UI Design , px
   num uiWidthPx;
+
+  /// Height of the phone in UI Design , px
   num uiHeightPx;
 
-  /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
+  /// allowFontScaling Specifies whether fonts should scale to respect Text Size
+  /// accessibility settings. The default is false.
   bool allowFontScaling;
 
   static double _screenWidth;
@@ -22,10 +30,10 @@ class ScreenUtil {
 
   ScreenUtil._();
 
-  factory ScreenUtil.get() {
-    return _instance;
-  }
+  /// to get the instance of the screen util
+  factory ScreenUtil.get() => _instance;
 
+  /// initialize with custom widht and height
   static void init(
       {num width = defaultWidth,
       num height = defaultHeight,
@@ -72,9 +80,11 @@ class ScreenUtil {
   /// The ratio of the actual dp to the design draft px
   double get scaleWidth => screenWidth / uiWidthPx;
 
+  /// The ratio of the actual dp to the design draft px
   double get scaleHeight =>
       (_screenHeight - _statusBarHeight - _bottomBarHeight) / uiHeightPx;
 
+  /// The ratio of the actual dp to the design draft px
   double get scaleText => scaleWidth;
 
   /// Width function
@@ -85,9 +95,10 @@ class ScreenUtil {
 
   /// Height function
   /// Highly adaptable to the device according to UI Design
-  /// It is recommended to use this method to achieve a high degree of adaptation
-  /// when it is found that one screen in the UI design
-  /// does not match the current style effect, or if there is a difference in shape.
+  /// It is recommended to use this method to achieve a high degree of
+  /// adaptation when it is found that one screen in the UI design
+  /// does not match the current style effect, or if there is a difference
+  /// in shape.
   num setHeight(num height) => height * scaleHeight;
 
   ///FontSize function

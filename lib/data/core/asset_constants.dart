@@ -1,8 +1,8 @@
 class AssetConstants {
   AssetConstants._();
 
-  static const _asset = 'assets';
-  static const _pngs = 'pngs';
+  static const String _asset = 'assets';
+  static const String _pngs = 'pngs';
 
-  static const tmdbLogo = "$_asset/$_pngs/tmdb_logo.png";
+  static const String tmdbLogo = '$_asset/$_pngs/tmdb_logo.png';
 }

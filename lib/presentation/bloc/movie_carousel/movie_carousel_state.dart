@@ -4,7 +4,7 @@ abstract class MovieCarouselState extends Equatable {
   const MovieCarouselState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class MovieCarouselInitial extends MovieCarouselState {}
@@ -18,5 +18,5 @@ class MovieCarouselSuccess extends MovieCarouselState {
   const MovieCarouselSuccess({
     @required this.movies,
     @required this.defaultIndex,
-  }) : assert(defaultIndex >= 0, "default index cannot be less than 0");
+  }) : assert(defaultIndex >= 0, 'default index cannot be less than 0');
 }

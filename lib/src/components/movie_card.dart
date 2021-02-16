@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
+import 'package:movie_db/data/models/configuration.dart';
 
 // Project imports:
 import 'package:movie_db/src/app_colors.dart';
@@ -18,58 +19,56 @@ class MovieCardWidget extends StatelessWidget {
   final String releaseDate;
 
   const MovieCardWidget({
-    Key key,
     @required this.title,
     @required this.voteAverage,
     @required this.posterPath,
     @required this.releaseDate,
+    Key key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: 430,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              _Poster(
-                posterPath: posterPath,
-              ),
-              const Positioned(
-                top: 0,
-                right: 0,
-                child: _MoreVertButton(),
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: RatingWidget(
-                  voteAverage: voteAverage,
+  Widget build(BuildContext context) => SizedBox(
+        width: width,
+        height: 430,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                _Poster(
+                  posterPath: posterPath,
                 ),
-              ),
-            ],
-          ),
-          Text(
-            title ?? "",
-            style: Theme.of(context).textTheme.subtitle2.copyWith(
-                  fontWeight: FontWeight.bold,
+                const Positioned(
+                  top: 0,
+                  right: 0,
+                  child: _MoreVertButton(),
                 ),
-            semanticsLabel: title,
-            textAlign: TextAlign.start,
-            overflow: TextOverflow.fade,
-          ),
-          Text(
-            releaseDate ?? "",
-            style: Theme.of(context).textTheme.overline,
-            textAlign: TextAlign.start,
-          )
-        ],
-      ),
-    );
-  }
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: RatingWidget(
+                    voteAverage: voteAverage,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              title ?? '',
+              style: Theme.of(context).textTheme.subtitle2.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+              semanticsLabel: title,
+              textAlign: TextAlign.start,
+              overflow: TextOverflow.fade,
+            ),
+            Text(
+              releaseDate ?? '',
+              style: Theme.of(context).textTheme.overline,
+              textAlign: TextAlign.start,
+            )
+          ],
+        ),
+      );
 }
 
 class _MoreVertButton extends StatelessWidget {
@@ -78,45 +77,43 @@ class _MoreVertButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      constraints: BoxConstraints.tight(const Size(25, 25)),
-      elevation: 0,
-      onPressed: () {},
-      fillColor: kBgLightColor,
-      shape: const CircleBorder(),
-      child: const Icon(
-        Icons.more_horiz_rounded,
-        size: 20,
-        color: kPrimaryColor,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => RawMaterialButton(
+        constraints: BoxConstraints.tight(const Size(25, 25)),
+        elevation: 0,
+        onPressed: () {},
+        fillColor: kBgLightColor,
+        shape: const CircleBorder(),
+        child: const Icon(
+          Icons.more_horiz_rounded,
+          size: 20,
+          color: kPrimaryColor,
+        ),
+      );
 }
 
 class _Poster extends StatelessWidget {
   const _Poster({
-    Key key,
     @required this.posterPath,
+    Key key,
   }) : super(key: key);
 
   final String posterPath;
 
   @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
-      child: GetX<ConfigurationController>(
-        builder: (controller) {
-          final images = controller?.appConfiguration?.value?.images;
-          if (images == null ||
-              images.posterSizes == null ||
-              images.baseUrl == null) return Container();
-          return Image.network(
-            '${images?.baseUrl}/${images?.posterSizes?.elementAt(2)}/$posterPath',
-          );
-        },
-      ),
-    );
-  }
+  Widget build(BuildContext context) => ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: GetX<ConfigurationController>(
+          builder: (ConfigurationController controller) {
+            final Images images = controller?.appConfiguration?.value?.images;
+            if (images == null ||
+                images.posterSizes == null ||
+                images.baseUrl == null) {
+              return Container();
+            }
+            return Image.network(
+              '${images?.baseUrl}/${images?.posterSizes?.elementAt(2)}/$posterPath',
+            );
+          },
+        ),
+      );
 }

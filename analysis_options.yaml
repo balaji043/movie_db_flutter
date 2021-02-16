@@ -1,1 +1,18 @@
-include: package:lint/analysis_options.yaml
+include: all_lint_rules.yaml
+
+linter:
+  rules:
+    # conflicts with alaways_specify_type_annotations
+    avoid_annotating_with_dynamic: false
+    # conflicts with alaways_specify_type_annotations
+    avoid_types_on_closure_parameters: false
+    # not sure why
+    diagnostic_describe_all_properties: false
+    # conflictts with prefer single_quotes
+    prefer_double_quotes: false
+    # official documentation of dart suggest use of package imports
+    prefer_relative_imports: false
+    public_member_api_docs: false
+    # personel preference
+    sort_constructors_first: false
+    

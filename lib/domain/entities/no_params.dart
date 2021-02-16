@@ -5,7 +5,7 @@ class NoParams extends Equatable {
   const NoParams();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
-const noParams = NoParams();
+const NoParams noParams = NoParams();

@@ -16,10 +16,10 @@ const String getUpcomingMoviesUrl = '$getMovieBaseUrl/upcoming';
 class MovieListController extends GetxController {
   final dios.Dio _dio = dios.Dio();
 
-  final nowPlayingMovies = <MovieEntity>[].obs;
-  final popularMovies = <MovieEntity>[].obs;
-  final topRatedMovies = <MovieEntity>[].obs;
-  final upcomingMovies = <MovieEntity>[].obs;
+  final RxList<MovieEntity> nowPlayingMovies = <MovieEntity>[].obs;
+  final RxList<MovieEntity> popularMovies = <MovieEntity>[].obs;
+  final RxList<MovieEntity> topRatedMovies = <MovieEntity>[].obs;
+  final RxList<MovieEntity> upcomingMovies = <MovieEntity>[].obs;
 
   @override
   void onInit() {
@@ -31,44 +31,57 @@ class MovieListController extends GetxController {
   }
 
   Future<void> _getNowPlayingMovies() async {
-    final getMoviesByUrl = await _getMoviesByUrl(getNowPlayingMoviesUrl);
-    nowPlayingMovies.clear();
-    nowPlayingMovies.addAll(getMoviesByUrl.results);
+    final PaginatedResponse<MovieEntity> getMoviesByUrl =
+        await _getMoviesByUrl(getNowPlayingMoviesUrl);
+    nowPlayingMovies
+      ..clear()
+      ..addAll(getMoviesByUrl.results);
   }
 
   Future<void> _getPopularMovies() async {
-    final getMoviesByUrl = await _getMoviesByUrl(getPopularMoviesUrl);
-    popularMovies.clear();
-    popularMovies.addAll(getMoviesByUrl.results);
+    final PaginatedResponse<MovieEntity> getMoviesByUrl =
+        await _getMoviesByUrl(getPopularMoviesUrl);
+    popularMovies
+      ..clear()
+      ..addAll(getMoviesByUrl.results);
   }
 
   Future<void> _getTopRatedMovies() async {
-    final getMoviesByUrl = await _getMoviesByUrl(getTopRatedMoviesUrl);
-    topRatedMovies.clear();
-    topRatedMovies.addAll(getMoviesByUrl.results);
+    final PaginatedResponse<MovieEntity> getMoviesByUrl =
+        await _getMoviesByUrl(getTopRatedMoviesUrl);
+    topRatedMovies
+      ..clear()
+      ..addAll(getMoviesByUrl.results);
   }
 
   Future<void> _getUpcomingMovies() async {
-    final getMoviesByUrl = await _getMoviesByUrl(getUpcomingMoviesUrl);
-    upcomingMovies.clear();
-    upcomingMovies.addAll(getMoviesByUrl.results);
+    final PaginatedResponse<MovieEntity> getMoviesByUrl =
+        await _getMoviesByUrl(getUpcomingMoviesUrl);
+    upcomingMovies
+      ..clear()
+      ..addAll(getMoviesByUrl.results);
   }
 
   Future<PaginatedResponse<MovieEntity>> _getMoviesByUrl(
       String movieUrl) async {
     try {
-      final dios.Response response = await _dio.get(
+      final dios.Response<Map<String, dynamic>> response = await _dio.get(
         movieUrl,
         queryParameters: ApiConstants.params,
       );
-      final movieResponse = PaginatedResponse<MovieEntity>.fromJson(
-        response.data as Map<String, dynamic>,
-        (map) => MovieEntity.fromMap(map),
+      final PaginatedResponse<MovieEntity> movieResponse =
+          PaginatedResponse<MovieEntity>.fromJson(
+        response.data,
+        (Map<String, dynamic> map) => MovieEntity.fromMap(map),
       );
       return movieResponse;
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       printException(error, stackTrace);
     }
-    return Future.value(PaginatedResponse<MovieEntity>(results: List.empty()));
+    return Future<PaginatedResponse<MovieEntity>>.value(
+      PaginatedResponse<MovieEntity>(
+        results: List<MovieEntity>.empty(),
+      ),
+    );
   }
 }

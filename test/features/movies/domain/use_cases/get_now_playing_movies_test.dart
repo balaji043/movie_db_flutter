@@ -28,15 +28,15 @@ void main() {
 
   const MovieDetails testMovieEntity = MovieDetails(
     id: 464052,
-    title: "Wonder Woman 1984",
-    voteAverage: 9.0,
-    posterPath: "/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
-    releaseDate: "2020-12-16",
+    title: 'Wonder Woman 1984',
+    voteAverage: 9,
+    posterPath: '/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+    releaseDate: '2020-12-16',
   );
   final PaginatedResponse<MovieDetails> testPaginatedMovieReponse =
       PaginatedResponse<MovieDetails>(
     page: 0,
-    results: [testMovieEntity],
+    results: <MovieDetails>[testMovieEntity],
     totalPages: 1,
     totalResults: 1,
   );
@@ -47,8 +47,9 @@ void main() {
 
       // mocks
       when(mockMovieRepository.getNowPlayingMovies()).thenAnswer(
-        (_) => Future.value(
-          Right(testPaginatedMovieReponse),
+        (_) => Future<Either<ApiError, PaginatedResponse<MovieDetails>>>.value(
+          Right<ApiError, PaginatedResponse<MovieDetails>>(
+              testPaginatedMovieReponse),
         ),
       );
 
@@ -60,7 +61,8 @@ void main() {
       // asserts
       expect(
         actualPageResponseMovie,
-        Right(testPaginatedMovieReponse),
+        Right<ApiError, PaginatedResponse<MovieDetails>>(
+            testPaginatedMovieReponse),
       );
       verify(
         mockMovieRepository.getNowPlayingMovies(),

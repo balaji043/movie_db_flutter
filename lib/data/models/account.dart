@@ -18,23 +18,23 @@ class Account {
   String username;
 
   factory Account.fromJson(Map<String, dynamic> json) => Account(
-        avatar: Avatar.fromJson(json["avatar"] as Map<String, dynamic>),
-        id: json["id"] as int,
-        iso6391: json["iso_639_1"] as String,
-        iso31661: json["iso_3166_1"] as String,
-        name: json["name"] as String,
-        includeAdult: json["include_adult"] as bool,
-        username: json["username"] as String,
+        avatar: Avatar.fromJson(json['avatar']),
+        id: json['id'],
+        iso6391: json['iso_639_1'],
+        iso31661: json['iso_3166_1'],
+        name: json['name'],
+        includeAdult: json['include_adult'],
+        username: json['username'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "avatar": avatar.toJson(),
-        "id": id,
-        "iso_639_1": iso6391,
-        "iso_3166_1": iso31661,
-        "name": name,
-        "include_adult": includeAdult,
-        "username": username,
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'avatar': avatar.toJson(),
+        'id': id,
+        'iso_639_1': iso6391,
+        'iso_3166_1': iso31661,
+        'name': name,
+        'include_adult': includeAdult,
+        'username': username,
       };
 }
 
@@ -46,11 +46,11 @@ class Gravatar {
   String hash;
 
   factory Gravatar.fromJson(Map<String, dynamic> json) => Gravatar(
-        hash: json["hash"] as String,
+        hash: json['hash'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "hash": hash,
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'hash': hash,
       };
 }
 
@@ -62,10 +62,10 @@ class Avatar {
   Gravatar gravatar;
 
   factory Avatar.fromJson(Map<String, dynamic> json) => Avatar(
-        gravatar: Gravatar.fromJson(json["gravatar"] as Map<String, dynamic>),
+        gravatar: Gravatar.fromJson(json['gravatar']),
       );
 
-  Map<String, dynamic> toJson() => {
-        "gravatar": gravatar.toJson(),
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'gravatar': gravatar.toJson(),
       };
 }

@@ -45,21 +45,26 @@ class TMDBMovieDataSource implements MovieDataSource {
     String movieUrl,
   ) async {
     try {
-      final Response response = await dio.get(
+      final Response<Map<String, dynamic>> response = await dio.get(
         movieUrl,
         queryParameters: ApiConstants.params,
       );
       // print('$movieUrl ${response.data['results'].length}');
       throwExceptionIfNotSuccess(response);
 
-      final movieResponse = PaginatedResponse<MovieDetails>.fromJson(
-        response.data as Map<String, dynamic>,
-        (map) => MovieDetails.fromJson(map),
+      final PaginatedResponse<MovieDetails> movieResponse =
+          PaginatedResponse<MovieDetails>.fromJson(
+        response.data,
+        (dynamic map) => MovieDetails.fromJson(map),
       );
       return movieResponse;
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       printException(error, stackTrace);
     }
-    return Future.value(PaginatedResponse<MovieDetails>(results: List.empty()));
+    return Future<PaginatedResponse<MovieDetails>>.value(
+      PaginatedResponse<MovieDetails>(
+        results: List<MovieDetails>.empty(),
+      ),
+    );
   }
 }

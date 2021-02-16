@@ -22,27 +22,26 @@ class Network {
   String name;
   String originCountry;
 
-  factory Network.fromRawJson(String str) =>
-      Network.fromJson(json.decode(str) as Map<String, dynamic>);
+  factory Network.fromRawJson(String str) => Network.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory Network.fromJson(Map<String, dynamic> json) => Network(
-        headquarters: json["headquarters"] as String,
-        homepage: json["homepage"] as String,
-        id: json["id"] as int,
-        logoPath: json["logo_path"] as String,
-        name: json["name"] as String,
-        originCountry: json["origin_country"] as String,
+        headquarters: json['headquarters'],
+        homepage: json['homepage'],
+        id: json['id'],
+        logoPath: json['logo_path'],
+        name: json['name'],
+        originCountry: json['origin_country'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "headquarters": headquarters,
-        "homepage": homepage,
-        "id": id,
-        "logo_path": logoPath,
-        "name": name,
-        "origin_country": originCountry,
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'headquarters': headquarters,
+        'homepage': homepage,
+        'id': id,
+        'logo_path': logoPath,
+        'name': name,
+        'origin_country': originCountry,
       };
 }
 
@@ -57,12 +56,12 @@ class AlternativeNetworkName {
 
   factory AlternativeNetworkName.fromJson(Map<String, dynamic> json) =>
       AlternativeNetworkName(
-        name: json["name"] as String,
-        type: json["type"] as String,
+        name: json['name'],
+        type: json['type'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "type": type,
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'name': name,
+        'type': type,
       };
 }

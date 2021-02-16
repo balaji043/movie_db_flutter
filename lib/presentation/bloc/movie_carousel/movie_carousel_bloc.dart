@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
 // Package imports:
@@ -10,6 +11,7 @@ import 'package:equatable/equatable.dart';
 
 // Project imports:
 import 'package:movie_db/data/models/core.dart';
+import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/domain/entities/movie_entity.dart';
 import 'package:movie_db/domain/use_cases/get_trending_movies.dart';
 
@@ -27,10 +29,11 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
     MovieCarouselEvent event,
   ) async* {
     if (event is MovieCarouselLoadEvent) {
-      final movies = await getTrendingMoviesUseCase.call(null);
+      final Either<ApiError, PaginatedResponse<MovieEntity>> movies =
+          await getTrendingMoviesUseCase.call(null);
       yield movies.fold(
-        (l) => MovieCarouselError(),
-        (r) => MovieCarouselSuccess(
+        (ApiError l) => MovieCarouselError(),
+        (PaginatedResponse<MovieEntity> r) => MovieCarouselSuccess(
           movies: r,
           defaultIndex: 0,
         ),

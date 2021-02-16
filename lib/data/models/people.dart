@@ -1,8 +1,10 @@
 // Dart imports:
 import 'dart:convert';
 
-People peopleFromJson(String str) =>
-    People.fromJson(json.decode(str) as Map<String, dynamic>);
+// Project Imports:
+import 'package:movie_db/core/extensions.dart';
+
+People peopleFromJson(String str) => People.fromJson(json.decode(str));
 
 String peopleToJson(People data) => json.encode(data.toJson());
 
@@ -40,45 +42,41 @@ class People {
   dynamic homepage;
 
   factory People.fromJson(Map<String, dynamic> json) => People(
-        birthday: json["birthday"] == null
+        birthday:
+            json['birthday'] == null ? null : DateTime.parse(json['birthday']),
+        knownForDepartment: json['known_for_department'],
+        deathday: json['deathday'],
+        id: json['id'],
+        name: json['name'],
+        alsoKnownAs: json['also_known_as'] == null
             ? null
-            : DateTime.parse(json["birthday"] as String),
-        knownForDepartment: json["known_for_department"] as String,
-        deathday: json["deathday"],
-        id: json["id"] as int,
-        name: json["name"] as String,
-        alsoKnownAs: json["also_known_as"] == null
-            ? null
-            : List<String>.from((json["also_known_as"] as List).map((x) => x)),
-        gender: json["gender"] as int,
-        biography: json["biography"] as String,
-        popularity:
-            json["popularity"] == null ? null : json["popularity"] as double,
-        placeOfBirth: json["place_of_birth"] as String,
-        profilePath: json["profile_path"] as String,
-        adult: json["adult"] as bool,
-        imdbId: json["imdb_id"] as String,
-        homepage: json["homepage"],
+            : List<String>.from((json['also_known_as']).map((dynamic x) => x)),
+        gender: json['gender'],
+        biography: json['biography'],
+        popularity: json['popularity'],
+        placeOfBirth: json['place_of_birth'],
+        profilePath: json['profile_path'],
+        adult: json['adult'],
+        imdbId: json['imdb_id'],
+        homepage: json['homepage'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "birthday": birthday == null
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'birthday': birthday?.paddedString,
+        'known_for_department': knownForDepartment,
+        'deathday': deathday,
+        'id': id,
+        'name': name,
+        'also_known_as': alsoKnownAs == null
             ? null
-            : "${birthday.year.toString().padLeft(4, '0')}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}",
-        "known_for_department": knownForDepartment,
-        "deathday": deathday,
-        "id": id,
-        "name": name,
-        "also_known_as": alsoKnownAs == null
-            ? null
-            : List<dynamic>.from(alsoKnownAs.map((x) => x)),
-        "gender": gender,
-        "biography": biography,
-        "popularity": popularity,
-        "place_of_birth": placeOfBirth,
-        "profile_path": profilePath,
-        "adult": adult,
-        "imdb_id": imdbId,
-        "homepage": homepage,
+            : List<dynamic>.from(alsoKnownAs.map((dynamic x) => x)),
+        'gender': gender,
+        'biography': biography,
+        'popularity': popularity,
+        'place_of_birth': placeOfBirth,
+        'profile_path': profilePath,
+        'adult': adult,
+        'imdb_id': imdbId,
+        'homepage': homepage,
       };
 }

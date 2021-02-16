@@ -1,3 +1,4 @@
+/// dimension doubles to use along with SizeExtension methods
 class Sizes {
   Sizes._();
 

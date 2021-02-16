@@ -21,37 +21,35 @@ class MovieEntity extends Equatable {
   });
 
   @override
-  List<Object> get props => [
+  List<Object> get props => <Object>[
         id,
         title,
       ];
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'title': title,
-      'voteAverage': voteAverage,
-      'posterPath': posterPath,
-      'releaseDate': releaseDate,
-    };
-  }
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        'id': id,
+        'title': title,
+        'voteAverage': voteAverage,
+        'posterPath': posterPath,
+        'releaseDate': releaseDate,
+      };
 
   factory MovieEntity.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
+    if (map == null) {
+      return null;
+    }
 
     return MovieEntity(
-      id: map['id'] == null ? null : map["id"] as int,
-      title: map["title"] == null ? null : map["title"] as String,
-      voteAverage:
-          map["vote_average"] == null ? null : map["vote_average"] as double,
-      posterPath: map["poster_path"] as String,
-      releaseDate:
-          map["release_date"] == null ? null : map["release_date"] as String,
+      id: map['id'],
+      title: map['title'],
+      voteAverage: map['vote_average'],
+      posterPath: map['poster_path'],
+      releaseDate: map['release_date'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory MovieEntity.fromJson(String source) =>
-      MovieEntity.fromMap(json.decode(source) as Map<String, dynamic>);
+      MovieEntity.fromMap(json.decode(source));
 }

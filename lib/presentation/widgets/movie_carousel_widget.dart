@@ -11,29 +11,27 @@ class MovieCarouselWidget extends StatelessWidget {
   final int defaultIndex;
 
   const MovieCarouselWidget({
-    Key key,
     @required this.movies,
     @required this.defaultIndex,
+    Key key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      // padding: const EdgeInsets.only(top: kDefaultPadding),
-      separatorBuilder: (context, index) => const SizedBox(
-        width: 10,
-      ),
-      scrollDirection: Axis.horizontal,
-      itemCount: movies.results.length,
-      itemBuilder: (context, index) {
-        final MovieEntity dataContent = movies.results.elementAt(index);
-        return MovieCardWidget(
-          posterPath: dataContent.posterPath,
-          releaseDate: dataContent.releaseDate,
-          title: dataContent.title,
-          voteAverage: (dataContent?.voteAverage ?? 0 * 10).toString(),
-        );
-      },
-    );
-  }
+  Widget build(BuildContext context) => ListView.separated(
+        // padding: const EdgeInsets.only(top: kDefaultPadding),
+        separatorBuilder: (BuildContext context, int index) => const SizedBox(
+          width: 10,
+        ),
+        scrollDirection: Axis.horizontal,
+        itemCount: movies.results.length,
+        itemBuilder: (BuildContext context, int index) {
+          final MovieEntity dataContent = movies.results.elementAt(index);
+          return MovieCardWidget(
+            posterPath: dataContent.posterPath,
+            releaseDate: dataContent.releaseDate,
+            title: dataContent.title,
+            voteAverage: (dataContent?.voteAverage ?? 0 * 10).toString(),
+          );
+        },
+      );
 }

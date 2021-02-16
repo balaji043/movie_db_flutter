@@ -9,7 +9,8 @@ import 'package:movie_db/domain/entities/no_params.dart';
 import 'package:movie_db/domain/repositories/movie_repository.dart';
 import 'package:movie_db/domain/use_cases/usecase.dart';
 
-class GetUpcomingMovies implements UseCase<PaginatedResponse, NoParams> {
+class GetUpcomingMovies
+    implements UseCase<PaginatedResponse<MovieEntity>, NoParams> {
   final MovieRepository movieRepository;
 
   GetUpcomingMovies(this.movieRepository);

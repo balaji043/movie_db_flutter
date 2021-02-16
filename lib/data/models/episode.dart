@@ -5,8 +5,10 @@
 // Dart imports:
 import 'dart:convert';
 
-Episode episodeFromJson(String str) =>
-    Episode.fromJson(json.decode(str) as Map<String, dynamic>);
+// Project imports:
+import 'package:movie_db/core/extensions.dart';
+
+Episode episodeFromJson(String str) => Episode.fromJson(json.decode(str));
 
 String episodeToJson(Episode data) => json.encode(data.toJson());
 
@@ -40,54 +42,52 @@ class Episode {
   int voteCount;
 
   factory Episode.fromJson(Map<String, dynamic> json) => Episode(
-        airDate: json["air_date"] == null
+        airDate:
+            json['air_date'] == null ? null : DateTime.parse(json['air_date']),
+        crew: json['crew'] == null
             ? null
-            : DateTime.parse(json["air_date"] as String),
-        crew: json["crew"] == null
-            ? null
-            : List<Crew>.from((json["crew"] as List)
-                .map((x) => Crew.fromJson(x as Map<String, dynamic>))),
-        episodeNumber: json["episode_number"] as int,
-        guestStars: json["guest_stars"] == null
+            : List<Crew>.from(
+                (json['crew']).map(
+                  (dynamic x) => Crew.fromJson(x),
+                ),
+              ),
+        episodeNumber: json['episode_number'],
+        guestStars: json['guest_stars'] == null
             ? null
             : List<GuestStar>.from(
-                (json["guest_stars"] as List).map(
-                  (x) => GuestStar.fromJson(
-                    x as Map<String, dynamic>,
+                (json['guest_stars']).map(
+                  (dynamic x) => GuestStar.fromJson(
+                    x,
                   ),
                 ),
               ),
-        name: json["name"] as String,
-        overview: json["overview"] as String,
-        id: json["id"] as int,
-        productionCode: json["production_code"] as String,
-        seasonNumber: json["season_number"] as int ?? 0,
-        stillPath: json["still_path"] as String,
-        voteAverage: json["vote_average"] == null
-            ? null
-            : json["vote_average"] as double,
-        voteCount: json["vote_count"] as int,
+        name: json['name'],
+        overview: json['overview'],
+        id: json['id'],
+        productionCode: json['production_code'],
+        seasonNumber: json['season_number'] ?? 0,
+        stillPath: json['still_path'],
+        voteAverage: json['vote_average'],
+        voteCount: json['vote_count'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "air_date": airDate == null
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'air_date': airDate?.paddedString,
+        'crew': crew == null
             ? null
-            : "${airDate.year.toString().padLeft(4, '0')}-${airDate.month.toString().padLeft(2, '0')}-${airDate.day.toString().padLeft(2, '0')}",
-        "crew": crew == null
+            : List<dynamic>.from(crew.map((dynamic x) => x.toJson())),
+        'episode_number': episodeNumber,
+        'guest_stars': guestStars == null
             ? null
-            : List<dynamic>.from(crew.map((x) => x.toJson())),
-        "episode_number": episodeNumber,
-        "guest_stars": guestStars == null
-            ? null
-            : List<dynamic>.from(guestStars.map((x) => x.toJson())),
-        "name": name,
-        "overview": overview,
-        "id": id,
-        "production_code": productionCode,
-        "season_number": seasonNumber,
-        "still_path": stillPath,
-        "vote_average": voteAverage,
-        "vote_count": voteCount,
+            : List<dynamic>.from(guestStars.map((dynamic x) => x.toJson())),
+        'name': name,
+        'overview': overview,
+        'id': id,
+        'production_code': productionCode,
+        'season_number': seasonNumber,
+        'still_path': stillPath,
+        'vote_average': voteAverage,
+        'vote_count': voteCount,
       };
 }
 
@@ -109,21 +109,21 @@ class Crew {
   String profilePath;
 
   factory Crew.fromJson(Map<String, dynamic> json) => Crew(
-        id: json["id"] as int,
-        creditId: json["credit_id"] as String,
-        name: json["name"] as String,
-        department: json["department"] as String,
-        job: json["job"] as String,
-        profilePath: json["profile_path"] as String,
+        id: json['id'],
+        creditId: json['credit_id'],
+        name: json['name'],
+        department: json['department'],
+        job: json['job'],
+        profilePath: json['profile_path'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "credit_id": creditId,
-        "name": name,
-        "department": department,
-        "job": job,
-        "profile_path": profilePath,
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'credit_id': creditId,
+        'name': name,
+        'department': department,
+        'job': job,
+        'profile_path': profilePath,
       };
 }
 
@@ -145,20 +145,20 @@ class GuestStar {
   String profilePath;
 
   factory GuestStar.fromJson(Map<String, dynamic> json) => GuestStar(
-        id: json["id"] as int,
-        name: json["name"] as String,
-        creditId: json["credit_id"] as String,
-        character: json["character"] as String,
-        order: json["order"] as int,
-        profilePath: json["profile_path"] as String,
+        id: json['id'],
+        name: json['name'],
+        creditId: json['credit_id'],
+        character: json['character'],
+        order: json['order'],
+        profilePath: json['profile_path'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "credit_id": creditId,
-        "character": character,
-        "order": order,
-        "profile_path": profilePath,
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'name': name,
+        'credit_id': creditId,
+        'character': character,
+        'order': order,
+        'profile_path': profilePath,
       };
 }

@@ -14,28 +14,35 @@ import 'package:movie_db/domain/use_cases/get_trending_movies.dart';
 import 'package:movie_db/domain/use_cases/get_upcoming_movies.dart';
 import 'package:movie_db/presentation/bloc/movie_carousel/movie_carousel_bloc.dart';
 
-final getItInstance = GetIt.I;
+final GetIt getItInstance = GetIt.I;
 
-Future init() async {
-  getItInstance.registerLazySingleton<Dio>(() => Dio());
-
-  getItInstance.registerLazySingleton<MovieDataSource>(
-      () => TMDBMovieDataSource(getItInstance()));
-
-  getItInstance.registerLazySingleton<MovieRepository>(
-      () => MovieRepositoryImpl(getItInstance()));
-
-  getItInstance.registerLazySingleton<GetNowPlayingMovies>(
-      () => GetNowPlayingMovies(getItInstance()));
-  getItInstance.registerLazySingleton<GetPopularMovies>(
-      () => GetPopularMovies(getItInstance()));
-  getItInstance.registerLazySingleton<GetTopRatedMovies>(
-      () => GetTopRatedMovies(getItInstance()));
-  getItInstance.registerLazySingleton<GetUpcomingMovies>(
-      () => GetUpcomingMovies(getItInstance()));
-  getItInstance.registerLazySingleton<GetTrendingMovies>(
-      () => GetTrendingMovies(getItInstance()));
-
-  getItInstance.registerLazySingleton<MovieCarouselBloc>(
-      () => MovieCarouselBloc(getItInstance()));
+Future<void> init() async {
+  GetIt.I
+    ..registerLazySingleton<Dio>(
+      () => Dio(),
+    )
+    ..registerLazySingleton<MovieDataSource>(
+      () => TMDBMovieDataSource(getItInstance()),
+    )
+    ..registerLazySingleton<MovieRepository>(
+      () => MovieRepositoryImpl(getItInstance()),
+    )
+    ..registerLazySingleton<GetNowPlayingMovies>(
+      () => GetNowPlayingMovies(getItInstance()),
+    )
+    ..registerLazySingleton<GetPopularMovies>(
+      () => GetPopularMovies(getItInstance()),
+    )
+    ..registerLazySingleton<GetTopRatedMovies>(
+      () => GetTopRatedMovies(getItInstance()),
+    )
+    ..registerLazySingleton<GetUpcomingMovies>(
+      () => GetUpcomingMovies(getItInstance()),
+    )
+    ..registerLazySingleton<GetTrendingMovies>(
+      () => GetTrendingMovies(getItInstance()),
+    )
+    ..registerLazySingleton<MovieCarouselBloc>(
+      () => MovieCarouselBloc(getItInstance()),
+    );
 }

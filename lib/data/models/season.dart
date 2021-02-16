@@ -6,10 +6,10 @@
 import 'dart:convert';
 
 // Project imports:
+import 'package:movie_db/core/extensions.dart';
 import 'episode.dart';
 
-Season seasonFromJson(String str) =>
-    Season.fromJson(json.decode(str) as Map<String, dynamic>);
+Season seasonFromJson(String str) => Season.fromJson(json.decode(str));
 
 String seasonToJson(Season data) => json.encode(data.toJson());
 
@@ -35,33 +35,33 @@ class Season {
   int seasonNumber;
 
   factory Season.fromJson(Map<String, dynamic> json) => Season(
-        id: json["_id"] as String,
-        airDate: json["air_date"] == null
+        id: json['_id'],
+        airDate:
+            json['air_date'] == null ? null : DateTime.parse(json['air_date']),
+        episodes: json['episodes'] == null
             ? null
-            : DateTime.parse(json["air_date"] as String),
-        episodes: json["episodes"] == null
-            ? null
-            : List<Episode>.from((json["episodes"] as List)
-                .map((x) => Episode.fromJson(x as Map<String, dynamic>))),
-        name: json["name"] as String,
-        overview: json["overview"] as String,
-        seasonId: json["id"] as int,
-        posterPath: json["poster_path"] as String,
-        seasonNumber: json["season_number"] as int,
+            : List<Episode>.from(
+                json['episodes'].map(
+                  (dynamic x) => Episode.fromJson(x),
+                ),
+              ),
+        name: json['name'],
+        overview: json['overview'],
+        seasonId: json['id'],
+        posterPath: json['poster_path'],
+        seasonNumber: json['season_number'],
       );
 
-  Map<String, dynamic> toJson() => {
-        "_id": id,
-        "air_date": airDate == null
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        '_id': id,
+        'air_date': airDate?.paddedString,
+        'episodes': episodes == null
             ? null
-            : "${airDate.year.toString().padLeft(4, '0')}-${airDate.month.toString().padLeft(2, '0')}-${airDate.day.toString().padLeft(2, '0')}",
-        "episodes": episodes == null
-            ? null
-            : List<dynamic>.from(episodes.map((x) => x.toJson())),
-        "name": name,
-        "overview": overview,
-        "id": seasonId,
-        "poster_path": posterPath,
-        "season_number": seasonNumber,
+            : List<dynamic>.from(episodes.map((dynamic x) => x.toJson())),
+        'name': name,
+        'overview': overview,
+        'id': seasonId,
+        'poster_path': posterPath,
+        'season_number': seasonNumber,
       };
 }

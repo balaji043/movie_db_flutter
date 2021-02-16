@@ -7,5 +7,5 @@ class ApiError extends Equatable {
   const ApiError(this.reason);
 
   @override
-  List<Object> get props => [reason];
+  List<Object> get props => <Object>[reason];
 }
