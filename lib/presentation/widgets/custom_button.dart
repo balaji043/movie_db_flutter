@@ -31,9 +31,8 @@ class _CustomButtonState extends State<CustomButton> {
         ),
         child: InkWell(
           onTap: widget.press,
-          onHover: (bool isHoverState) {
-            setState(() => isHover = isHoverState);
-          },
+          onHover: (bool isHoverState) =>
+              setState(() => isHover = isHoverState),
           child: Row(
             children: <Widget>[
               if (widget.iconSrc != null)

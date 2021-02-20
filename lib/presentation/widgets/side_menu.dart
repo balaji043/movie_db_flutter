@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
 import 'package:movie_db/presentation/widgets/logo.dart';
 
 import 'custom_button.dart';
+import 'custom_tab_widget.dart';
 
 class SideMenu extends StatefulWidget {
-  final PageController tabController;
+  final PageController controller;
   const SideMenu({
-    @required this.tabController,
+    @required this.controller,
     Key key,
   }) : super(key: key);
 
@@ -50,7 +50,7 @@ class _SideMenuState extends State<SideMenu> {
                         CustomTabWidget(
                           title: 'Movies',
                           iconData: Icons.movie,
-                          controller: widget.tabController,
+                          controller: widget.controller,
                           index: 0,
                           currentIndex: currentIndex,
                           setCurrentIndex: setCurrentIndex,
@@ -58,7 +58,7 @@ class _SideMenuState extends State<SideMenu> {
                         CustomTabWidget(
                           title: 'TV Shows',
                           iconData: Icons.tv,
-                          controller: widget.tabController,
+                          controller: widget.controller,
                           index: 1,
                           currentIndex: currentIndex,
                           setCurrentIndex: setCurrentIndex,
@@ -66,7 +66,7 @@ class _SideMenuState extends State<SideMenu> {
                         CustomTabWidget(
                           title: 'Games',
                           iconData: Icons.gamepad,
-                          controller: widget.tabController,
+                          controller: widget.controller,
                           index: 2,
                           currentIndex: currentIndex,
                           setCurrentIndex: setCurrentIndex,
@@ -74,7 +74,7 @@ class _SideMenuState extends State<SideMenu> {
                         CustomTabWidget(
                           title: 'People',
                           iconData: Icons.movie,
-                          controller: widget.tabController,
+                          controller: widget.controller,
                           index: 3,
                           currentIndex: currentIndex,
                           setCurrentIndex: setCurrentIndex,
@@ -109,34 +109,4 @@ class _SideMenuState extends State<SideMenu> {
       );
 
   void setCurrentIndex(int index) => setState(() => currentIndex = index);
-}
-
-class CustomTabWidget extends StatelessWidget {
-  final String title;
-  final IconData iconData;
-  final PageController controller;
-  final int index;
-  final int currentIndex;
-  final Function(int) setCurrentIndex;
-
-  const CustomTabWidget({
-    @required this.index,
-    @required this.controller,
-    @required this.title,
-    @required this.iconData,
-    @required this.currentIndex,
-    @required this.setCurrentIndex,
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => CustomButton(
-        title: title,
-        press: () {
-          controller?.jumpToPage(index);
-          setCurrentIndex(index);
-        },
-        iconSrc: iconData,
-        isActive: currentIndex == index,
-      );
 }

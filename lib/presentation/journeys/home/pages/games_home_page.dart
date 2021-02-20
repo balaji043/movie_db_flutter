@@ -7,7 +7,7 @@ class GamesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const CustomScaffold(
         body: Center(
-          child: Text('Game'),
+          child: Text('Hi'),
         ),
       );
 }

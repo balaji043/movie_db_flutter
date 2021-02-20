@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen>
             children: <Widget>[
               Expanded(
                 child: SideMenu(
-                  tabController: _tabController,
+                  controller: _tabController,
                 ),
               ),
               Expanded(

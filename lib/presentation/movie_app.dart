@@ -17,6 +17,8 @@ class MovieApp extends StatelessWidget {
       title: 'TMDB App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         colorScheme: ColorScheme.fromSwatch(
           backgroundColor: AppColor.black,
         ),
