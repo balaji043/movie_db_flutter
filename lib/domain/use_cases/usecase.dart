@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 // Project imports:
 import '../entities/api_error.dart';
 
+// ignore: one_member_abstracts
 abstract class UseCase<Type, Params> {
   Future<Either<ApiError, Type>> call(Params params);
 }

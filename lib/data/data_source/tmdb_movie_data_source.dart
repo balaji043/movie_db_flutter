@@ -1,6 +1,5 @@
 // Package imports:
 import 'package:dio/dio.dart';
-
 // Project imports:
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/data/data_source/movie_data_source.dart';

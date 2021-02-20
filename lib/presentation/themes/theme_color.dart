@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppColor {
   const AppColor._();
 
-  static const Color vulcan = Color(0xFF141221);
-  static const Color royalBlue = Color(0xFF604FEF);
-  static const Color violet = Color(0xFFA74DBC);
+  static const Color inactiveWhite = MaterialColor(0xFF848484, <int, Color>{});
+  static const Color white = MaterialColor(0xFFF2F2F2, <int, Color>{});
+  static const Color black = MaterialColor(0xFF121212, <int, Color>{});
 }

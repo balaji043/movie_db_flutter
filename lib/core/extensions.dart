@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:movie_db/core/screen_util.dart';
 
@@ -37,29 +36,11 @@ extension Neumorphism on Widget {
 
 /// Extension on num for getting the correct height and width
 extension SizeExtension on num {
-  num get _w => ScreenUtil.get().setWidth(this);
+  num get w => ScreenUtil.get().setWidth(this);
 
-  num get _h => ScreenUtil.get().setHeight(this);
+  num get h => ScreenUtil.get().setHeight(this);
 
-  num get _sp => ScreenUtil.get().setSp(this);
-
-  /// get width
-  int get wi => _w;
-
-  /// get height
-  int get hi => _h;
-
-  /// get sp
-  int get spi => _sp;
-
-  /// get width
-  double get wd => _w;
-
-  /// get height
-  double get hd => _h;
-
-  /// get sp
-  double get spd => _sp;
+  num get sp => ScreenUtil.get().setSp(this);
 }
 
 extension DateTimeExtension on DateTime {

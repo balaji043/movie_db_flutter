@@ -21,7 +21,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Image.asset(
         AssetConstants.tmdbLogo,
-        height: height.hd,
+        height: height.h,
         color: Colors.white,
       );
 }

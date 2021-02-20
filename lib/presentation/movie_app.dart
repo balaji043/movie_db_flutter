@@ -17,11 +17,12 @@ class MovieApp extends StatelessWidget {
       title: 'TMDB App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: AppColor.vulcan,
-        scaffoldBackgroundColor: AppColor.vulcan,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        colorScheme: ColorScheme.fromSwatch(
+          backgroundColor: AppColor.black,
+        ),
+        backgroundColor: AppColor.black,
+        scaffoldBackgroundColor: AppColor.black,
         textTheme: ThemeText.getTextTheme(),
-        appBarTheme: const AppBarTheme(elevation: 0),
       ),
       home: const HomeScreen(),
     );
