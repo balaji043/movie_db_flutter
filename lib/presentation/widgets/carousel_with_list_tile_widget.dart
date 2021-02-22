@@ -154,23 +154,18 @@ class _ListItem<T extends UIParam> extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(Sizes.dimen_12),
-        color: selected ? AppColor.inactiveWhite : null,
+        color: selected ? AppColor.inactiveWhite : AppColor.black2,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FadeInImage.memoryNetwork(
-              image: getPosterImageUrl(content.dPosterPath),
-              placeholder: kTransparentImage,
+            Container(
+              height: 76,
+              width: 56,
+              child: CachedNetworkImage(
+                imageUrl: getPosterImageUrl(content.dPosterPath),
+                fit: BoxFit.fill,
+              ),
             ),
-
-            // Container(
-            //   height: 76,
-            //   width: 56,
-            //   child: CachedNetworkImage(
-            //     imageUrl: getPosterImageUrl(content.dPosterPath),
-            //     fit: BoxFit.fill,
-            //   ),
-            // ),
             const SizedBox(width: Sizes.dimen_12),
             Expanded(
               child: Text(
