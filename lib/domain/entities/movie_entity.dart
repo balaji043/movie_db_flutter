@@ -4,23 +4,25 @@ import 'dart:convert';
 // Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:movie_db/domain/entities/ui_params.dart';
 
-class MovieEntity extends Equatable {
+class MovieEntity extends Equatable implements UIParam {
   final int id;
   final String title;
   final num voteAverage;
   final String posterPath;
   final String releaseDate;
   final String backdropPath;
+  final String overview;
 
-  const MovieEntity({
-    @required this.id,
-    @required this.title,
-    @required this.voteAverage,
-    @required this.posterPath,
-    @required this.releaseDate,
-    @required this.backdropPath,
-  });
+  const MovieEntity(
+      {@required this.id,
+      @required this.title,
+      @required this.voteAverage,
+      @required this.posterPath,
+      @required this.releaseDate,
+      @required this.backdropPath,
+      @required this.overview});
 
   @override
   List<Object> get props => <Object>[
@@ -48,6 +50,7 @@ class MovieEntity extends Equatable {
       posterPath: map['poster_path'],
       releaseDate: map['release_date'],
       backdropPath: map['backdrop_path'],
+      overview: map['overview'],
     );
   }
 
@@ -55,4 +58,16 @@ class MovieEntity extends Equatable {
 
   factory MovieEntity.fromJson(String source) =>
       MovieEntity.fromMap(json.decode(source));
+
+  @override
+  String get dBackdropPath => backdropPath;
+
+  @override
+  String get dPosterPath => posterPath;
+
+  @override
+  String get dTitle => title;
+
+  @override
+  String get dOverview => overview;
 }

@@ -12,7 +12,6 @@ class MovieDetails extends MovieEntity {
   final String imdbId;
   final String originalLanguage;
   final String originalTitle;
-  final String overview;
   final double popularity;
   final List<ProductionCompany> productionCompanies;
   final List<Country> productionCountries;
@@ -24,39 +23,41 @@ class MovieDetails extends MovieEntity {
   final bool video;
   final num voteCount;
 
-  const MovieDetails(
-      {this.adult,
-      this.belongsToCollection,
-      this.budget,
-      this.genres,
-      this.homepage,
-      this.imdbId,
-      this.originalLanguage,
-      this.originalTitle,
-      this.overview,
-      this.popularity,
-      this.productionCompanies,
-      this.productionCountries,
-      this.revenue,
-      this.runtime,
-      this.spokenLanguages,
-      this.status,
-      this.tagline,
-      this.video,
-      this.voteCount,
-      int id,
-      String posterPath,
-      String releaseDate,
-      String title,
-      num voteAverage,
-      String backdropPath})
-      : super(
-            id: id,
-            posterPath: posterPath,
-            releaseDate: releaseDate,
-            title: title,
-            voteAverage: voteAverage,
-            backdropPath: backdropPath);
+  const MovieDetails({
+    this.adult,
+    this.belongsToCollection,
+    this.budget,
+    this.genres,
+    this.homepage,
+    this.imdbId,
+    this.originalLanguage,
+    this.originalTitle,
+    String overview,
+    this.popularity,
+    this.productionCompanies,
+    this.productionCountries,
+    this.revenue,
+    this.runtime,
+    this.spokenLanguages,
+    this.status,
+    this.tagline,
+    this.video,
+    this.voteCount,
+    int id,
+    String posterPath,
+    String releaseDate,
+    String title,
+    num voteAverage,
+    String backdropPath,
+  }) : super(
+          id: id,
+          posterPath: posterPath,
+          releaseDate: releaseDate,
+          title: title,
+          voteAverage: voteAverage,
+          backdropPath: backdropPath,
+          overview: overview,
+        );
 
   factory MovieDetails.fromJson(Map<String, dynamic> json) => MovieDetails(
         adult: json['adult'],

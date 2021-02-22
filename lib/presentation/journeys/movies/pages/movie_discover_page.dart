@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/di/get_di.dart';
 import 'package:movie_db/presentation/bloc/movie_carousel/movie_carousel_bloc.dart';
-
-import 'component/movie_carousel_widget.dart';
+import 'package:movie_db/presentation/widgets/carousel_with_list_tile_widget.dart';
 
 class MovieDiscoverPage extends StatefulWidget {
   const MovieDiscoverPage({Key key}) : super(key: key);
@@ -39,23 +39,21 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
           body: BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
             builder: (BuildContext context, MovieCarouselState state) {
               if (state is MovieCarouselSuccess) {
-                return Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    FractionallySizedBox(
-                      alignment: Alignment.topCenter,
-                      heightFactor: 0.6,
-                      child: MovieCarouselWidget(
-                        movies: state.movies,
-                        defaultIndex: state.defaultIndex,
+                return Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: Sizes.dimen_20),
+                  child: ListView(
+                    children: <Widget>[
+                      CarouselWithListTileWidget(
+                        contents: state.movies.results,
                       ),
-                    ),
-                    FractionallySizedBox(
-                      alignment: Alignment.bottomCenter,
-                      heightFactor: 0.4,
-                      child: Container(),
-                    ),
-                  ],
+                      const SizedBox(height: Sizes.dimen_20),
+                      Container(
+                        height: 400,
+                        child: const Placeholder(),
+                      ),
+                    ],
+                  ),
                 );
               } else if (state is MovieCarouselError) {
                 return Container();

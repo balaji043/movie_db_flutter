@@ -19,6 +19,11 @@ class ThemeText {
         fontSize: Sizes.dimen_6.sp,
         fontWeight: FontWeight.normal,
       );
+  static TextStyle get _bodyText2 => _poppinsTextTheme.bodyText1.copyWith(
+        color: AppColor.white,
+        fontSize: Sizes.dimen_4.sp,
+        fontWeight: FontWeight.normal,
+      );
   static TextStyle get _buttonText => _poppinsTextTheme.button.copyWith(
         fontSize: Sizes.dimen_4.sp,
         color: AppColor.white,
@@ -43,6 +48,7 @@ class ThemeText {
 
   static TextTheme getTextTheme() => _poppinsTextTheme.copyWith(
         bodyText1: _bodyText1,
+        bodyText2: _bodyText2,
         button: _buttonText,
         subtitle1: _subtitle1Text,
         headline1: _headline1Text,

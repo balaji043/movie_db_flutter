@@ -5,7 +5,9 @@ class ApiConstants {
   ApiConstants._();
 
   static const String tMDBBaseUrlV3 = 'https://api.themoviedb.org/3';
-  static const String tmdbImageBaseUrlV3 = 'https://image.tmdb.org/t/p/w500';
+  static const String tmdbImageBaseUrlV3 = 'https://image.tmdb.org/t/p/w1280';
+  static const String tmdbImagePosterBaseUrlV3 =
+      'https://image.tmdb.org/t/p/w154';
 
   static const String apiKey = String.fromEnvironment('api_key');
 
