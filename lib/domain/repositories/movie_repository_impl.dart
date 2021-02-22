@@ -30,7 +30,7 @@ class MovieRepositoryImpl implements MovieRepository {
       getPopularMovies() async {
     try {
       final PaginatedResponse<MovieDetails> movieResult =
-          await dataSource.getNowPlayingMovies();
+          await dataSource.getPopularMovies();
       return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
     } on Exception catch (e) {
       return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
@@ -42,7 +42,7 @@ class MovieRepositoryImpl implements MovieRepository {
       getTopRatedMovies() async {
     try {
       final PaginatedResponse<MovieDetails> movieResult =
-          await dataSource.getNowPlayingMovies();
+          await dataSource.getTopRatedMovies();
       return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
     } on Exception catch (e) {
       return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
@@ -54,7 +54,7 @@ class MovieRepositoryImpl implements MovieRepository {
       getUpcomingMovies() async {
     try {
       final PaginatedResponse<MovieDetails> movieResult =
-          await dataSource.getNowPlayingMovies();
+          await dataSource.getUpcomingMovies();
       return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
     } on Exception catch (e) {
       return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));

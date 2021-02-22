@@ -12,7 +12,7 @@ import 'package:movie_db/domain/use_cases/get_popular_movies.dart';
 import 'package:movie_db/domain/use_cases/get_top_rated_movies.dart';
 import 'package:movie_db/domain/use_cases/get_trending_movies.dart';
 import 'package:movie_db/domain/use_cases/get_upcoming_movies.dart';
-import 'package:movie_db/presentation/bloc/movie_carousel/movie_carousel_bloc.dart';
+import 'package:movie_db/presentation/bloc/bloc.dart';
 
 final GetIt getItInstance = GetIt.I;
 
@@ -44,5 +44,17 @@ Future<void> init() async {
     )
     ..registerLazySingleton<MovieCarouselBloc>(
       () => MovieCarouselBloc(getItInstance()),
+    )
+    ..registerLazySingleton<TopRatedMovieListBloc>(
+      () => TopRatedMovieListBloc(getItInstance()),
+    )
+    ..registerLazySingleton<UpcomingMovieListBloc>(
+      () => UpcomingMovieListBloc(getItInstance()),
+    )
+    ..registerLazySingleton<NowPlayingMovieListBloc>(
+      () => NowPlayingMovieListBloc(getItInstance()),
+    )
+    ..registerLazySingleton<PopularMovieListBloc>(
+      () => PopularMovieListBloc(getItInstance()),
     );
 }

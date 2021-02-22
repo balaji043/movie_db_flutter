@@ -3,4 +3,6 @@ abstract class UIParam {
   String get dBackdropPath;
   String get dPosterPath;
   String get dOverview;
+  String get dReleaseDate;
+  String get dRating;
 }

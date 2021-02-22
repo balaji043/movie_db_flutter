@@ -15,28 +15,29 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        height: 500,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        height: 430,
+        child: ListView(
           children: [
             Text(
               title,
               style: Theme.of(context).textTheme.headline6.copyWith(
                     color: AppColor.white,
                   ),
+              maxLines: 1,
             ),
             const SizedBox(
               height: Sizes.dimen_12,
             ),
             Container(
-              height: 400,
-              child: ListView.builder(
+              height: 380,
+              child: ListView(
                 itemExtent: 200,
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => ContentCard(
-                  content: contents[index],
-                ),
-                itemCount: contents.length,
+                children: contents
+                    .map(
+                      (content) => ContentCard(content: content),
+                    )
+                    .toList(),
               ),
             ),
           ],

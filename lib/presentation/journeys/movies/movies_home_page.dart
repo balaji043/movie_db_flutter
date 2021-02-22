@@ -21,7 +21,7 @@ class _MoviePageState extends State<MoviePage> {
   @override
   void initState() {
     super.initState();
-    controller = PageController(keepPage: false);
+    controller = PageController();
   }
 
   @override

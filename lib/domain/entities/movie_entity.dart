@@ -70,4 +70,10 @@ class MovieEntity extends Equatable implements UIParam {
 
   @override
   String get dOverview => overview;
+
+  @override
+  String get dReleaseDate => releaseDate;
+
+  @override
+  String get dRating => voteAverage?.toString() ?? '-';
 }

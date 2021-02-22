@@ -25,15 +25,52 @@ class ContentCard<T extends UIParam> extends StatelessWidget {
             ),
           ),
           const SizedBox(height: Sizes.dimen_10),
-          Text(
-            content.dTitle,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            softWrap: true,
-            style: Theme.of(context).textTheme.bodyText1.copyWith(
-                  color: AppColor.white,
+          if (content.dTitle != null)
+            Text(
+              content.dTitle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              softWrap: true,
+              style: Theme.of(context).textTheme.headline6.copyWith(
+                    color: AppColor.white,
+                  ),
+            )
+          else
+            const SizedBox.shrink(),
+          if (content.dReleaseDate != null)
+            Text(
+              content.dReleaseDate,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              softWrap: true,
+              style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    color: AppColor.white,
+                  ),
+            )
+          else
+            const SizedBox.shrink(),
+          if (content.dRating != null)
+            ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(5)),
+              child: Container(
+                color: Colors.blue,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
                 ),
-          )
+                child: Text(
+                  content.dRating,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        color: AppColor.white,
+                      ),
+                ),
+              ),
+            )
+          else
+            const SizedBox.shrink()
         ],
       );
 }

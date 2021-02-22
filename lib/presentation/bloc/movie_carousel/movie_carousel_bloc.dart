@@ -13,13 +13,13 @@ import 'package:equatable/equatable.dart';
 import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/domain/entities/movie_entity.dart';
-import 'package:movie_db/domain/use_cases/get_top_rated_movies.dart';
+import 'package:movie_db/domain/use_cases/get_trending_movies.dart';
 
 part 'movie_carousel_event.dart';
 part 'movie_carousel_state.dart';
 
 class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
-  final GetTopRatedMovies getTrendingMoviesUseCase;
+  final GetTrendingMovies getTrendingMoviesUseCase;
 
   MovieCarouselBloc(this.getTrendingMoviesUseCase)
       : super(MovieCarouselInitial());
