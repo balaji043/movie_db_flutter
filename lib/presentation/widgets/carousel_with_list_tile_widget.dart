@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/data/core/api_constants.dart';
@@ -5,7 +6,6 @@ import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
 import 'package:movie_db/presentation/widgets/animated_indexed_stack.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class CarouselWithListTileWidget<T extends UIParam> extends StatefulWidget {
   final List<T> contents;
@@ -109,31 +109,48 @@ class CarouselCard<T extends UIParam> extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        CachedNetworkImage(
-          imageUrl:
-              '${ApiConstants.tmdbImageBaseUrlV3}${content.dBackdropPath}',
-          fit: BoxFit.fill,
+        FractionallySizedBox(
+          alignment: Alignment.centerRight,
+          widthFactor: 1,
+          child: FadeInImage.memoryNetwork(
+            placeholder: kTransparentImage,
+            image: getBDUrl(content.dBackdropPath, ImageUrl.w1280),
+            fit: BoxFit.fill,
+          ),
         ),
-        Positioned(
-          bottom: 5,
-          left: 5,
-          child: Container(
-            width: 200,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  content.dTitle ?? '',
-                  style: textTheme.bodyText1,
+        FractionallySizedBox(
+          alignment: Alignment.centerLeft,
+          widthFactor: 0.3,
+          child: ClipRRect(
+            child: BackdropFilter(
+              filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: Container(
+                color: AppColor.black.withOpacity(0.3),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      content.dTitle ?? '',
+                      style: textTheme.headline4.copyWith(
+                        color: AppColor.white,
+                      ),
+                      maxLines: 3,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      content.dOverview ?? '',
+                      style:
+                          textTheme.subtitle1.copyWith(color: AppColor.white),
+                      maxLines: 12,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
-                Text(
-                  content.dOverview ?? '',
-                  style: textTheme.bodyText2,
-                  maxLines: 5,
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+              ),
             ),
           ),
         )
@@ -154,15 +171,16 @@ class _ListItem<T extends UIParam> extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(Sizes.dimen_12),
-        color: selected ? AppColor.inactiveWhite : AppColor.black2,
+        color: selected ? AppColor.black2 : AppColor.black,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 76,
               width: 56,
-              child: CachedNetworkImage(
-                imageUrl: getPosterImageUrl(content.dPosterPath),
+              child: FadeInImage.memoryNetwork(
+                image: getBDUrl(content.dPosterPath, ImageUrl.w154),
+                placeholder: kTransparentImage,
                 fit: BoxFit.fill,
               ),
             ),
@@ -170,11 +188,12 @@ class _ListItem<T extends UIParam> extends StatelessWidget {
             Expanded(
               child: Text(
                 content.dTitle,
+                style: Theme.of(context).textTheme.bodyText2.copyWith(
+                      color: AppColor.white,
+                    ),
               ),
             )
           ],
         ),
       );
-  String getPosterImageUrl(String posterPath) =>
-      '${ApiConstants.tmdbImagePosterBaseUrlV3}$posterPath';
 }

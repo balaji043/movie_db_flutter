@@ -4,6 +4,7 @@ import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/di/get_di.dart';
 import 'package:movie_db/presentation/bloc/movie_carousel/movie_carousel_bloc.dart';
 import 'package:movie_db/presentation/widgets/carousel_with_list_tile_widget.dart';
+import 'package:movie_db/presentation/widgets/horizontal_content_view.dart';
 
 class MovieDiscoverPage extends StatefulWidget {
   const MovieDiscoverPage({Key key}) : super(key: key);
@@ -40,17 +41,16 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
             builder: (BuildContext context, MovieCarouselState state) {
               if (state is MovieCarouselSuccess) {
                 return Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: Sizes.dimen_20),
+                  padding: const EdgeInsets.all(Sizes.dimen_20),
                   child: ListView(
                     children: <Widget>[
                       CarouselWithListTileWidget(
                         contents: state.movies.results,
                       ),
                       const SizedBox(height: Sizes.dimen_20),
-                      Container(
-                        height: 400,
-                        child: const Placeholder(),
+                      ContentListView(
+                        title: 'Top Rated',
+                        contents: state.movies.results,
                       ),
                     ],
                   ),

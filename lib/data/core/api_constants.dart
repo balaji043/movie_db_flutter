@@ -5,9 +5,7 @@ class ApiConstants {
   ApiConstants._();
 
   static const String tMDBBaseUrlV3 = 'https://api.themoviedb.org/3';
-  static const String tmdbImageBaseUrlV3 = 'https://image.tmdb.org/t/p/w1280';
-  static const String tmdbImagePosterBaseUrlV3 =
-      'https://image.tmdb.org/t/p/w154';
+  static const String tmdbImageBaseUrlV3 = 'https://image.tmdb.org/t/p';
 
   static const String apiKey = String.fromEnvironment('api_key');
 
@@ -53,3 +51,16 @@ class TrendingMediaType {
   static const String tv = 'tv';
   static const String person = 'person';
 }
+
+class ImageUrl {
+  static const String w92 = 'w92';
+  static const String w154 = 'w154';
+  static const String w185 = 'w185';
+  static const String w342 = 'w342';
+  static const String w500 = 'w500';
+  static const String w780 = 'w780';
+  static const String w1280 = 'w1280';
+}
+
+String getBDUrl(String path, String size) =>
+    '${ApiConstants.tmdbImageBaseUrlV3}/$size$path';

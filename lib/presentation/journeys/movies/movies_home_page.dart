@@ -71,6 +71,7 @@ class _TopBarState extends State<TopBar> {
 
   @override
   Widget build(BuildContext context) => Container(
+        color: Colors.transparent,
         alignment: Alignment.bottomCenter,
         padding: const EdgeInsets.only(right: Sizes.dimen_20),
         child: Row(

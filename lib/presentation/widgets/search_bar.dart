@@ -12,7 +12,7 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
-  bool active = true;
+  bool active = false;
   @override
   Widget build(BuildContext context) => AnimatedContainer(
         width: active ? Sizes.dimen_200 : Sizes.dimen_40,
@@ -29,16 +29,21 @@ class _SearchBarState extends State<SearchBar> {
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: Sizes.dimen_16,
-                  bottom: Sizes.dimen_10,
+                  bottom: Sizes.dimen_8,
                 ),
                 child: active
                     ? TextField(
                         decoration: InputDecoration(
                           hintText: 'Search...',
-                          hintStyle: Theme.of(context).textTheme.subtitle1,
+                          hintStyle:
+                              Theme.of(context).textTheme.bodyText1.copyWith(
+                                    color: AppColor.inactiveWhite,
+                                  ),
                           border: InputBorder.none,
                         ),
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                              color: AppColor.white,
+                            ),
                       )
                     : null,
               ),
