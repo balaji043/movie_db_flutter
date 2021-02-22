@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:movie_db/presentation/widgets/custom_scaffold.dart';
+import 'package:flutter/material.dart';
 
 class PeoplePage extends StatelessWidget {
   const PeoplePage({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => const CustomScaffold(
+  Widget build(BuildContext context) => const Scaffold(
         body: Center(
           child: Text('People'),
         ),

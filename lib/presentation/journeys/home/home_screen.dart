@@ -4,7 +4,7 @@ import 'package:movie_db/core/sizes_constants.dart';
 
 // Project imports:
 import 'package:movie_db/presentation/journeys/home/pages/games_home_page.dart';
-import 'package:movie_db/presentation/journeys/home/pages/movies_home_page.dart';
+import 'package:movie_db/presentation/journeys/movies/movies_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/people_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/tv_shows_home_page.dart';
 import 'package:movie_db/presentation/widgets/responsive.dart';
@@ -17,19 +17,18 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  PageController _tabController;
+class _HomeScreenState extends State<HomeScreen> {
+  PageController pageController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = PageController();
+    pageController = PageController();
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -40,14 +39,14 @@ class _HomeScreenState extends State<HomeScreen>
             children: <Widget>[
               Expanded(
                 child: SideMenu(
-                  controller: _tabController,
+                  onSelectPage: (int page) => pageController.jumpToPage(page),
                 ),
               ),
               Expanded(
                 flex: Sizes.dimen_4.toInt(),
                 child: PageView(
                   physics: const NeverScrollableScrollPhysics(),
-                  controller: _tabController,
+                  controller: pageController,
                   children: const <Widget>[
                     MoviePage(),
                     TVShowPage(),

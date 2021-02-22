@@ -11,6 +11,7 @@ class MovieEntity extends Equatable {
   final num voteAverage;
   final String posterPath;
   final String releaseDate;
+  final String backdropPath;
 
   const MovieEntity({
     @required this.id,
@@ -18,6 +19,7 @@ class MovieEntity extends Equatable {
     @required this.voteAverage,
     @required this.posterPath,
     @required this.releaseDate,
+    @required this.backdropPath,
   });
 
   @override
@@ -45,6 +47,7 @@ class MovieEntity extends Equatable {
       voteAverage: map['vote_average'],
       posterPath: map['poster_path'],
       releaseDate: map['release_date'],
+      backdropPath: map['backdrop_path'],
     );
   }
 

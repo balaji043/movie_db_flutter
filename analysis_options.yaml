@@ -15,4 +15,5 @@ linter:
     public_member_api_docs: false
     # personel preference
     sort_constructors_first: false
+    always_specify_types: false
     

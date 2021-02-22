@@ -5,7 +5,6 @@ import 'core.dart';
 
 class MovieDetails extends MovieEntity {
   final bool adult;
-  final String backdropPath;
   final dynamic belongsToCollection;
   final int budget;
   final List<Genre> genres;
@@ -25,39 +24,39 @@ class MovieDetails extends MovieEntity {
   final bool video;
   final num voteCount;
 
-  const MovieDetails({
-    this.adult,
-    this.backdropPath,
-    this.belongsToCollection,
-    this.budget,
-    this.genres,
-    this.homepage,
-    this.imdbId,
-    this.originalLanguage,
-    this.originalTitle,
-    this.overview,
-    this.popularity,
-    this.productionCompanies,
-    this.productionCountries,
-    this.revenue,
-    this.runtime,
-    this.spokenLanguages,
-    this.status,
-    this.tagline,
-    this.video,
-    this.voteCount,
-    int id,
-    String posterPath,
-    String releaseDate,
-    String title,
-    double voteAverage,
-  }) : super(
-          id: id,
-          posterPath: posterPath,
-          releaseDate: releaseDate,
-          title: title,
-          voteAverage: voteAverage,
-        );
+  const MovieDetails(
+      {this.adult,
+      this.belongsToCollection,
+      this.budget,
+      this.genres,
+      this.homepage,
+      this.imdbId,
+      this.originalLanguage,
+      this.originalTitle,
+      this.overview,
+      this.popularity,
+      this.productionCompanies,
+      this.productionCountries,
+      this.revenue,
+      this.runtime,
+      this.spokenLanguages,
+      this.status,
+      this.tagline,
+      this.video,
+      this.voteCount,
+      int id,
+      String posterPath,
+      String releaseDate,
+      String title,
+      num voteAverage,
+      String backdropPath})
+      : super(
+            id: id,
+            posterPath: posterPath,
+            releaseDate: releaseDate,
+            title: title,
+            voteAverage: voteAverage,
+            backdropPath: backdropPath);
 
   factory MovieDetails.fromJson(Map<String, dynamic> json) => MovieDetails(
         adult: json['adult'],

@@ -26,7 +26,7 @@ class ThemeText {
       );
 
   static TextStyle get _subtitle1Text => _poppinsTextTheme.subtitle1.copyWith(
-        fontSize: Sizes.dimen_6.sp,
+        fontSize: Sizes.dimen_4.sp,
         color: AppColor.inactiveWhite,
         fontWeight: FontWeight.w300,
       );

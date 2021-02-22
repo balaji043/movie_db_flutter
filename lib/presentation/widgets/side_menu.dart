@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
+import 'package:movie_db/presentation/view_models/navigation_item.dart';
 import 'package:movie_db/presentation/widgets/logo.dart';
+import 'package:movie_db/presentation/widgets/nav_bar.dart';
 
 import 'custom_button.dart';
-import 'custom_tab_widget.dart';
 
 class SideMenu extends StatefulWidget {
-  final PageController controller;
+  final Function(int page) onSelectPage;
+
   const SideMenu({
-    @required this.controller,
+    this.onSelectPage,
     Key key,
   }) : super(key: key);
 
@@ -20,6 +22,26 @@ class SideMenu extends StatefulWidget {
 
 class _SideMenuState extends State<SideMenu> {
   int currentIndex = 0;
+
+  final List<NavigationItem> navigationItems = <NavigationItem>[
+    NavigationItem(
+      isSelected: true,
+      icon: Icons.movie,
+      label: 'Movies',
+    ),
+    NavigationItem(
+      icon: Icons.tv,
+      label: 'TV Shows',
+    ),
+    NavigationItem(
+      icon: Icons.games,
+      label: 'Games',
+    ),
+    NavigationItem(
+      icon: Icons.people,
+      label: 'People',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) => Container(
@@ -32,81 +54,56 @@ class _SideMenuState extends State<SideMenu> {
           ),
           color: AppColor.black,
         ),
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverFillRemaining(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Sizes.dimen_20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Column>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: Sizes.dimen_10),
-                          child: Logo(height: Sizes.dimen_32),
-                        ),
-                        CustomTabWidget(
-                          title: 'Movies',
-                          iconData: Icons.movie,
-                          controller: widget.controller,
-                          index: 0,
-                          currentIndex: currentIndex,
-                          setCurrentIndex: setCurrentIndex,
-                        ),
-                        CustomTabWidget(
-                          title: 'TV Shows',
-                          iconData: Icons.tv,
-                          controller: widget.controller,
-                          index: 1,
-                          currentIndex: currentIndex,
-                          setCurrentIndex: setCurrentIndex,
-                        ),
-                        CustomTabWidget(
-                          title: 'Games',
-                          iconData: Icons.gamepad,
-                          controller: widget.controller,
-                          index: 2,
-                          currentIndex: currentIndex,
-                          setCurrentIndex: setCurrentIndex,
-                        ),
-                        CustomTabWidget(
-                          title: 'People',
-                          iconData: Icons.movie,
-                          controller: widget.controller,
-                          index: 3,
-                          currentIndex: currentIndex,
-                          setCurrentIndex: setCurrentIndex,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: <CustomButton>[
-                        CustomButton(
-                          press: () {},
-                          iconSrc: Icons.list,
-                          title: 'My Lists',
-                        ),
-                        CustomButton(
-                          press: () {},
-                          iconSrc: Icons.settings,
-                          title: 'Settings',
-                        ),
-                        CustomButton(
-                          press: () {},
-                          iconSrc: Icons.person,
-                          title: 'balaji043',
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: Sizes.dimen_40,
+            bottom: Sizes.dimen_32,
+            left: Sizes.dimen_20,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Column>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: Sizes.dimen_10),
+                    child: Logo(height: Sizes.dimen_32),
+                  ),
+                  NavigationBar(
+                    navigationItems: navigationItems,
+                    axis: Axis.vertical,
+                    selectedIndex: currentIndex,
+                    onTap: onNavItemTap,
+                  )
+                ],
               ),
-            )
-          ],
+              Column(
+                children: <CustomButton>[
+                  CustomButton(
+                    press: () {},
+                    iconSrc: Icons.list,
+                    title: 'My Lists',
+                  ),
+                  CustomButton(
+                    press: () {},
+                    iconSrc: Icons.settings,
+                    title: 'Settings',
+                  ),
+                  CustomButton(
+                    press: () {},
+                    iconSrc: Icons.person,
+                    title: 'balaji043',
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       );
 
-  void setCurrentIndex(int index) => setState(() => currentIndex = index);
+  void onNavItemTap(int i) {
+    setState(() => currentIndex = i);
+    widget.onSelectPage(currentIndex);
+  }
 }
