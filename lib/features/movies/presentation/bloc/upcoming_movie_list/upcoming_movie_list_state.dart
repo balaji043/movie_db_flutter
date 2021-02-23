@@ -17,4 +17,6 @@ class UpcomingMovieListSuccess extends UpcomingMovieListState {
   const UpcomingMovieListSuccess({
     @required this.movies,
   });
+  @override
+  List<Object> get props => <Object>[movies];
 }

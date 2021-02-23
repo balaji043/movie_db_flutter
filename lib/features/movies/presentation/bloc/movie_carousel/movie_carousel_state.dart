@@ -19,4 +19,7 @@ class MovieCarouselSuccess extends MovieCarouselState {
     @required this.movies,
     @required this.defaultIndex,
   }) : assert(defaultIndex >= 0, 'default index cannot be less than 0');
+
+  @override
+  List<Object> get props => <Object>[movies, defaultIndex];
 }

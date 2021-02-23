@@ -17,4 +17,6 @@ class NowPlayingMovieListSuccess extends NowPlayingMovieListState {
   const NowPlayingMovieListSuccess({
     @required this.movies,
   });
+  @override
+  List<Object> get props => <Object>[movies];
 }

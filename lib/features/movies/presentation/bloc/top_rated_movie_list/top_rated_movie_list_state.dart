@@ -17,4 +17,6 @@ class TopRatedMovieListSuccess extends TopRatedMovieListState {
   const TopRatedMovieListSuccess({
     @required this.movies,
   });
+  @override
+  List<Object> get props => <Object>[movies];
 }

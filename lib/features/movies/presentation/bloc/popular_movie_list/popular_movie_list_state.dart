@@ -17,4 +17,6 @@ class PopularMovieListSuccess extends PopularMovieListState {
   const PopularMovieListSuccess({
     @required this.movies,
   });
+  @override
+  List<Object> get props => <Object>[movies];
 }

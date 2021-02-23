@@ -17,4 +17,7 @@ class TrendingMovieListSuccess extends TrendingMovieListState {
   const TrendingMovieListSuccess({
     @required this.movies,
   });
+
+  @override
+  List<Object> get props => <Object>[movies];
 }
