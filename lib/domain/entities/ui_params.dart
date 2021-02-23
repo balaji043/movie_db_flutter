@@ -5,4 +5,5 @@ abstract class UIParam {
   String get dOverview;
   String get dReleaseDate;
   String get dRating;
+  String get dId;
 }

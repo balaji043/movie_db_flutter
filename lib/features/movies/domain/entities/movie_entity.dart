@@ -78,4 +78,7 @@ class MovieEntity extends Equatable implements UIParam {
 
   @override
   String get dRating => voteAverage?.toString() ?? '-';
+
+  @override
+  String get dId => id?.toString() ?? '';
 }
