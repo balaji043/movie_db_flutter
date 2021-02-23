@@ -12,8 +12,8 @@ import 'package:equatable/equatable.dart';
 // Project imports:
 import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/domain/entities/api_error.dart';
-import 'package:movie_db/domain/use_cases/get_Trending_movies.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
+import 'package:movie_db/features/movies/domain/usecases/usecases.dart';
 
 part 'trending_movie_list_event.dart';
 part 'trending_movie_list_state.dart';
