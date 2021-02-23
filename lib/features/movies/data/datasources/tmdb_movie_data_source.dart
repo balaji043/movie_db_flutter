@@ -44,27 +44,27 @@ class TMDBMovieDataSource implements MovieDataSource {
   Future<PaginatedResponse<MovieDetails>> _getMoviesByUrl(
     String movieUrl,
   ) async {
-    try {
-      final Response<Map<String, dynamic>> response = await dio.get(
-        movieUrl,
-        queryParameters: ApiConstants.params,
-      );
-      // print('$movieUrl ${response.data['results'].length}');
-      throwExceptionIfNotSuccess(response);
-
-      final PaginatedResponse<MovieDetails> movieResponse =
-          PaginatedResponse<MovieDetails>.fromJson(
-        response.data,
-        (dynamic map) => MovieDetails.fromJson(map),
-      );
-      return movieResponse;
-    } on Exception catch (error, stackTrace) {
-      printException(error, stackTrace);
-    }
-    return Future<PaginatedResponse<MovieDetails>>.value(
-      PaginatedResponse<MovieDetails>(
-        results: List<MovieDetails>.empty(),
-      ),
+    final Response<Map<String, dynamic>> response = await dio.get(
+      movieUrl,
+      queryParameters: ApiConstants.params,
     );
+    // print('$movieUrl ${response.data['results'].length}');
+    throwExceptionIfNotSuccess(response);
+
+    final PaginatedResponse<MovieDetails> movieResponse =
+        PaginatedResponse<MovieDetails>.fromJson(
+      response.data,
+      (dynamic map) => MovieDetails.fromJson(map),
+    );
+    return movieResponse;
+  }
+
+  @override
+  Future<MovieDetails> getMovieDetail(int id) async {
+    final Response<Map<String, dynamic>> response =
+        await dio.get('${ApiConstants.getMovieBaseUrl}/$id');
+    throwExceptionIfNotSuccess(response);
+    final MovieDetails movieDetails = MovieDetails.fromJson(response.data);
+    return movieDetails;
   }
 }

@@ -10,15 +10,15 @@ class ApiConstants {
   static const String apiKey = String.fromEnvironment('api_key');
 
   /* Base URL start */
-  static const String _getMovieBaseUrl = '${ApiConstants.tMDBBaseUrlV3}/movie';
+  static const String getMovieBaseUrl = '${ApiConstants.tMDBBaseUrlV3}/movie';
   static const String _getTrendingBaseUrl =
       '${ApiConstants.tMDBBaseUrlV3}/trending';
   /* Base URL end */
   /* Movie URL start */
-  static const String getNowPlayingMoviesUrl = '$_getMovieBaseUrl/now_playing';
-  static const String getPopularMoviesUrl = '$_getMovieBaseUrl/popular';
-  static const String getTopRatedMoviesUrl = '$_getMovieBaseUrl/top_rated';
-  static const String getUpcomingMoviesUrl = '$_getMovieBaseUrl/upcoming';
+  static const String getNowPlayingMoviesUrl = '$getMovieBaseUrl/now_playing';
+  static const String getPopularMoviesUrl = '$getMovieBaseUrl/popular';
+  static const String getTopRatedMoviesUrl = '$getMovieBaseUrl/top_rated';
+  static const String getUpcomingMoviesUrl = '$getMovieBaseUrl/upcoming';
   static const String getTrendingMoviesUrl =
       '$_getTrendingBaseUrl/${TrendingMediaType.movie}/${TrendingTimeWindow.day}';
   /* Movie URL end */

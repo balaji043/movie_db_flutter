@@ -13,4 +13,5 @@ abstract class MovieRepository {
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>> getTopRatedMovies();
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>> getUpcomingMovies();
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>> getTrendingMovies();
+  Future<Either<ApiError, MovieDetails>> getMovieDetails(int id);
 }

@@ -3,18 +3,22 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
+import 'package:movie_db/features/movies/presentation/bloc/movie_details/movie_details_bloc.dart';
 
 part 'movie_route_event.dart';
 part 'movie_route_state.dart';
 
 class MovieRouteBloc extends Bloc<MovieRouteEvent, MovieRouteState> {
-  MovieRouteBloc() : super(MovieRouteToMainPageState());
+  final MovieDetailsBloc movieDetailsBloc;
+
+  MovieRouteBloc(this.movieDetailsBloc) : super(MovieRouteToMainPageState());
 
   @override
   Stream<MovieRouteState> mapEventToState(
     MovieRouteEvent event,
   ) async* {
     if (event is MovieRouteToDetailsPageEvent) {
+      movieDetailsBloc.add(MovieDetailLoadEvent(event.movie.id));
       yield MovieRouteToDetailsPageState(event.movie);
     }
     if (event is MovieRouteToMainPageEvent) {

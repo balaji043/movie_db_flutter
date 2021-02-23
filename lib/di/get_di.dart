@@ -6,10 +6,9 @@ import 'package:get_it/get_it.dart';
 import 'package:movie_db/features/movies/data/datasources/movie_data_source.dart';
 import 'package:movie_db/features/movies/data/datasources/tmdb_movie_data_source.dart';
 import 'package:movie_db/features/movies/domain/repositories/movie_repository.dart';
-import 'package:movie_db/features/movies/domain/repositories/movie_repository_impl.dart';
+import 'package:movie_db/features/movies/data/repositories/movie_repository_impl.dart';
 import 'package:movie_db/features/movies/domain/usecases/usecases.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
-import 'package:movie_db/features/movies/presentation/bloc/movie_route/movie_route_bloc.dart';
 
 final GetIt getItInstance = GetIt.I;
 
@@ -43,14 +42,17 @@ Future<void> initMovieDependencies() async {
     ..registerLazySingleton<GetTrendingMovies>(
       () => GetTrendingMovies(getItInstance()),
     )
+    ..registerLazySingleton<GetMovieDetails>(
+      () => GetMovieDetails(getItInstance()),
+    )
     ..registerLazySingleton<MovieCarouselBloc>(
       () => MovieCarouselBloc(
         getItInstance(),
         getItInstance(),
       ),
     )
-    ..registerLazySingleton<MovieRouteBloc>(
-      () => MovieRouteBloc(),
+    ..registerLazySingleton<MovieDetailsBloc>(
+      () => MovieDetailsBloc(getItInstance()),
     )
     ..registerLazySingleton<MovieCarouselCardBloc>(
       () => MovieCarouselCardBloc(),
@@ -66,5 +68,8 @@ Future<void> initMovieDependencies() async {
     )
     ..registerLazySingleton<PopularMovieListBloc>(
       () => PopularMovieListBloc(getItInstance()),
+    )
+    ..registerLazySingleton<MovieRouteBloc>(
+      () => MovieRouteBloc(getItInstance()),
     );
 }

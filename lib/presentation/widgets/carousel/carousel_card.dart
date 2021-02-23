@@ -7,7 +7,7 @@ import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class CarouselCard extends StatelessWidget {
+class CarouselCard extends StatefulWidget {
   final UIParam content;
 
   const CarouselCard({
@@ -16,12 +16,36 @@ class CarouselCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _CarouselCardState createState() => _CarouselCardState();
+}
+
+class _CarouselCardState extends State<CarouselCard>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Tween<Offset> tweenOffset;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(vsync: this);
+    tweenOffset = Tween<Offset>(
+      begin: const Offset(1, 0),
+      end: Offset.zero,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 400),
+      switchInCurve: Curves.fastOutSlowIn,
+      transitionBuilder: (child, animation) => SlideTransition(
+        position: tweenOffset.animate(animation),
+        child: child,
+      ),
       child: Stack(
-        key: ValueKey<String>(content.dId.toString()),
+        key: ValueKey<String>(widget.content.dId.toString()),
         fit: StackFit.expand,
         children: [
           FractionallySizedBox(
@@ -29,7 +53,7 @@ class CarouselCard extends StatelessWidget {
             widthFactor: 1,
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: getBDUrl(content.dBackdropPath, ImageUrl.w1280),
+              image: getBDUrl(widget.content.dBackdropPath, ImageUrl.w1280),
               fit: BoxFit.fill,
             ),
           ),
@@ -47,7 +71,7 @@ class CarouselCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        content.dTitle ?? '',
+                        widget.content.dTitle ?? '',
                         style: textTheme.headline4.copyWith(
                           color: AppColor.white,
                         ),
@@ -56,7 +80,7 @@ class CarouselCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        content.dOverview ?? '',
+                        widget.content.dOverview ?? '',
                         style:
                             textTheme.subtitle1.copyWith(color: AppColor.white),
                         maxLines: 12,

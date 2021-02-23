@@ -8,4 +8,5 @@ abstract class MovieDataSource {
   Future<PaginatedResponse<MovieDetails>> getTopRatedMovies();
   Future<PaginatedResponse<MovieDetails>> getUpcomingMovies();
   Future<PaginatedResponse<MovieDetails>> getTrendingMovies();
+  Future<MovieDetails> getMovieDetail(int id);
 }

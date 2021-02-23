@@ -14,7 +14,8 @@ import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
 import 'package:movie_db/features/movies/domain/usecases/get_trending_movies.dart';
-import 'package:movie_db/features/movies/presentation/bloc/movie_carousel_card/movie_carousel_card_bloc.dart';
+
+import '../bloc.dart';
 
 part 'movie_carousel_event.dart';
 part 'movie_carousel_state.dart';
