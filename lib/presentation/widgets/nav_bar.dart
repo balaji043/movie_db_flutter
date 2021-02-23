@@ -1,6 +1,8 @@
+// Flutter imports:
 import 'package:flutter/widgets.dart';
-import 'package:movie_db/presentation/view_models/navigation_item.dart';
 
+// Project imports:
+import 'package:movie_db/presentation/view_models/navigation_item.dart';
 import 'nav_item.dart';
 
 class NavigationBar extends StatefulWidget {
@@ -27,9 +29,9 @@ class _NavigationBarState extends State<NavigationBar> {
         scrollDirection: widget.axis,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        children: <NavItem>[
+        children: <NavItemWidget>[
           for (int i = 0; i < widget.navigationItems.length; i++)
-            NavItem(
+            NavItemWidget(
               selectedIndex: widget.selectedIndex,
               iconData: widget.navigationItems[i].icon,
               label: widget.navigationItems[i].label,

@@ -1,7 +1,7 @@
 // Dart imports:
 import 'dart:convert';
 
-// Project Imports:
+// Project imports:
 import 'package:movie_db/core/extensions.dart';
 
 People peopleFromJson(String str) => People.fromJson(json.decode(str));

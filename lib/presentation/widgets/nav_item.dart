@@ -1,20 +1,23 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:movie_db/presentation/widgets/custom_button.dart';
 
-class NavItem extends StatelessWidget {
+class NavItemWidget extends StatelessWidget {
   final String label;
   final IconData iconData;
   final Function(int) onTap;
   final int selectedIndex;
   final int index;
 
-  const NavItem({
+  const NavItemWidget({
     @required this.label,
+    @required this.onTap,
+    @required this.selectedIndex,
+    @required this.index,
     this.iconData,
     Key key,
-    this.onTap,
-    this.selectedIndex,
-    this.index,
   }) : super(key: key);
 
   @override

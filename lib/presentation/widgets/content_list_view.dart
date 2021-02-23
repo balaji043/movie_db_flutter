@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';

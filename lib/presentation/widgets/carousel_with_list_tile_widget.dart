@@ -1,11 +1,18 @@
+// Dart imports:
 import 'dart:ui' as ui;
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:transparent_image/transparent_image.dart';
+
+// Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
 import 'package:movie_db/presentation/widgets/animated_indexed_stack.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class CarouselWithListTileWidget<T extends UIParam> extends StatefulWidget {
   final List<T> contents;

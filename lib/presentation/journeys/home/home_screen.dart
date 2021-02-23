@@ -1,10 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:movie_db/core/sizes_constants.dart';
 
 // Project imports:
+import 'package:movie_db/core/sizes_constants.dart';
+import 'package:movie_db/features/movies/presentation/pages/movies_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/games_home_page.dart';
-import 'package:movie_db/presentation/journeys/movies/movies_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/people_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/tv_shows_home_page.dart';
 import 'package:movie_db/presentation/widgets/responsive.dart';

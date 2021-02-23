@@ -5,12 +5,12 @@ import 'package:mockito/mockito.dart';
 
 // Project imports:
 import 'package:movie_db/data/models/core.dart';
-import 'package:movie_db/data/models/movie_details.dart';
 import 'package:movie_db/domain/entities/api_error.dart';
-import 'package:movie_db/domain/entities/movie_entity.dart';
 import 'package:movie_db/domain/entities/no_params.dart';
-import 'package:movie_db/domain/repositories/movie_repository.dart';
-import 'package:movie_db/domain/use_cases/get_now_playing_movies.dart';
+import 'package:movie_db/features/movies/data/models/movie_details.dart';
+import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
+import 'package:movie_db/features/movies/domain/repositories/movie_repository.dart';
+import 'package:movie_db/features/movies/domain/usecases/get_now_playing_movies.dart';
 
 class MockMovieRepository extends Mock implements MovieRepository {}
 

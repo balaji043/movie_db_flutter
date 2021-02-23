@@ -7,7 +7,6 @@ import 'dart:convert';
 
 // Project imports:
 import 'package:movie_db/core/extensions.dart';
-
 import 'episode.dart';
 
 Season seasonFromJson(String str) => Season.fromJson(json.decode(str));
