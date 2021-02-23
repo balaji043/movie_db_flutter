@@ -9,16 +9,16 @@ import 'package:movie_db/features/movies/data/models/movie_details.dart';
 import '../../domain/repositories/movie_repository.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
-  final MovieDataSource dataSource;
+  final MovieDataSource _dataSource;
 
-  MovieRepositoryImpl(this.dataSource);
+  MovieRepositoryImpl(this._dataSource);
 
   @override
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>>
       getNowPlayingMovies() async {
     try {
       final PaginatedResponse<MovieDetails> movieResult =
-          await dataSource.getNowPlayingMovies();
+          await _dataSource.getNowPlayingMovies();
       return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
     } on Exception catch (e) {
       return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
@@ -30,7 +30,7 @@ class MovieRepositoryImpl implements MovieRepository {
       getPopularMovies() async {
     try {
       final PaginatedResponse<MovieDetails> movieResult =
-          await dataSource.getPopularMovies();
+          await _dataSource.getPopularMovies();
       return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
     } on Exception catch (e) {
       return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
@@ -42,7 +42,7 @@ class MovieRepositoryImpl implements MovieRepository {
       getTopRatedMovies() async {
     try {
       final PaginatedResponse<MovieDetails> movieResult =
-          await dataSource.getTopRatedMovies();
+          await _dataSource.getTopRatedMovies();
       return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
     } on Exception catch (e) {
       return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
@@ -54,7 +54,7 @@ class MovieRepositoryImpl implements MovieRepository {
       getUpcomingMovies() async {
     try {
       final PaginatedResponse<MovieDetails> movieResult =
-          await dataSource.getUpcomingMovies();
+          await _dataSource.getUpcomingMovies();
       return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
     } on Exception catch (e) {
       return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
@@ -66,7 +66,7 @@ class MovieRepositoryImpl implements MovieRepository {
       getTrendingMovies() async {
     try {
       final PaginatedResponse<MovieDetails> movieResult =
-          await dataSource.getTrendingMovies();
+          await _dataSource.getTrendingMovies();
       return Right<ApiError, PaginatedResponse<MovieDetails>>(movieResult);
     } on Exception catch (e) {
       return Left<ApiError, PaginatedResponse<MovieDetails>>(ApiError('$e'));
@@ -76,7 +76,7 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<Either<ApiError, MovieDetails>> getMovieDetails(int id) async {
     try {
-      final movieDetails = await dataSource.getMovieDetail(id);
+      final movieDetails = await _dataSource.getMovieDetail(id);
       return Right(movieDetails);
     } on Exception catch (e) {
       return Left(ApiError('$e'));

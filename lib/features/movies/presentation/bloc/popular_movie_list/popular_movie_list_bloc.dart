@@ -20,9 +20,9 @@ part 'popular_movie_list_state.dart';
 
 class PopularMovieListBloc
     extends Bloc<PopularMovieListEvent, PopularMovieListState> {
-  final GetPopularMovies getPopularMovies;
+  final GetPopularMovies _getPopularMovies;
 
-  PopularMovieListBloc(this.getPopularMovies)
+  PopularMovieListBloc(this._getPopularMovies)
       : super(PopularMovieListInitial());
 
   @override
@@ -31,7 +31,7 @@ class PopularMovieListBloc
   ) async* {
     if (event is PopularMovieListLoadEvent) {
       final Either<ApiError, PaginatedResponse<MovieEntity>> movies =
-          await getPopularMovies.call(null);
+          await _getPopularMovies.call(null);
       yield movies.fold(
         (ApiError l) => PopularMovieListError(),
         (PaginatedResponse<MovieEntity> r) =>

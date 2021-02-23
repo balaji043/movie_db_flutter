@@ -33,6 +33,7 @@ class _MovieMainPageState extends State<MovieMainPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: CustomAppBar(
           child: MovieAppBar(
             controller: controller,

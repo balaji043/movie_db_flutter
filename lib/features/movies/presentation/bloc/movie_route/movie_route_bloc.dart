@@ -9,16 +9,16 @@ part 'movie_route_event.dart';
 part 'movie_route_state.dart';
 
 class MovieRouteBloc extends Bloc<MovieRouteEvent, MovieRouteState> {
-  final MovieDetailsBloc movieDetailsBloc;
+  final MovieDetailsBloc _movieDetailsBloc;
 
-  MovieRouteBloc(this.movieDetailsBloc) : super(MovieRouteToMainPageState());
+  MovieRouteBloc(this._movieDetailsBloc) : super(MovieRouteToMainPageState());
 
   @override
   Stream<MovieRouteState> mapEventToState(
     MovieRouteEvent event,
   ) async* {
     if (event is MovieRouteToDetailsPageEvent) {
-      movieDetailsBloc.add(MovieDetailLoadEvent(event.movie.id));
+      _movieDetailsBloc.add(MovieDetailLoadEvent(event.movie.id));
       yield MovieRouteToDetailsPageState(event.movie);
     }
     if (event is MovieRouteToMainPageEvent) {

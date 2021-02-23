@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 // Project imports:
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
-import 'nav_item.dart';
+import 'nav_item_widget.dart';
 
 class NavigationBar extends StatefulWidget {
   final int selectedIndex;

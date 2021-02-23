@@ -7,7 +7,10 @@ abstract class MovieRouteEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class MovieRouteToMainPageEvent extends MovieRouteEvent {}
+class MovieRouteToMainPageEvent extends MovieRouteEvent {
+  @override
+  List<Object> get props => [];
+}
 
 class MovieRouteToDetailsPageEvent extends MovieRouteEvent {
   final MovieEntity movie;

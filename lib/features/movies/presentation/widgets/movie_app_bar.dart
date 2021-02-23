@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
 import 'package:movie_db/presentation/widgets/nav_bar.dart';
-import 'package:movie_db/presentation/widgets/nav_item.dart';
+import 'package:movie_db/presentation/widgets/nav_item_widget.dart';
 import 'package:movie_db/presentation/widgets/search_bar.dart';
 
 class MovieAppBar extends StatefulWidget {

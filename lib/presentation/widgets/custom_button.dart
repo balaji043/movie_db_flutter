@@ -12,8 +12,8 @@ class CustomButton extends StatefulWidget {
   final bool isActive;
 
   const CustomButton({
-    @required this.title,
     @required this.onPressed,
+    this.title,
     Key key,
     this.iconSrc,
     this.isActive = false,
@@ -48,16 +48,17 @@ class _CustomButtonState extends State<CustomButton> {
               else
                 const SizedBox.shrink(),
               const SizedBox(
-                width: Sizes.dimen_32,
+                width: Sizes.dimen_10,
               ),
-              Text(
-                widget.title,
-                style: TextStyle(
-                  color: widget.isActive || isHover
-                      ? AppColor.white
-                      : AppColor.inactiveWhite,
+              if (widget.title != null)
+                Text(
+                  widget.title,
+                  style: TextStyle(
+                    color: widget.isActive || isHover
+                        ? AppColor.white
+                        : AppColor.inactiveWhite,
+                  ),
                 ),
-              ),
             ],
           ),
         ),

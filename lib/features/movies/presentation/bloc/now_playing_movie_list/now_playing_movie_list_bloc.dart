@@ -20,9 +20,9 @@ part 'now_playing_movie_list_state.dart';
 
 class NowPlayingMovieListBloc
     extends Bloc<NowPlayingMovieListEvent, NowPlayingMovieListState> {
-  final GetNowPlayingMovies getNowPlayingMovie;
+  final GetNowPlayingMovies _getNowPlayingMovie;
 
-  NowPlayingMovieListBloc(this.getNowPlayingMovie)
+  NowPlayingMovieListBloc(this._getNowPlayingMovie)
       : super(NowPlayingMovieListInitial());
 
   @override
@@ -31,7 +31,7 @@ class NowPlayingMovieListBloc
   ) async* {
     if (event is NowPlayingMovieListLoadEvent) {
       final Either<ApiError, PaginatedResponse<MovieEntity>> movies =
-          await getNowPlayingMovie.call(null);
+          await _getNowPlayingMovie.call(null);
       yield movies.fold(
         (ApiError l) => NowPlayingMovieListError(),
         (PaginatedResponse<MovieEntity> r) =>

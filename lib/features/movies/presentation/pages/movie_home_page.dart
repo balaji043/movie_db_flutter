@@ -48,9 +48,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
           child: BlocBuilder<MovieRouteBloc, MovieRouteState>(
             builder: (context, state) {
               if (state is MovieRouteToDetailsPageState) {
-                return MovieDetailsPage(
-                  movie: state.movie,
-                );
+                return const MovieDetailsPage();
               } else {
                 return const MovieMainPage();
               }

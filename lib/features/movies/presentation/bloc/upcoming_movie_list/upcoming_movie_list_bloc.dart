@@ -20,9 +20,9 @@ part 'upcoming_movie_list_state.dart';
 
 class UpcomingMovieListBloc
     extends Bloc<UpcomingMovieListEvent, UpcomingMovieListState> {
-  final GetUpcomingMovies getUpcomingMovie;
+  final GetUpcomingMovies _getUpcomingMovie;
 
-  UpcomingMovieListBloc(this.getUpcomingMovie)
+  UpcomingMovieListBloc(this._getUpcomingMovie)
       : super(UpcomingMovieListInitial());
 
   @override
@@ -31,7 +31,7 @@ class UpcomingMovieListBloc
   ) async* {
     if (event is UpcomingMovieListLoadEvent) {
       final Either<ApiError, PaginatedResponse<MovieEntity>> movies =
-          await getUpcomingMovie.call(null);
+          await _getUpcomingMovie.call(null);
       yield movies.fold(
         (ApiError l) => UpcomingMovieListError(),
         (PaginatedResponse<MovieEntity> r) =>

@@ -17,14 +17,15 @@ class MovieEntity extends Equatable implements UIParam {
   final String backdropPath;
   final String overview;
 
-  const MovieEntity(
-      {@required this.id,
-      @required this.title,
-      @required this.voteAverage,
-      @required this.posterPath,
-      @required this.releaseDate,
-      @required this.backdropPath,
-      @required this.overview});
+  const MovieEntity({
+    @required this.id,
+    @required this.title,
+    @required this.voteAverage,
+    @required this.posterPath,
+    @required this.releaseDate,
+    @required this.backdropPath,
+    @required this.overview,
+  });
 
   @override
   List<Object> get props => <Object>[

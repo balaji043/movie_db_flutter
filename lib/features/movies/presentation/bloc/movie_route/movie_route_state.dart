@@ -7,7 +7,10 @@ abstract class MovieRouteState extends Equatable {
   List<Object> get props => [];
 }
 
-class MovieRouteToMainPageState extends MovieRouteState {}
+class MovieRouteToMainPageState extends MovieRouteState {
+  @override
+  List<Object> get props => [];
+}
 
 class MovieRouteToDetailsPageState extends MovieRouteState {
   final MovieEntity movie;

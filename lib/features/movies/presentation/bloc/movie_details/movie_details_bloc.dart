@@ -12,8 +12,8 @@ part 'movie_details_event.dart';
 part 'movie_details_state.dart';
 
 class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
-  final GetMovieDetails getMovieDetails;
-  MovieDetailsBloc(this.getMovieDetails) : super(MovieDetailsInitial());
+  final GetMovieDetails _getMovieDetails;
+  MovieDetailsBloc(this._getMovieDetails) : super(MovieDetailsInitial());
 
   @override
   Stream<MovieDetailsState> mapEventToState(
@@ -21,8 +21,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   ) async* {
     if (event is MovieDetailLoadEvent) {
       final Either<ApiError, MovieDetails> eitherResponse =
-          await getMovieDetails(MovieParams(event.movieId));
-
+          await _getMovieDetails(MovieParams(event.movieId));
       yield eitherResponse.fold(
         (l) => MovieDetailsError(),
         (r) => MovieDetailsLoaded(r),

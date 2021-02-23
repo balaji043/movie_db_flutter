@@ -21,11 +21,13 @@ part 'movie_carousel_event.dart';
 part 'movie_carousel_state.dart';
 
 class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
-  final GetTrendingMovies getTrendingMoviesUseCase;
-  final MovieCarouselCardBloc movieCarouselCardBloc;
+  final GetTrendingMovies _getTrendingMoviesUseCase;
+  final MovieCarouselCardBloc _movieCarouselCardBloc;
 
-  MovieCarouselBloc(this.getTrendingMoviesUseCase, this.movieCarouselCardBloc)
-      : super(MovieCarouselInitial());
+  MovieCarouselBloc(
+    this._getTrendingMoviesUseCase,
+    this._movieCarouselCardBloc,
+  ) : super(MovieCarouselInitial());
 
   @override
   Stream<MovieCarouselState> mapEventToState(
@@ -33,11 +35,11 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
   ) async* {
     if (event is MovieCarouselLoadEvent) {
       final Either<ApiError, PaginatedResponse<MovieEntity>> response =
-          await getTrendingMoviesUseCase.call(null);
+          await _getTrendingMoviesUseCase.call(null);
       yield response.fold(
         (ApiError l) => MovieCarouselError(),
         (PaginatedResponse<MovieEntity> r) {
-          movieCarouselCardBloc.add(
+          _movieCarouselCardBloc.add(
             MovieCarouselCardChangedEvent(r.results[event.defaultIndex]),
           );
           return MovieCarouselSuccess(

@@ -89,7 +89,8 @@ class TvDetails {
         createdBy: json['created_by'] == null
             ? null
             : List<CreatedBy>.from(
-                (json['created_by']).map((dynamic x) => CreatedBy.fromJson(x))),
+                (json['created_by']).map((dynamic x) => CreatedBy.fromMap(x)),
+              ),
         episodeRunTime: json['episode_run_time'] == null
             ? null
             : List<int>.from((json['episode_run_time']).map((dynamic x) => x)),
@@ -99,7 +100,7 @@ class TvDetails {
         genres: json['genres'] == null
             ? null
             : List<Genre>.from(
-                (json['genres']).map((dynamic x) => Genre.fromJson(x))),
+                (json['genres']).map((dynamic x) => Genre.fromMap(x))),
         homepage: json['homepage'],
         id: json['id'],
         inProduction: json['in_production'],
@@ -153,7 +154,7 @@ class TvDetails {
             ? null
             : List<Language>.from(
                 (json['spoken_languages']).map(
-                  (dynamic x) => Language.fromJson(x),
+                  (dynamic x) => Language.fromMap(x),
                 ),
               ),
         status: json['status'],

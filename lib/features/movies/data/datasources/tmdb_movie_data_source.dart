@@ -8,9 +8,9 @@ import 'package:movie_db/features/movies/data/models/movie_details.dart';
 import 'movie_data_source.dart';
 
 class TMDBMovieDataSource implements MovieDataSource {
-  final Dio dio;
+  final Dio _dio;
 
-  TMDBMovieDataSource(this.dio);
+  TMDBMovieDataSource(this._dio);
 
   @override
   Future<PaginatedResponse<MovieDetails>> getNowPlayingMovies() =>
@@ -44,9 +44,13 @@ class TMDBMovieDataSource implements MovieDataSource {
   Future<PaginatedResponse<MovieDetails>> _getMoviesByUrl(
     String movieUrl,
   ) async {
-    final Response<Map<String, dynamic>> response = await dio.get(
+    final Response<Map<String, dynamic>> response = await _dio.get(
       movieUrl,
-      queryParameters: ApiConstants.params,
+      queryParameters: <String, dynamic>{
+        RequestParams.apiKey: ApiConstants.apiKey,
+        RequestParams.language: 'en-US',
+        RequestParams.page: 1,
+      },
     );
     // print('$movieUrl ${response.data['results'].length}');
     throwExceptionIfNotSuccess(response);
@@ -54,17 +58,25 @@ class TMDBMovieDataSource implements MovieDataSource {
     final PaginatedResponse<MovieDetails> movieResponse =
         PaginatedResponse<MovieDetails>.fromJson(
       response.data,
-      (dynamic map) => MovieDetails.fromJson(map),
+      (dynamic map) => MovieDetails.fromMap(map),
     );
     return movieResponse;
   }
 
   @override
   Future<MovieDetails> getMovieDetail(int id) async {
-    final Response<Map<String, dynamic>> response =
-        await dio.get('${ApiConstants.getMovieBaseUrl}/$id');
+    final Response<Map<String, dynamic>> response = await _dio.get(
+      '${ApiConstants.getMovieBaseUrl}/$id',
+      queryParameters: <String, dynamic>{
+        RequestParams.apiKey: ApiConstants.apiKey,
+        RequestParams.language: 'en-US',
+        RequestParams.page: 1,
+        RequestParams.appendToResponse: AppendToResponseParam.images,
+        RequestParams.includeImageLanguage: 'en,null',
+      },
+    );
     throwExceptionIfNotSuccess(response);
-    final MovieDetails movieDetails = MovieDetails.fromJson(response.data);
+    final MovieDetails movieDetails = MovieDetails.fromMap(response.data);
     return movieDetails;
   }
 }

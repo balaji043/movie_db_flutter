@@ -23,15 +23,10 @@ class ApiConstants {
       '$_getTrendingBaseUrl/${TrendingMediaType.movie}/${TrendingTimeWindow.day}';
   /* Movie URL end */
 
-  static const Map<String, dynamic> params = <String, dynamic>{
-    'api_key': apiKey,
-    'language': 'en-US',
-    'page': 1,
-  };
 }
 
 void printException(dynamic error, StackTrace stackTrace) {
-  // print("Exception occured: $error stackTrace: $stackTrace");
+  print('Exception occured: $error stackTrace: $stackTrace');
 }
 
 void throwExceptionIfNotSuccess(Response<dynamic> response) {
@@ -64,3 +59,15 @@ class ImageUrl {
 
 String getBDUrl(String path, String size) =>
     '${ApiConstants.tmdbImageBaseUrlV3}/$size$path';
+
+class RequestParams {
+  static const String language = 'language';
+  static const String appendToResponse = 'append_to_response';
+  static const String page = 'page';
+  static const String apiKey = 'api_key';
+  static const String includeImageLanguage = 'include_image_language';
+}
+
+class AppendToResponseParam {
+  static const String images = 'images';
+}

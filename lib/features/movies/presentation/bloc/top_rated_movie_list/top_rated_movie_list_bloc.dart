@@ -20,9 +20,9 @@ part 'top_rated_movie_list_state.dart';
 
 class TopRatedMovieListBloc
     extends Bloc<TopRatedMovieListEvent, TopRatedMovieListState> {
-  final GetTopRatedMovies getTopRatedMovie;
+  final GetTopRatedMovies _getTopRatedMovie;
 
-  TopRatedMovieListBloc(this.getTopRatedMovie)
+  TopRatedMovieListBloc(this._getTopRatedMovie)
       : super(TopRatedMovieListInitial());
 
   @override
@@ -31,7 +31,7 @@ class TopRatedMovieListBloc
   ) async* {
     if (event is TopRatedMovieListLoadEvent) {
       final Either<ApiError, PaginatedResponse<MovieEntity>> movies =
-          await getTopRatedMovie.call(null);
+          await _getTopRatedMovie.call(null);
       yield movies.fold(
         (ApiError l) => TopRatedMovieListError(),
         (PaginatedResponse<MovieEntity> r) =>
