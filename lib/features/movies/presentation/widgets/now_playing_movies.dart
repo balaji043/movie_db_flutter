@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_db/core/sizes_constants.dart';
+import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/presentation/widgets/content_list_view.dart';
 
 class NowPlayingMovieListView extends StatelessWidget {
-  const NowPlayingMovieListView({Key key}) : super(key: key);
+  final void Function(MovieEntity) onTap;
+
+  const NowPlayingMovieListView({
+    @required this.onTap,
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) =>
@@ -17,6 +23,7 @@ class NowPlayingMovieListView extends StatelessWidget {
               child: ContentListView(
                 contents: state.movies.results,
                 title: 'Now Playing',
+                onTap: onTap,
               ),
             );
           } else if (state is MovieCarouselError) {

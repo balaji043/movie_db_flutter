@@ -9,14 +9,14 @@ import 'movie_browse_page.dart';
 import 'movie_discover_page.dart';
 import 'movie_my_wishlist_page.dart';
 
-class MoviePage extends StatefulWidget {
-  const MoviePage({Key key}) : super(key: key);
+class MovieMainPage extends StatefulWidget {
+  const MovieMainPage({Key key}) : super(key: key);
 
   @override
-  _MoviePageState createState() => _MoviePageState();
+  _MovieMainPageState createState() => _MovieMainPageState();
 }
 
-class _MoviePageState extends State<MoviePage> {
+class _MovieMainPageState extends State<MovieMainPage> {
   PageController controller;
 
   @override

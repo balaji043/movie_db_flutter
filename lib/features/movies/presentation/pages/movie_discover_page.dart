@@ -6,7 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:movie_db/di/get_di.dart';
+import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
+import 'package:movie_db/features/movies/presentation/bloc/movie_route/movie_route_bloc.dart';
 import 'package:movie_db/features/movies/presentation/widgets/widgets.dart';
 
 class MovieDiscoverPage extends StatefulWidget {
@@ -79,15 +81,22 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
         ],
         child: Scaffold(
           body: ListView(
-            children: const [
-              MovieCarousel(),
-              SizedBox(height: 10),
-              PopularMovieListView(),
-              NowPlayingMovieListView(),
-              UpcomingMovieListView(),
-              TopRatedMovieListView(),
+            children: [
+              const MovieCarousel(),
+              const SizedBox(height: 10),
+              PopularMovieListView(onTap: (content) => onTap(context, content)),
+              NowPlayingMovieListView(
+                  onTap: (content) => onTap(context, content)),
+              UpcomingMovieListView(
+                  onTap: (content) => onTap(context, content)),
+              TopRatedMovieListView(
+                  onTap: (content) => onTap(context, content)),
             ],
           ),
         ),
       );
+
+  void onTap(BuildContext context, UIParam c) =>
+      BlocProvider.of<MovieRouteBloc>(context)
+          .add(MovieRouteToDetailsPageEvent(c));
 }

@@ -9,6 +9,7 @@ import 'package:movie_db/features/movies/domain/repositories/movie_repository.da
 import 'package:movie_db/features/movies/domain/repositories/movie_repository_impl.dart';
 import 'package:movie_db/features/movies/domain/usecases/usecases.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
+import 'package:movie_db/features/movies/presentation/bloc/movie_route/movie_route_bloc.dart';
 
 final GetIt getItInstance = GetIt.I;
 
@@ -47,6 +48,9 @@ Future<void> initMovieDependencies() async {
         getItInstance(),
         getItInstance(),
       ),
+    )
+    ..registerLazySingleton<MovieRouteBloc>(
+      () => MovieRouteBloc(),
     )
     ..registerLazySingleton<MovieCarouselCardBloc>(
       () => MovieCarouselCardBloc(),

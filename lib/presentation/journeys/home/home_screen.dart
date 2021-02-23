@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/features/movies/presentation/pages/movies_home_page.dart';
+import 'package:movie_db/features/movies/presentation/pages/movie_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/games_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/people_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/tv_shows_home_page.dart';
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   physics: const NeverScrollableScrollPhysics(),
                   controller: pageController,
                   children: const <Widget>[
-                    MoviePage(),
+                    MovieHomePage(),
                     TVShowPage(),
                     GamesPage(),
                     PeoplePage()

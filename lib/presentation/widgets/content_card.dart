@@ -12,70 +12,75 @@ import 'package:movie_db/presentation/themes/theme_color.dart';
 
 class ContentCard<T extends UIParam> extends StatelessWidget {
   final T content;
+  final void Function() onTap;
   const ContentCard({
     @required this.content,
+    @required this.onTap,
     Key key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(Sizes.dimen_16),
-            child: FadeInImage.memoryNetwork(
-              image: getBDUrl(content.dPosterPath, ImageUrl.w185),
-              placeholder: kTransparentImage,
-              fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(height: Sizes.dimen_10),
-          if (content.dTitle != null)
-            Text(
-              content.dTitle,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              softWrap: true,
-              style: Theme.of(context).textTheme.headline6.copyWith(
-                    color: AppColor.white,
-                  ),
-            )
-          else
-            const SizedBox.shrink(),
-          if (content.dReleaseDate != null)
-            Text(
-              content.dReleaseDate,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              softWrap: true,
-              style: Theme.of(context).textTheme.subtitle1.copyWith(
-                    color: AppColor.white,
-                  ),
-            )
-          else
-            const SizedBox.shrink(),
-          if (content.dRating != null)
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onTap,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-              child: Container(
-                color: Colors.blue,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 4,
-                ),
-                child: Text(
-                  content.dRating,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: true,
-                  style: Theme.of(context).textTheme.bodyText1.copyWith(
-                        color: AppColor.white,
-                      ),
-                ),
+              borderRadius: BorderRadius.circular(Sizes.dimen_16),
+              child: FadeInImage.memoryNetwork(
+                image: getBDUrl(content.dPosterPath, ImageUrl.w185),
+                placeholder: kTransparentImage,
+                fit: BoxFit.cover,
               ),
-            )
-          else
-            const SizedBox.shrink()
-        ],
+            ),
+            const SizedBox(height: Sizes.dimen_10),
+            if (content.dTitle != null)
+              Text(
+                content.dTitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+                style: Theme.of(context).textTheme.headline6.copyWith(
+                      color: AppColor.white,
+                    ),
+              )
+            else
+              const SizedBox.shrink(),
+            if (content.dReleaseDate != null)
+              Text(
+                content.dReleaseDate,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                      color: AppColor.white,
+                    ),
+              )
+            else
+              const SizedBox.shrink(),
+            if (content.dRating != null)
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                child: Container(
+                  color: Colors.blue,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 4,
+                  ),
+                  child: Text(
+                    content.dRating,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: true,
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(
+                          color: AppColor.white,
+                        ),
+                  ),
+                ),
+              )
+            else
+              const SizedBox.shrink()
+          ],
+        ),
       );
 }
