@@ -7,13 +7,13 @@ import 'package:movie_db/presentation/themes/theme_color.dart';
 
 class CustomButton extends StatefulWidget {
   final String title;
-  final VoidCallback press;
+  final VoidCallback onPressed;
   final IconData iconSrc;
   final bool isActive;
 
   const CustomButton({
     @required this.title,
-    @required this.press,
+    @required this.onPressed,
     Key key,
     this.iconSrc,
     this.isActive = false,
@@ -33,7 +33,7 @@ class _CustomButtonState extends State<CustomButton> {
           bottom: Sizes.dimen_20,
         ),
         child: InkWell(
-          onTap: widget.press,
+          onTap: widget.onPressed,
           onHover: (bool isHoverState) =>
               setState(() => isHover = isHoverState),
           child: Row(

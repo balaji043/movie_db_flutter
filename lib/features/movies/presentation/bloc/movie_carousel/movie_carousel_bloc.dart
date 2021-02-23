@@ -14,14 +14,16 @@ import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
 import 'package:movie_db/features/movies/domain/usecases/get_trending_movies.dart';
+import 'package:movie_db/features/movies/presentation/bloc/movie_carousel_card/movie_carousel_card_bloc.dart';
 
 part 'movie_carousel_event.dart';
 part 'movie_carousel_state.dart';
 
 class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
   final GetTrendingMovies getTrendingMoviesUseCase;
+  final MovieCarouselCardBloc movieCarouselCardBloc;
 
-  MovieCarouselBloc(this.getTrendingMoviesUseCase)
+  MovieCarouselBloc(this.getTrendingMoviesUseCase, this.movieCarouselCardBloc)
       : super(MovieCarouselInitial());
 
   @override
@@ -29,14 +31,19 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
     MovieCarouselEvent event,
   ) async* {
     if (event is MovieCarouselLoadEvent) {
-      final Either<ApiError, PaginatedResponse<MovieEntity>> movies =
+      final Either<ApiError, PaginatedResponse<MovieEntity>> response =
           await getTrendingMoviesUseCase.call(null);
-      yield movies.fold(
+      yield response.fold(
         (ApiError l) => MovieCarouselError(),
-        (PaginatedResponse<MovieEntity> r) => MovieCarouselSuccess(
-          movies: r,
-          defaultIndex: 0,
-        ),
+        (PaginatedResponse<MovieEntity> r) {
+          movieCarouselCardBloc.add(
+            MovieCarouselCardChangedEvent(r.results[event.defaultIndex]),
+          );
+          return MovieCarouselSuccess(
+            movies: r,
+            defaultIndex: event.defaultIndex,
+          );
+        },
       );
     }
   }

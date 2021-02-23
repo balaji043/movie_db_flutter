@@ -3,6 +3,10 @@ import 'dart:ui' as ui;
 
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
+import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
+import 'package:movie_db/presentation/widgets/content_card.dart';
 
 // Package imports:
 import 'package:transparent_image/transparent_image.dart';
@@ -12,10 +16,9 @@ import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
-import 'package:movie_db/presentation/widgets/animated_indexed_stack.dart';
 
-class CarouselWithListTileWidget<T extends UIParam> extends StatefulWidget {
-  final List<T> contents;
+class CarouselWithListTileWidget extends StatefulWidget {
+  final List<MovieEntity> contents;
 
   const CarouselWithListTileWidget({
     Key key,
@@ -41,26 +44,16 @@ class _CarouselWithListTileWidgetState<T extends UIParam>
             child: Stack(
               fit: StackFit.expand,
               children: <FractionallySizedBox>[
-                FractionallySizedBox(
+                const FractionallySizedBox(
                   alignment: Alignment.centerLeft,
                   widthFactor: 0.8,
-                  child: AnimatedIndexedStack(
-                    index: selectedIndex,
-                    children: widget.contents
-                        .map(
-                          (e) => CarouselCard(
-                            content: e,
-                          ),
-                        )
-                        .toList(),
-                  ),
+                  child: CarouselCard(),
                 ),
                 FractionallySizedBox(
                   alignment: Alignment.centerRight,
                   widthFactor: 0.2,
                   child: _SideListView(
                     contents: widget.contents,
-                    onTap: onTapOfListItem,
                     selectedIndex: selectedIndex,
                   ),
                 )
@@ -69,17 +62,13 @@ class _CarouselWithListTileWidgetState<T extends UIParam>
           ),
         ),
       );
-
-  void onTapOfListItem(int index) => setState(() => selectedIndex = index);
 }
 
-class _SideListView<T extends UIParam> extends StatelessWidget {
-  final Function(int) onTap;
-  final List<T> contents;
+class _SideListView extends StatelessWidget {
+  final List<MovieEntity> contents;
   final int selectedIndex;
 
   const _SideListView({
-    @required this.onTap,
     @required this.contents,
     @required this.selectedIndex,
     Key key,
@@ -89,13 +78,16 @@ class _SideListView<T extends UIParam> extends StatelessWidget {
   Widget build(BuildContext context) => ListView.builder(
         itemExtent: 100,
         itemBuilder: (BuildContext context, int index) {
-          final T content = contents[index];
+          final MovieEntity content = contents[index];
           return GestureDetector(
             behavior: HitTestBehavior.translucent,
-            onTap: () => onTap(index),
+            onTap: () => {
+              BlocProvider.of<MovieCarouselCardBloc>(context).add(
+                MovieCarouselCardChangedEvent(content),
+              )
+            },
             child: _ListItem(
               content: content,
-              selected: index == selectedIndex,
             ),
           );
         },
@@ -104,103 +96,125 @@ class _SideListView<T extends UIParam> extends StatelessWidget {
 }
 
 class CarouselCard<T extends UIParam> extends StatelessWidget {
-  final T content;
   const CarouselCard({
-    this.content,
     Key key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        FractionallySizedBox(
-          alignment: Alignment.centerRight,
-          widthFactor: 1,
-          child: FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image: getBDUrl(content.dBackdropPath, ImageUrl.w1280),
-            fit: BoxFit.fill,
-          ),
-        ),
-        FractionallySizedBox(
-          alignment: Alignment.centerLeft,
-          widthFactor: 0.3,
-          child: ClipRRect(
-            child: BackdropFilter(
-              filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+  Widget build(BuildContext context) =>
+      BlocBuilder<MovieCarouselCardBloc, MovieCarouselCardState>(
+        builder: (BuildContext context, MovieCarouselCardState state) {
+          if (state is MovieCarouselCardChange) {
+            final TextTheme textTheme = Theme.of(context).textTheme;
+            final content = state.movie;
+            return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 400),
+              child: Stack(
+                key: ValueKey<String>(content.id.toString()),
+                fit: StackFit.expand,
+                children: [
+                  FractionallySizedBox(
+                    alignment: Alignment.centerRight,
+                    widthFactor: 1,
+                    child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: getBDUrl(content.dBackdropPath, ImageUrl.w1280),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  FractionallySizedBox(
+                    alignment: Alignment.centerLeft,
+                    widthFactor: 0.3,
+                    child: ClipRRect(
+                      child: BackdropFilter(
+                        filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                        child: Container(
+                          color: AppColor.black.withOpacity(0.3),
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                content.dTitle ?? '',
+                                style: textTheme.headline4.copyWith(
+                                  color: AppColor.white,
+                                ),
+                                maxLines: 3,
+                                softWrap: true,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                content.dOverview ?? '',
+                                style: textTheme.subtitle1
+                                    .copyWith(color: AppColor.white),
+                                maxLines: 12,
+                                softWrap: true,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
+}
+
+class _ListItem extends StatelessWidget {
+  final MovieEntity content;
+  const _ListItem({
+    @required this.content,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) =>
+      BlocBuilder<MovieCarouselCardBloc, MovieCarouselCardState>(
+        builder: (BuildContext context, MovieCarouselCardState state) {
+          if (state is MovieCarouselCardChange) {
+            return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 400),
               child: Container(
-                color: AppColor.black.withOpacity(0.3),
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                key: ValueKey<String>(content.id.toString()),
+                padding: const EdgeInsets.all(Sizes.dimen_12),
+                color:
+                    state.movie == content ? AppColor.black2 : AppColor.black,
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      content.dTitle ?? '',
-                      style: textTheme.headline4.copyWith(
-                        color: AppColor.white,
+                    Container(
+                      height: 76,
+                      width: 56,
+                      child: FadeInImage.memoryNetwork(
+                        image: getBDUrl(content.dPosterPath, ImageUrl.w154),
+                        placeholder: kTransparentImage,
+                        fit: BoxFit.fill,
                       ),
-                      maxLines: 3,
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
                     ),
-                    Text(
-                      content.dOverview ?? '',
-                      style:
-                          textTheme.subtitle1.copyWith(color: AppColor.white),
-                      maxLines: 12,
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    const SizedBox(width: Sizes.dimen_12),
+                    Expanded(
+                      child: Text(
+                        content.dTitle,
+                        style: Theme.of(context).textTheme.bodyText2.copyWith(
+                              color: AppColor.white,
+                            ),
+                      ),
+                    )
                   ],
                 ),
               ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class _ListItem<T extends UIParam> extends StatelessWidget {
-  final T content;
-  final bool selected;
-  const _ListItem({
-    @required this.content,
-    @required this.selected,
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(Sizes.dimen_12),
-        color: selected ? AppColor.black2 : AppColor.black,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 76,
-              width: 56,
-              child: FadeInImage.memoryNetwork(
-                image: getBDUrl(content.dPosterPath, ImageUrl.w154),
-                placeholder: kTransparentImage,
-                fit: BoxFit.fill,
-              ),
-            ),
-            const SizedBox(width: Sizes.dimen_12),
-            Expanded(
-              child: Text(
-                content.dTitle,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(
-                      color: AppColor.white,
-                    ),
-              ),
-            )
-          ],
-        ),
+            );
+          } else {
+            return Container();
+          }
+        },
       );
 }

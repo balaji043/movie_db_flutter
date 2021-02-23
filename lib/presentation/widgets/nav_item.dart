@@ -23,7 +23,7 @@ class NavItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => CustomButton(
         title: label,
-        press: () => onTap(index),
+        onPressed: () => onTap(index),
         iconSrc: iconData,
         isActive: selectedIndex == index,
       );

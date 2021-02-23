@@ -24,6 +24,7 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
   UpcomingMovieListBloc upcomingMovieListBloc;
   NowPlayingMovieListBloc nowPlayingMovieListBloc;
   PopularMovieListBloc popularMovieListBloc;
+  MovieCarouselCardBloc movieCarouselCardBloc;
 
   @override
   void initState() {
@@ -33,6 +34,7 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
     upcomingMovieListBloc = getItInstance<UpcomingMovieListBloc>();
     nowPlayingMovieListBloc = getItInstance<NowPlayingMovieListBloc>();
     popularMovieListBloc = getItInstance<PopularMovieListBloc>();
+    movieCarouselCardBloc = getItInstance<MovieCarouselCardBloc>();
 
     movieCarouselBloc.add(const MovieCarouselLoadEvent());
     topRatedMovieListBloc.add(TopRatedMovieListLoadEvent());
@@ -49,6 +51,7 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
     upcomingMovieListBloc.close();
     nowPlayingMovieListBloc.close();
     popularMovieListBloc.close();
+    movieCarouselCardBloc.close();
   }
 
   @override
@@ -71,6 +74,9 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
           ),
           BlocProvider<PopularMovieListBloc>(
             create: (BuildContext context) => popularMovieListBloc,
+          ),
+          BlocProvider<MovieCarouselCardBloc>(
+            create: (BuildContext context) => movieCarouselCardBloc,
           ),
         ],
         child: Scaffold(

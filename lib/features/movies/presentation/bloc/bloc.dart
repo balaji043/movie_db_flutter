@@ -1,4 +1,5 @@
 export '../../presentation/bloc/movie_carousel/movie_carousel_bloc.dart';
+export '../../presentation/bloc/movie_carousel_card/movie_carousel_card_bloc.dart';
 export '../../presentation/bloc/now_playing_movie_list/now_playing_movie_list_bloc.dart';
 export '../../presentation/bloc/popular_movie_list/popular_movie_list_bloc.dart';
 export '../../presentation/bloc/top_rated_movie_list/top_rated_movie_list_bloc.dart';

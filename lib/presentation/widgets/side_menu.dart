@@ -80,19 +80,19 @@ class _SideMenuState extends State<SideMenu> {
                 ],
               ),
               Column(
-                children: <CustomButton>[
+                children: <Widget>[
                   CustomButton(
-                    press: () {},
+                    onPressed: () {},
                     iconSrc: Icons.list,
                     title: 'My Lists',
                   ),
                   CustomButton(
-                    press: () {},
+                    onPressed: () {},
                     iconSrc: Icons.settings,
                     title: 'Settings',
                   ),
                   CustomButton(
-                    press: () {},
+                    onPressed: () {},
                     iconSrc: Icons.person,
                     title: 'balaji043',
                   ),

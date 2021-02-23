@@ -13,14 +13,14 @@ import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 final GetIt getItInstance = GetIt.I;
 
 Future<void> init() async {
+  getItInstance.registerLazySingleton<Dio>(
+    () => Dio(),
+  );
   await initMovieDependencies();
 }
 
 Future<void> initMovieDependencies() async {
   getItInstance
-    ..registerLazySingleton<Dio>(
-      () => Dio(),
-    )
     ..registerLazySingleton<MovieDataSource>(
       () => TMDBMovieDataSource(getItInstance()),
     )
@@ -43,7 +43,13 @@ Future<void> initMovieDependencies() async {
       () => GetTrendingMovies(getItInstance()),
     )
     ..registerLazySingleton<MovieCarouselBloc>(
-      () => MovieCarouselBloc(getItInstance()),
+      () => MovieCarouselBloc(
+        getItInstance(),
+        getItInstance(),
+      ),
+    )
+    ..registerLazySingleton<MovieCarouselCardBloc>(
+      () => MovieCarouselCardBloc(),
     )
     ..registerLazySingleton<TopRatedMovieListBloc>(
       () => TopRatedMovieListBloc(getItInstance()),
