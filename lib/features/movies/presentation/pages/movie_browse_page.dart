@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:movie_db/data/core/strings.dart';
 
 class MovieBrowsePage extends StatelessWidget {
   const MovieBrowsePage({
@@ -9,6 +10,6 @@ class MovieBrowsePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         color: Colors.green,
-        child: const Text('Browse'),
+        child: const Text(Strings.browse),
       );
 }

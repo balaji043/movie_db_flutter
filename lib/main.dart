@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:pedantic/pedantic.dart';
-import 'package:window_size/window_size.dart';
 
 // Project imports:
 import 'package:movie_db/di/get_di.dart' as get_di;

@@ -1,5 +1,5 @@
-class AssetConstants {
-  AssetConstants._();
+class Assets {
+  Assets._();
 
   static const String _asset = 'assets';
   static const String _pngs = 'pngs';
