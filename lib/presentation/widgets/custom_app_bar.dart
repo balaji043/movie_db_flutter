@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
+import 'package:movie_db/presentation/journeys/home/home_screen.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
+import 'package:movie_db/presentation/widgets/responsive.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Widget child;
@@ -23,40 +25,33 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _CustomAppBarState extends State<CustomAppBar> {
   void _handleDrawerButton() {
-    Scaffold.of(context).openDrawer();
+    scaffoldKey.currentState.openDrawer();
   }
 
   @override
-  Widget build(BuildContext context) {
-    final ScaffoldState scaffold = Scaffold.maybeOf(context);
-    final bool hasDrawer = scaffold?.hasDrawer ?? false;
-    Widget leading;
-
-    if (hasDrawer) {
-      leading = IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: _handleDrawerButton,
-        tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-      );
-    }
-
-    return ClipRRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
-        child: Container(
-          color: AppColor.black.withOpacity(0.9),
-          alignment: Alignment.bottomCenter,
-          padding: const EdgeInsets.only(right: Sizes.dimen_20),
-          child: Row(
-            children: [
-              if (leading != null) leading,
-              Expanded(
-                child: widget.child,
-              ),
-            ],
+  Widget build(BuildContext context) => ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
+          child: Container(
+            color: AppColor.black.withOpacity(0.9),
+            alignment: Alignment.bottomCenter,
+            padding: const EdgeInsets.only(right: Sizes.dimen_20),
+            child: Row(
+              children: [
+                if (!Responsive.isDesktop(context))
+                  IconButton(
+                    icon: const Icon(Icons.menu),
+                    onPressed: _handleDrawerButton,
+                    color: AppColor.white,
+                    tooltip:
+                        MaterialLocalizations.of(context).openAppDrawerTooltip,
+                  ),
+                Expanded(
+                  child: widget.child,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

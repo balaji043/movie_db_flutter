@@ -16,10 +16,10 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   PageController pageController;
   HomeRouteBloc homeRouteBloc;
 
@@ -50,29 +50,34 @@ class _HomeScreenState extends State<HomeScreen> {
         PeoplePage()
       ],
     );
+
     return BlocProvider<HomeRouteBloc>(
       create: (context) => homeRouteBloc,
-      child: Responsive(
-        desktop: Row(
-          children: <Expanded>[
-            const Expanded(
-              child: sideMenu,
-            ),
-            Expanded(
-              flex: Sizes.dimen_4.toInt(),
-              child: pageView,
-            ),
-          ],
-        ),
-        tablet: Scaffold(
-          drawer: sideMenu,
-          body: pageView,
-        ),
-        mobile: Scaffold(
-          drawer: sideMenu,
-          body: pageView,
+      child: Scaffold(
+        key: scaffoldKey,
+        drawer: sideMenu,
+        body: Responsive(
+          desktop: Row(
+            children: <Expanded>[
+              const Expanded(
+                child: sideMenu,
+              ),
+              Expanded(
+                flex: Sizes.dimen_4.toInt(),
+                child: pageView,
+              ),
+            ],
+          ),
+          tablet: pageView,
+          mobile: pageView,
         ),
       ),
     );
   }
+
+  void openDrawer() {
+    scaffoldKey.currentState.openDrawer();
+  }
 }
+
+final scaffoldKey = GlobalKey<ScaffoldState>();

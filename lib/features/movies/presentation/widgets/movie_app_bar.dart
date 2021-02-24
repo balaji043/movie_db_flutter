@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/features/movies/presentation/bloc/movie_tab_route/movie_tab_route_bloc.dart';
+import 'package:movie_db/presentation/journeys/home/home_screen.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
-import 'package:movie_db/presentation/widgets/nav_bar.dart';
 import 'package:movie_db/presentation/widgets/nav_item_widget.dart';
 import 'package:movie_db/presentation/widgets/search_bar.dart';
 
@@ -33,14 +33,22 @@ class _MovieAppBarState extends State<MovieAppBar> {
         }
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(right: Sizes.dimen_20),
-              child: NavigationBar(
-                axis: Axis.horizontal,
-                navigationItems: widget.navigationItems,
-                onTap: onTapOfNavItem,
-                selectedIndex: currentIndex,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  for (int i = 0; i < widget.navigationItems.length; i++)
+                    NavItemWidget(
+                      selectedIndex: currentIndex,
+                      iconData: widget.navigationItems[i].icon,
+                      label: widget.navigationItems[i].label,
+                      index: i,
+                      onTap: onTapOfNavItem,
+                    )
+                ],
               ),
             ),
             Row(
@@ -62,5 +70,9 @@ class _MovieAppBarState extends State<MovieAppBar> {
   void onTapOfNavItem(int i) {
     BlocProvider.of<MovieTabRouteBloc>(context)
         .add(MovieTabRouteChangeEvent(i));
+    final bool isDrawerOpen = scaffoldKey.currentState.isDrawerOpen;
+    if (isDrawerOpen) {
+      Navigator.pop(scaffoldKey.currentContext);
+    }
   }
 }

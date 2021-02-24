@@ -44,6 +44,7 @@ class _SideMenuState extends State<SideMenu> {
 
   @override
   Widget build(BuildContext context) => Container(
+        width: 300,
         decoration: const BoxDecoration(
           border: Border(
             right: BorderSide(

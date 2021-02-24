@@ -35,9 +35,8 @@ class _CustomButtonState extends State<CustomButton> {
         onTap: widget.onPressed,
         onHover: (bool isHoverState) => setState(() => isHover = isHoverState),
         child: Container(
-          padding: const EdgeInsets.only(
-            top: Sizes.dimen_20,
-            bottom: Sizes.dimen_20,
+          padding: const EdgeInsets.symmetric(
+            vertical: Sizes.dimen_16,
           ),
           child: Row(
             children: <Widget>[
