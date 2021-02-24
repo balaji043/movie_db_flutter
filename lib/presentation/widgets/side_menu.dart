@@ -1,9 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/data/core/strings.dart';
+import 'package:movie_db/presentation/bloc/home_route/home_route_bloc.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
 import 'package:movie_db/presentation/widgets/logo.dart';
@@ -11,10 +13,7 @@ import 'package:movie_db/presentation/widgets/nav_bar.dart';
 import 'custom_button.dart';
 
 class SideMenu extends StatefulWidget {
-  final Function(int page) onSelectPage;
-
   const SideMenu({
-    this.onSelectPage,
     Key key,
   }) : super(key: key);
 
@@ -23,8 +22,6 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
-  int currentIndex = 0;
-
   List<NavigationItem> navigationItems = const <NavigationItem>[
     NavigationItem(
       isSelected: true,
@@ -71,11 +68,20 @@ class _SideMenuState extends State<SideMenu> {
                     padding: EdgeInsets.only(bottom: Sizes.dimen_10),
                     child: Logo(height: Sizes.dimen_32),
                   ),
-                  NavigationBar(
-                    navigationItems: navigationItems,
-                    axis: Axis.vertical,
-                    selectedIndex: currentIndex,
-                    onTap: onNavItemTap,
+                  BlocBuilder<HomeRouteBloc, HomeRouteState>(
+                    builder: (context, state) {
+                      int currentIndex = 0;
+
+                      if (state is HomeRouteChangeState) {
+                        currentIndex = state.index;
+                      }
+                      return NavigationBar(
+                        navigationItems: navigationItems,
+                        axis: Axis.vertical,
+                        selectedIndex: currentIndex,
+                        onTap: onNavItemTap,
+                      );
+                    },
                   )
                 ],
               ),
@@ -104,7 +110,6 @@ class _SideMenuState extends State<SideMenu> {
       );
 
   void onNavItemTap(int i) {
-    setState(() => currentIndex = i);
-    widget.onSelectPage(currentIndex);
+    BlocProvider.of<HomeRouteBloc>(context).add(HomeRouteChangeEvent(i));
   }
 }
