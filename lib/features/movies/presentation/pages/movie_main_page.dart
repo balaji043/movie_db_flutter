@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_db/data/core/strings.dart';
+import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 
 // Project imports:
 import 'package:movie_db/features/movies/presentation/widgets/movie_app_bar.dart';
@@ -36,17 +38,19 @@ class _MovieMainPageState extends State<MovieMainPage> {
   Widget build(BuildContext context) => Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CustomAppBar(
-          child: MovieAppBar(
-            controller: controller,
-            navigationItems: const <NavigationItem>[
-              NavigationItem(
-                label: Strings.discover,
-                isSelected: true,
-              ),
-              NavigationItem(
-                label: Strings.browse,
-              )
-            ],
+          child: BlocProvider<MovieTabRouteBloc>(
+            create: (context) => MovieTabRouteBloc(controller),
+            child: const MovieAppBar(
+              navigationItems: <NavigationItem>[
+                NavigationItem(
+                  label: Strings.discover,
+                  isSelected: true,
+                ),
+                NavigationItem(
+                  label: Strings.browse,
+                )
+              ],
+            ),
           ),
         ),
         body: PageView(
