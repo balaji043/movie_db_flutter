@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/data/core/strings.dart';
 import 'package:movie_db/presentation/bloc/home_route/home_route_bloc.dart';
+import 'package:movie_db/presentation/journeys/home/home_screen.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
 import 'package:movie_db/presentation/widgets/logo.dart';
@@ -112,5 +113,8 @@ class _SideMenuState extends State<SideMenu> {
 
   void onNavItemTap(int i) {
     BlocProvider.of<HomeRouteBloc>(context).add(HomeRouteChangeEvent(i));
+    if (scaffoldKey.currentState.isDrawerOpen) {
+      scaffoldKey.currentState.openEndDrawer();
+    }
   }
 }
