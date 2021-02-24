@@ -84,12 +84,12 @@ class _SideMenuState extends State<SideMenu> {
                   CustomButton(
                     onPressed: () {},
                     iconSrc: Icons.list,
-                    title: 'My Lists',
+                    title: Strings.myLists,
                   ),
                   CustomButton(
                     onPressed: () {},
                     iconSrc: Icons.settings,
-                    title: 'Settings',
+                    title: Strings.settings,
                   ),
                   CustomButton(
                     onPressed: () {},
