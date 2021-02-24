@@ -33,30 +33,38 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Responsive(
-          desktop: Row(
-            children: <Widget>[
-              Expanded(
-                child: SideMenu(
-                  onSelectPage: (int page) => pageController.jumpToPage(page),
-                ),
-              ),
-              Expanded(
-                flex: Sizes.dimen_4.toInt(),
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: pageController,
-                  children: const <Widget>[
-                    MovieHomePage(),
-                    TVShowPage(),
-                    GamesPage(),
-                    PeoplePage()
-                  ],
-                ),
-              ),
-            ],
-          ),
+  Widget build(BuildContext context) {
+    final SideMenu sideMenu = SideMenu(
+      onSelectPage: (int page) => pageController.jumpToPage(page),
+    );
+    final PageView pageView = PageView(
+      physics: const NeverScrollableScrollPhysics(),
+      controller: pageController,
+      children: const <Widget>[
+        MovieHomePage(),
+        TVShowPage(),
+        GamesPage(),
+        PeoplePage()
+      ],
+    );
+    return Responsive(
+      desktop: Scaffold(
+        body: Row(
+          children: <Expanded>[
+            Expanded(
+              child: sideMenu,
+            ),
+            Expanded(
+              flex: Sizes.dimen_4.toInt(),
+              child: pageView,
+            ),
+          ],
         ),
-      );
+      ),
+      tablet: Scaffold(
+        drawer: sideMenu,
+        body: pageView,
+      ),
+    );
+  }
 }

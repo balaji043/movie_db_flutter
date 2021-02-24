@@ -19,7 +19,7 @@ class MovieRouteBloc extends Bloc<MovieRouteEvent, MovieRouteState> {
   ) async* {
     if (event is MovieRouteToDetailsPageEvent) {
       _movieDetailsBloc.add(MovieDetailLoadEvent(event.movie.id));
-      yield MovieRouteToDetailsPageState(event.movie);
+      yield MovieRouteToDetailsPageState();
     }
     if (event is MovieRouteToMainPageEvent) {
       yield MovieRouteToMainPageState();

@@ -9,8 +9,8 @@ import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/domain/entities/ui_params.dart';
 
-class ContentCard extends StatelessWidget {
-  final UIParam content;
+class ContentCard<T extends UIParam> extends StatelessWidget {
+  final T content;
   final void Function() onTap;
   const ContentCard({
     @required this.content,

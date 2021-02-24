@@ -11,7 +11,7 @@ import 'package:movie_db/presentation/movie_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setWindowMinSize(const Size(1300, 720));
+  // setWindowMinSize(const Size(1300, 720));
 
   unawaited(get_di.init());
   runApp(const MovieApp());

@@ -6,10 +6,10 @@ import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/presentation/widgets/content_card.dart';
 
-class ContentListView extends StatelessWidget {
-  final List<UIParam> contents;
+class ContentListView<T extends UIParam> extends StatelessWidget {
+  final List<T> contents;
   final String title;
-  final void Function(UIParam) onTap;
+  final void Function(T) onTap;
 
   const ContentListView({
     @required this.onTap,

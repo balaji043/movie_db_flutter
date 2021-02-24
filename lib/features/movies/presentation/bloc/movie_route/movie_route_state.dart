@@ -13,9 +13,6 @@ class MovieRouteToMainPageState extends MovieRouteState {
 }
 
 class MovieRouteToDetailsPageState extends MovieRouteState {
-  final MovieEntity movie;
-
-  const MovieRouteToDetailsPageState(this.movie);
   @override
-  List<Object> get props => [movie];
+  List<Object> get props => [];
 }
