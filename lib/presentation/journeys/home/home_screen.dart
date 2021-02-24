@@ -64,7 +64,6 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     const SideMenu sideMenu = SideMenu();
     const PageWidget pageView = PageWidget();
-    debugPrint('home built');
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieRouteBloc>(
@@ -131,27 +130,24 @@ class PageWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    debugPrint('Page View Build');
-
-    return BlocBuilder<HomeRouteBloc, HomeRouteState>(
-      builder: (context, state) {
-        int currentIndex = 0;
-        if (state is HomeRouteChangeState) {
-          currentIndex = state.index;
-        }
-        return IndexedStack(
-          index: currentIndex,
-          children: const <Widget>[
-            MovieHomePage(),
-            TVShowPage(),
-            GamesPage(),
-            PeoplePage()
-          ],
-        );
-      },
-    );
-  }
+  Widget build(BuildContext context) =>
+      BlocBuilder<HomeRouteBloc, HomeRouteState>(
+        builder: (context, state) {
+          int currentIndex = 0;
+          if (state is HomeRouteChangeState) {
+            currentIndex = state.index;
+          }
+          return IndexedStack(
+            index: currentIndex,
+            children: const <Widget>[
+              MovieHomePage(),
+              TVShowPage(),
+              GamesPage(),
+              PeoplePage()
+            ],
+          );
+        },
+      );
 }
 
 final scaffoldKey = GlobalKey<ScaffoldState>();
