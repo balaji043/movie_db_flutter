@@ -29,38 +29,41 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-    return Container(
-      padding: const EdgeInsets.only(
-        top: Sizes.dimen_20,
-        bottom: Sizes.dimen_20,
-      ),
+    return Material(
+      color: Colors.transparent,
       child: InkWell(
         onTap: widget.onPressed,
         onHover: (bool isHoverState) => setState(() => isHover = isHoverState),
-        child: Row(
-          children: <Widget>[
-            if (widget.iconSrc != null)
-              Icon(
-                widget.iconSrc,
-                color: widget.isActive || isHover
-                    ? AppColor.white
-                    : AppColor.inactiveWhite,
-              )
-            else
-              const SizedBox.shrink(),
-            const SizedBox(
-              width: Sizes.dimen_10,
-            ),
-            if (widget.title != null)
-              Text(
-                widget.title ?? '',
-                style: textTheme.button.copyWith(
+        child: Container(
+          padding: const EdgeInsets.only(
+            top: Sizes.dimen_20,
+            bottom: Sizes.dimen_20,
+          ),
+          child: Row(
+            children: <Widget>[
+              if (widget.iconSrc != null)
+                Icon(
+                  widget.iconSrc,
                   color: widget.isActive || isHover
                       ? AppColor.white
                       : AppColor.inactiveWhite,
-                ),
+                )
+              else
+                const SizedBox.shrink(),
+              const SizedBox(
+                width: Sizes.dimen_10,
               ),
-          ],
+              if (widget.title != null)
+                Text(
+                  widget.title ?? '',
+                  style: textTheme.button.copyWith(
+                    color: widget.isActive || isHover
+                        ? AppColor.white
+                        : AppColor.inactiveWhite,
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

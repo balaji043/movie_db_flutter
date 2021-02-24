@@ -20,7 +20,7 @@ class ListItem extends StatelessWidget {
         child: Container(
           key: ValueKey<String>(content.dId.toString()),
           padding: const EdgeInsets.all(Sizes.dimen_12),
-          color: selected ? AppColor.black2 : AppColor.black,
+          color: selected ? Colors.blue[700] : AppColor.black2,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

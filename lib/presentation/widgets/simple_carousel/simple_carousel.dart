@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/data/models/backdrop.dart';
-import 'package:movie_db/data/core/api_constants.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:movie_db/presentation/widgets/backdrop_image.dart';
+import 'package:movie_db/presentation/widgets/responsive.dart';
 
 import 'simple_carousel_button.dart';
 
@@ -41,7 +41,11 @@ class _SimpleCarouselState extends State<SimpleCarousel> {
         padding: const EdgeInsets.symmetric(
           vertical: Sizes.dimen_20,
         ),
-        height: 500,
+        height: Responsive.isDesktop(context)
+            ? 500
+            : Responsive.isTablet(context)
+                ? 300
+                : 200,
         child: Stack(
           children: [
             FractionallySizedBox(
@@ -97,14 +101,8 @@ class SimpleCarouselCard extends StatelessWidget {
           borderRadius: const BorderRadius.all(
             Radius.circular(Sizes.dimen_16),
           ),
-          child: FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            key: ValueKey<String>(content.filePath),
-            fit: BoxFit.fitWidth,
-            image: getBDUrl(
-              content.filePath,
-              ImageUrl.w1280,
-            ),
+          child: BackdropImage(
+            backdropPath: content.filePath,
           ),
         ),
       );

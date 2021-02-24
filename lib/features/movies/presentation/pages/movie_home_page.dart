@@ -35,25 +35,23 @@ class _MovieHomePageState extends State<MovieHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: MultiBlocProvider(
-          providers: <BlocProvider<dynamic>>[
-            BlocProvider<MovieRouteBloc>(
-              create: (BuildContext context) => movieRouteBloc,
-            ),
-            BlocProvider<MovieDetailsBloc>(
-              create: (BuildContext context) => movieDetailsBloc,
-            ),
-          ],
-          child: BlocBuilder<MovieRouteBloc, MovieRouteState>(
-            builder: (context, state) {
-              if (state is MovieRouteToDetailsPageState) {
-                return const MovieDetailsPage();
-              } else {
-                return const MovieMainPage();
-              }
-            },
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: <BlocProvider<dynamic>>[
+          BlocProvider<MovieRouteBloc>(
+            create: (BuildContext context) => movieRouteBloc,
           ),
+          BlocProvider<MovieDetailsBloc>(
+            create: (BuildContext context) => movieDetailsBloc,
+          ),
+        ],
+        child: BlocBuilder<MovieRouteBloc, MovieRouteState>(
+          builder: (context, state) {
+            if (state is MovieRouteToDetailsPageState) {
+              return const MovieDetailsPage();
+            } else {
+              return const MovieMainPage();
+            }
+          },
         ),
       );
 }

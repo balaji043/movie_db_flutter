@@ -48,20 +48,22 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
     return Responsive(
-      desktop: Scaffold(
-        body: Row(
-          children: <Expanded>[
-            Expanded(
-              child: sideMenu,
-            ),
-            Expanded(
-              flex: Sizes.dimen_4.toInt(),
-              child: pageView,
-            ),
-          ],
-        ),
+      desktop: Row(
+        children: <Expanded>[
+          Expanded(
+            child: sideMenu,
+          ),
+          Expanded(
+            flex: Sizes.dimen_4.toInt(),
+            child: pageView,
+          ),
+        ],
       ),
       tablet: Scaffold(
+        drawer: sideMenu,
+        body: pageView,
+      ),
+      mobile: Scaffold(
         drawer: sideMenu,
         body: pageView,
       ),
