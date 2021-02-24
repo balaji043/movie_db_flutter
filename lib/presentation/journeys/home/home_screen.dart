@@ -66,18 +66,9 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final SideMenu sideMenu = SideMenu();
-    final PageView pageView = PageView(
-      physics: const NeverScrollableScrollPhysics(),
-      controller: pageController,
-      children: const <Widget>[
-        MovieHomePage(),
-        TVShowPage(),
-        GamesPage(),
-        PeoplePage()
-      ],
-    );
-
+    const SideMenu sideMenu = SideMenu();
+    final PageWidget pageView = PageWidget(pageController: pageController);
+    debugPrint('home built');
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieRouteBloc>(
@@ -111,11 +102,13 @@ class HomeScreenState extends State<HomeScreen> {
       ],
       child: Scaffold(
         key: scaffoldKey,
-        drawer: Responsive.isMobile(context) ? sideMenu : null,
+        drawer: Responsive.isMobile(context) || Responsive.isTablet(context)
+            ? sideMenu
+            : null,
         body: Responsive(
           desktop: Row(
             children: <Expanded>[
-              Expanded(
+              const Expanded(
                 child: sideMenu,
               ),
               Expanded(
@@ -133,6 +126,30 @@ class HomeScreenState extends State<HomeScreen> {
 
   void openDrawer() {
     scaffoldKey.currentState.openDrawer();
+  }
+}
+
+class PageWidget extends StatelessWidget {
+  final PageController pageController;
+  const PageWidget({
+    @required this.pageController,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    debugPrint('Page View Build');
+
+    return PageView(
+      physics: const NeverScrollableScrollPhysics(),
+      controller: pageController,
+      children: const <Widget>[
+        MovieHomePage(),
+        TVShowPage(),
+        GamesPage(),
+        PeoplePage()
+      ],
+    );
   }
 }
 
