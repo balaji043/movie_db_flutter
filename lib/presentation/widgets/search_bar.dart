@@ -55,16 +55,18 @@ class _SearchBarState extends State<SearchBar> {
                 ? IconButton(
                     icon: const Icon(Icons.close),
                     color: AppColor.inactiveWhite,
-                    onPressed: () => setState(() => active = !active),
+                    onPressed: onPressed,
                   )
                 : IconButton(
                     color: AppColor.inactiveWhite,
                     icon: const Icon(Icons.search),
-                    onPressed: () => setState(() => active = !active),
+                    onPressed: onPressed,
                   ),
           )
         ],
       ),
     );
   }
+
+  void onPressed() => setState(() => active = !active);
 }
