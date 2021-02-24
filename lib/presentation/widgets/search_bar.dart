@@ -17,55 +17,54 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   bool active = false;
   @override
-  Widget build(BuildContext context) => AnimatedContainer(
-        width: active ? Sizes.dimen_200 : Sizes.dimen_40,
-        height: Sizes.dimen_40,
-        duration: const Duration(milliseconds: 300),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(active ? 5 : 50),
-          color: AppColor.black2,
-        ),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: Sizes.dimen_16,
-                  bottom: Sizes.dimen_8,
-                ),
-                child: active
-                    ? TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search...',
-                          hintStyle:
-                              Theme.of(context).textTheme.bodyText1.copyWith(
-                                    color: AppColor.inactiveWhite,
-                                  ),
-                          border: InputBorder.none,
-                        ),
-                        style: Theme.of(context).textTheme.bodyText1.copyWith(
-                              color: AppColor.white,
-                            ),
-                      )
-                    : null,
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
+    return AnimatedContainer(
+      width: active ? Sizes.dimen_200 : Sizes.dimen_40,
+      height: Sizes.dimen_40,
+      duration: const Duration(milliseconds: 300),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(active ? 5 : 50),
+        color: AppColor.black2,
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: Sizes.dimen_16,
+                bottom: Sizes.dimen_8,
               ),
-            ),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
               child: active
-                  ? IconButton(
-                      icon: const Icon(Icons.close),
-                      color: AppColor.inactiveWhite,
-                      onPressed: () => setState(() => active = !active),
+                  ? TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Search...',
+                        hintStyle: textTheme.subtitle2,
+                        border: InputBorder.none,
+                      ),
+                      style: textTheme.bodyText1,
                     )
-                  : IconButton(
-                      color: AppColor.inactiveWhite,
-                      icon: const Icon(Icons.search),
-                      onPressed: () => setState(() => active = !active),
-                    ),
-            )
-          ],
-        ),
-      );
+                  : null,
+            ),
+          ),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            child: active
+                ? IconButton(
+                    icon: const Icon(Icons.close),
+                    color: AppColor.inactiveWhite,
+                    onPressed: () => setState(() => active = !active),
+                  )
+                : IconButton(
+                    color: AppColor.inactiveWhite,
+                    icon: const Icon(Icons.search),
+                    onPressed: () => setState(() => active = !active),
+                  ),
+          )
+        ],
+      ),
+    );
+  }
 }

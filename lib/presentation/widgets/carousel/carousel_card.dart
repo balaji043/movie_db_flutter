@@ -72,17 +72,14 @@ class _CarouselCardState extends State<CarouselCard>
                     children: [
                       Text(
                         widget.content.dTitle ?? '',
-                        style: textTheme.headline4.copyWith(
-                          color: AppColor.white,
-                        ),
+                        style: textTheme.headline4,
                         maxLines: 3,
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         widget.content.dOverview ?? '',
-                        style:
-                            textTheme.subtitle1.copyWith(color: AppColor.white),
+                        style: textTheme.subtitle1,
                         maxLines: 12,
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,

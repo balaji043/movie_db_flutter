@@ -27,40 +27,42 @@ class _CustomButtonState extends State<CustomButton> {
   bool isHover = false;
 
   @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.only(
-          top: Sizes.dimen_20,
-          bottom: Sizes.dimen_20,
-        ),
-        child: InkWell(
-          onTap: widget.onPressed,
-          onHover: (bool isHoverState) =>
-              setState(() => isHover = isHoverState),
-          child: Row(
-            children: <Widget>[
-              if (widget.iconSrc != null)
-                Icon(
-                  widget.iconSrc,
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    return Container(
+      padding: const EdgeInsets.only(
+        top: Sizes.dimen_20,
+        bottom: Sizes.dimen_20,
+      ),
+      child: InkWell(
+        onTap: widget.onPressed,
+        onHover: (bool isHoverState) => setState(() => isHover = isHoverState),
+        child: Row(
+          children: <Widget>[
+            if (widget.iconSrc != null)
+              Icon(
+                widget.iconSrc,
+                color: widget.isActive || isHover
+                    ? AppColor.white
+                    : AppColor.inactiveWhite,
+              )
+            else
+              const SizedBox.shrink(),
+            const SizedBox(
+              width: Sizes.dimen_10,
+            ),
+            if (widget.title != null)
+              Text(
+                widget.title,
+                style: textTheme.button.copyWith(
                   color: widget.isActive || isHover
                       ? AppColor.white
                       : AppColor.inactiveWhite,
-                )
-              else
-                const SizedBox.shrink(),
-              const SizedBox(
-                width: Sizes.dimen_10,
-              ),
-              if (widget.title != null)
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                    color: widget.isActive || isHover
-                        ? AppColor.white
-                        : AppColor.inactiveWhite,
-                  ),
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }

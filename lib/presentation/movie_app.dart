@@ -21,7 +21,14 @@ class MovieApp extends StatelessWidget {
           ),
           backgroundColor: AppColor.black,
           scaffoldBackgroundColor: AppColor.black,
-          textTheme: ThemeText.getTextTheme(),
+          textTheme: ThemeText.getTextTheme().copyWith(
+            headline4: const TextStyle(color: AppColor.white),
+            headline6: const TextStyle(color: AppColor.white),
+            subtitle1: const TextStyle(color: AppColor.white),
+            subtitle2: const TextStyle(color: AppColor.inactiveWhite),
+            bodyText1: const TextStyle(color: AppColor.white),
+            bodyText2: const TextStyle(color: AppColor.white),
+          ),
         ),
         home: const HomeScreen(),
       );

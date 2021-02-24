@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/domain/entities/ui_params.dart';
-import 'package:movie_db/presentation/themes/theme_color.dart';
 import 'package:movie_db/presentation/widgets/content_card.dart';
 
-class ContentListView<T extends UIParam> extends StatelessWidget {
-  final List<T> contents;
+class ContentListView extends StatelessWidget {
+  final List<UIParam> contents;
   final String title;
-  final void Function(T) onTap;
+  final void Function(UIParam) onTap;
 
   const ContentListView({
     @required this.onTap,
@@ -27,9 +26,7 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.headline6.copyWith(
-                      color: AppColor.white,
-                    ),
+                style: Theme.of(context).textTheme.headline6,
                 maxLines: 1,
               ),
               const SizedBox(

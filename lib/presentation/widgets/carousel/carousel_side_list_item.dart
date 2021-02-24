@@ -37,9 +37,7 @@ class ListItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   content.dTitle,
-                  style: Theme.of(context).textTheme.bodyText2.copyWith(
-                        color: AppColor.white,
-                      ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               )
             ],
