@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_db/core/sizes_constants.dart';
+import 'package:movie_db/data/core/strings.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/presentation/widgets/content_list_view.dart';
@@ -18,8 +19,8 @@ class TopRatedMovieListView extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.all(Sizes.dimen_20),
               child: ContentListView(
+                title: Strings.topRated,
                 contents: state.movies.results,
-                title: 'Top Rated',
                 onTap: onTap,
               ),
             );

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:movie_db/data/core/asset_constants.dart';
+import 'package:movie_db/data/core/assets.dart';
 
 class Logo extends StatelessWidget {
   final double height;
@@ -19,8 +19,7 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Image.asset(
-        AssetConstants.tmdbLogo,
+        Assets.tmdbLogo,
         height: height,
-        color: Colors.white,
       );
 }

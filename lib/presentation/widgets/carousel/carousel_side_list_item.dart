@@ -36,7 +36,7 @@ class ListItem extends StatelessWidget {
               const SizedBox(width: Sizes.dimen_12),
               Expanded(
                 child: Text(
-                  content.dTitle,
+                  content.dTitle ?? '',
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
               )

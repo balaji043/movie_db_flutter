@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:movie_db/data/core/strings.dart';
 
 class MovieMyWishlistPage extends StatelessWidget {
   const MovieMyWishlistPage({
@@ -9,6 +10,6 @@ class MovieMyWishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         color: Colors.blue,
-        child: const Text('MyWishlist'),
+        child: const Text(Strings.myWishList),
       );
 }

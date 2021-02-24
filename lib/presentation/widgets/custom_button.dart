@@ -53,7 +53,7 @@ class _CustomButtonState extends State<CustomButton> {
             ),
             if (widget.title != null)
               Text(
-                widget.title,
+                widget.title ?? '',
                 style: textTheme.button.copyWith(
                   color: widget.isActive || isHover
                       ? AppColor.white

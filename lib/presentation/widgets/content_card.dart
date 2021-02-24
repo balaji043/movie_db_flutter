@@ -37,7 +37,7 @@ class ContentCard<T extends UIParam> extends StatelessWidget {
           const SizedBox(height: Sizes.dimen_10),
           if (content.dTitle != null)
             Text(
-              content.dTitle,
+              content.dTitle ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               softWrap: true,
@@ -47,7 +47,7 @@ class ContentCard<T extends UIParam> extends StatelessWidget {
             const SizedBox.shrink(),
           if (content.dReleaseDate != null)
             Text(
-              content.dReleaseDate,
+              content.dReleaseDate ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               softWrap: true,
@@ -65,7 +65,7 @@ class ContentCard<T extends UIParam> extends StatelessWidget {
                   vertical: 4,
                 ),
                 child: Text(
-                  content.dRating,
+                  content.dRating ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: true,

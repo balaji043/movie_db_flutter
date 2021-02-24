@@ -25,7 +25,7 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
           child: ListView(
             children: [
               Text(
-                title,
+                title ?? '',
                 style: Theme.of(context).textTheme.headline6,
                 maxLines: 1,
               ),
