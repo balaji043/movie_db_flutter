@@ -26,6 +26,7 @@ class ApiConstants {
 }
 
 void printException(dynamic error, StackTrace stackTrace) {
+  // ignore: avoid_print
   print('Exception occured: $error stackTrace: $stackTrace');
 }
 
