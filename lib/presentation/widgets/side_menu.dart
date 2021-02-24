@@ -52,6 +52,8 @@ class SideMenu extends StatelessWidget {
                     if (state is HomeRouteChangeState) {
                       currentIndex = state.index;
                     }
+                    debugPrint(currentIndex.toString());
+
                     return NavigationBar(
                       navigationItems: navigationItems,
                       axis: Axis.vertical,

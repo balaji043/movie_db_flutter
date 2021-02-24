@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/di/get_di.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/features/movies/presentation/pages/movie_home_page.dart';
@@ -22,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  PageController pageController;
   HomeRouteBloc homeRouteBloc;
   MovieCarouselBloc movieCarouselBloc;
   TopRatedMovieListBloc topRatedMovieListBloc;
@@ -36,8 +34,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    pageController = PageController();
-    homeRouteBloc = HomeRouteBloc(pageController);
+    homeRouteBloc = HomeRouteBloc();
     movieRouteBloc = getItInstance<MovieRouteBloc>();
     movieDetailsBloc = getItInstance<MovieDetailsBloc>();
 
@@ -51,7 +48,6 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    pageController.dispose();
     homeRouteBloc.close();
     movieCarouselBloc.close();
     topRatedMovieListBloc.close();
@@ -67,7 +63,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     const SideMenu sideMenu = SideMenu();
-    final PageWidget pageView = PageWidget(pageController: pageController);
+    const PageWidget pageView = PageWidget();
     debugPrint('home built');
     return MultiBlocProvider(
       providers: [
@@ -107,12 +103,12 @@ class HomeScreenState extends State<HomeScreen> {
             : null,
         body: Responsive(
           desktop: Row(
-            children: <Expanded>[
-              const Expanded(
+            children: const <Expanded>[
+              Expanded(
                 child: sideMenu,
               ),
               Expanded(
-                flex: Sizes.dimen_4.toInt(),
+                flex: 4,
                 child: pageView,
               ),
             ],
@@ -130,9 +126,7 @@ class HomeScreenState extends State<HomeScreen> {
 }
 
 class PageWidget extends StatelessWidget {
-  final PageController pageController;
   const PageWidget({
-    @required this.pageController,
     Key key,
   }) : super(key: key);
 
@@ -140,15 +134,22 @@ class PageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint('Page View Build');
 
-    return PageView(
-      physics: const NeverScrollableScrollPhysics(),
-      controller: pageController,
-      children: const <Widget>[
-        MovieHomePage(),
-        TVShowPage(),
-        GamesPage(),
-        PeoplePage()
-      ],
+    return BlocBuilder<HomeRouteBloc, HomeRouteState>(
+      builder: (context, state) {
+        int currentIndex = 0;
+        if (state is HomeRouteChangeState) {
+          currentIndex = state.index;
+        }
+        return IndexedStack(
+          index: currentIndex,
+          children: const <Widget>[
+            MovieHomePage(),
+            TVShowPage(),
+            GamesPage(),
+            PeoplePage()
+          ],
+        );
+      },
     );
   }
 }
