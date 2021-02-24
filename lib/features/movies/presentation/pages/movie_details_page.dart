@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:movie_db/core/sizes_constants.dart';
+import 'package:movie_db/data/core/strings.dart';
 import 'package:movie_db/features/movies/data/models/movie_details.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
@@ -19,9 +22,9 @@ class MovieDetailsPage extends StatelessWidget {
             children: [
               NavigationBar(
                 axis: Axis.horizontal,
-                navigationItems: [
+                navigationItems: const <NavigationItem>[
                   NavigationItem(
-                    label: 'Go Back',
+                    label: Strings.goBack,
                     icon: Icons.arrow_back,
                   )
                 ],
@@ -36,13 +39,16 @@ class MovieDetailsPage extends StatelessWidget {
           builder: (context, state) {
             if (state is MovieDetailsLoaded) {
               final MovieDetails movieDetails = state.movieDetails;
-              return ListView(
-                children: [
-                  SimpleCarousel(
-                    contents: movieDetails.images.backdrops,
-                  ),
-                  Text(movieDetails.title),
-                ],
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: Sizes.dimen_80),
+                    SimpleCarousel(
+                      contents: movieDetails.images.backdrops,
+                    ),
+                    Text(movieDetails.title),
+                  ],
+                ),
               );
             } else {
               return Container();

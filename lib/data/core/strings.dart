@@ -15,6 +15,8 @@ class Strings {
 
   static const String typeHere = 'Type Here';
 
+  static const String goBack = 'Go Back';
+
   static const String popular = 'Popular';
   static const String topRated = 'Top Rated';
   static const String upComing = 'Up Coming';

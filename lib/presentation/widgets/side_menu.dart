@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
+import 'package:movie_db/data/core/strings.dart';
 import 'package:movie_db/presentation/themes/theme_color.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
 import 'package:movie_db/presentation/widgets/logo.dart';
@@ -24,29 +25,28 @@ class SideMenu extends StatefulWidget {
 class _SideMenuState extends State<SideMenu> {
   int currentIndex = 0;
 
-  final List<NavigationItem> navigationItems = <NavigationItem>[
+  List<NavigationItem> navigationItems = const <NavigationItem>[
     NavigationItem(
       isSelected: true,
       icon: Icons.movie,
-      label: 'Movies',
+      label: Strings.movies,
     ),
     NavigationItem(
       icon: Icons.tv,
-      label: 'TV Shows',
+      label: Strings.tvShows,
     ),
     NavigationItem(
       icon: Icons.games,
-      label: 'Games',
+      label: Strings.games,
     ),
     NavigationItem(
       icon: Icons.people,
-      label: 'People',
+      label: Strings.people,
     ),
   ];
 
   @override
   Widget build(BuildContext context) => Container(
-        height: double.infinity,
         decoration: const BoxDecoration(
           border: Border(
             right: BorderSide(

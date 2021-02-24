@@ -6,7 +6,7 @@ class NavigationItem {
   final String label;
   final bool isSelected;
 
-  NavigationItem({
+  const NavigationItem({
     this.icon,
     this.label,
     this.isSelected = false,

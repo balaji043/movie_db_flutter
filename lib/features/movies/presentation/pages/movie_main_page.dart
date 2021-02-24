@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:movie_db/data/core/strings.dart';
 
 // Project imports:
 import 'package:movie_db/features/movies/presentation/widgets/movie_app_bar.dart';
@@ -37,13 +38,13 @@ class _MovieMainPageState extends State<MovieMainPage> {
         appBar: CustomAppBar(
           child: MovieAppBar(
             controller: controller,
-            navigationItems: <NavigationItem>[
+            navigationItems: const <NavigationItem>[
               NavigationItem(
-                label: 'Discover',
+                label: Strings.discover,
                 isSelected: true,
               ),
               NavigationItem(
-                label: 'Browse',
+                label: Strings.browse,
               )
             ],
           ),

@@ -25,8 +25,7 @@ class _SimpleCarouselState extends State<SimpleCarousel> {
   void initState() {
     super.initState();
     controller = PageController(
-      viewportFraction: 0.8,
-      keepPage: false,
+      viewportFraction: 0.7,
     );
   }
 
@@ -42,7 +41,7 @@ class _SimpleCarouselState extends State<SimpleCarousel> {
           vertical: Sizes.dimen_20,
         ),
         height: Responsive.isDesktop(context)
-            ? 500
+            ? 480
             : Responsive.isTablet(context)
                 ? 300
                 : 200,
@@ -62,10 +61,16 @@ class _SimpleCarouselState extends State<SimpleCarousel> {
               child: SimpleCarouselButton(
                 iconSrc: Icons.keyboard_arrow_left,
                 onPressed: () {
-                  controller.previousPage(
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeIn,
-                  );
+                  if (controller.page == 0) {
+                    controller.jumpToPage(
+                      widget.contents.length - 1,
+                    );
+                  } else {
+                    controller.previousPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeIn,
+                    );
+                  }
                 },
               ),
             ),
@@ -74,10 +79,16 @@ class _SimpleCarouselState extends State<SimpleCarousel> {
               child: SimpleCarouselButton(
                 iconSrc: Icons.keyboard_arrow_right,
                 onPressed: () {
-                  controller.nextPage(
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeIn,
-                  );
+                  if (controller.page == widget.contents.length - 1) {
+                    controller.jumpToPage(
+                      0,
+                    );
+                  } else {
+                    controller.nextPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeIn,
+                    );
+                  }
                 },
               ),
             ),
