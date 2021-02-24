@@ -18,80 +18,35 @@ class MovieDiscoverPage extends StatefulWidget {
 }
 
 class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
-  MovieCarouselBloc movieCarouselBloc;
-  TopRatedMovieListBloc topRatedMovieListBloc;
-  UpcomingMovieListBloc upcomingMovieListBloc;
-  NowPlayingMovieListBloc nowPlayingMovieListBloc;
-  PopularMovieListBloc popularMovieListBloc;
-  MovieCarouselCardBloc movieCarouselCardBloc;
-
   @override
   void initState() {
     super.initState();
-    movieCarouselBloc = getItInstance<MovieCarouselBloc>();
-    topRatedMovieListBloc = getItInstance<TopRatedMovieListBloc>();
-    upcomingMovieListBloc = getItInstance<UpcomingMovieListBloc>();
-    nowPlayingMovieListBloc = getItInstance<NowPlayingMovieListBloc>();
-    popularMovieListBloc = getItInstance<PopularMovieListBloc>();
-    movieCarouselCardBloc = getItInstance<MovieCarouselCardBloc>();
 
-    movieCarouselBloc.add(const MovieCarouselLoadEvent());
-    topRatedMovieListBloc.add(TopRatedMovieListLoadEvent());
-    upcomingMovieListBloc.add(UpcomingMovieListLoadEvent());
-    nowPlayingMovieListBloc.add(NowPlayingMovieListLoadEvent());
-    popularMovieListBloc.add(PopularMovieListLoadEvent());
+    getItInstance<MovieCarouselBloc>().add(const MovieCarouselLoadEvent());
+    getItInstance<TopRatedMovieListBloc>().add(TopRatedMovieListLoadEvent());
+    getItInstance<UpcomingMovieListBloc>().add(UpcomingMovieListLoadEvent());
+    getItInstance<NowPlayingMovieListBloc>()
+        .add(NowPlayingMovieListLoadEvent());
+    getItInstance<PopularMovieListBloc>().add(PopularMovieListLoadEvent());
   }
 
   @override
   void dispose() {
     super.dispose();
-    movieCarouselBloc.close();
-    topRatedMovieListBloc.close();
-    upcomingMovieListBloc.close();
-    nowPlayingMovieListBloc.close();
-    popularMovieListBloc.close();
-    movieCarouselCardBloc.close();
   }
 
   @override
-  Widget build(BuildContext context) => MultiBlocProvider(
-        providers: <BlocProvider<dynamic>>[
-          BlocProvider<MovieCarouselBloc>(
-            create: (BuildContext context) => movieCarouselBloc,
-          ),
-          BlocProvider<TopRatedMovieListBloc>(
-            create: (BuildContext context) => topRatedMovieListBloc,
-          ),
-          BlocProvider<UpcomingMovieListBloc>(
-            create: (BuildContext context) => upcomingMovieListBloc,
-          ),
-          BlocProvider<UpcomingMovieListBloc>(
-            create: (BuildContext context) => upcomingMovieListBloc,
-          ),
-          BlocProvider<NowPlayingMovieListBloc>(
-            create: (BuildContext context) => nowPlayingMovieListBloc,
-          ),
-          BlocProvider<PopularMovieListBloc>(
-            create: (BuildContext context) => popularMovieListBloc,
-          ),
-          BlocProvider<MovieCarouselCardBloc>(
-            create: (BuildContext context) => movieCarouselCardBloc,
-          ),
-        ],
-        child: Scaffold(
-          body: ListView(
-            children: [
-              const MovieCarousel(),
-              const SizedBox(height: 10),
-              PopularMovieListView(onTap: (content) => onTap(context, content)),
-              NowPlayingMovieListView(
-                  onTap: (content) => onTap(context, content)),
-              UpcomingMovieListView(
-                  onTap: (content) => onTap(context, content)),
-              TopRatedMovieListView(
-                  onTap: (content) => onTap(context, content)),
-            ],
-          ),
+  Widget build(BuildContext context) => Scaffold(
+        body: ListView(
+          children: [
+            const MovieCarousel(),
+            const SizedBox(height: 10),
+            PopularMovieListView(onTap: (content) => onTap(context, content)),
+            NowPlayingMovieListView(
+                onTap: (content) => onTap(context, content)),
+            UpcomingMovieListView(onTap: (content) => onTap(context, content)),
+            TopRatedMovieListView(onTap: (content) => onTap(context, content)),
+          ],
         ),
       );
 
