@@ -36,65 +36,70 @@ class _SimpleCarouselState extends State<SimpleCarousel> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: Sizes.dimen_20,
-        ),
-        height: Responsive.isDesktop(context)
-            ? 480
-            : Responsive.isTablet(context)
-                ? 300
-                : 200,
-        child: Stack(
-          children: [
-            FractionallySizedBox(
-              widthFactor: 1,
-              child: PageView.builder(
-                controller: controller,
-                itemCount: widget.contents.length,
-                itemBuilder: (context, index) =>
-                    SimpleCarouselCard(content: widget.contents[index]),
-              ),
+  Widget build(BuildContext context) {
+    final bool isDesktop = Responsive.isDesktop(context);
+    final bool isTablet = Responsive.isTablet(context);
+    final Size size = MediaQuery.of(context).size;
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: Sizes.dimen_20,
+      ),
+      height: isDesktop
+          ? size.height * 0.8
+          : isTablet
+              ? size.height * 0.6
+              : size.height * 0.4,
+      child: Stack(
+        children: [
+          FractionallySizedBox(
+            widthFactor: 1,
+            child: PageView.builder(
+              controller: controller,
+              itemCount: widget.contents.length,
+              itemBuilder: (context, index) =>
+                  SimpleCarouselCard(content: widget.contents[index]),
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: SimpleCarouselButton(
-                iconSrc: Icons.keyboard_arrow_left,
-                onPressed: () {
-                  if (controller.page == 0) {
-                    controller.jumpToPage(
-                      widget.contents.length - 1,
-                    );
-                  } else {
-                    controller.previousPage(
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeIn,
-                    );
-                  }
-                },
-              ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SimpleCarouselButton(
+              iconSrc: Icons.keyboard_arrow_left,
+              onPressed: () {
+                if (controller.page == 0) {
+                  controller.jumpToPage(
+                    widget.contents.length - 1,
+                  );
+                } else {
+                  controller.previousPage(
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeIn,
+                  );
+                }
+              },
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: SimpleCarouselButton(
-                iconSrc: Icons.keyboard_arrow_right,
-                onPressed: () {
-                  if (controller.page == widget.contents.length - 1) {
-                    controller.jumpToPage(
-                      0,
-                    );
-                  } else {
-                    controller.nextPage(
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeIn,
-                    );
-                  }
-                },
-              ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: SimpleCarouselButton(
+              iconSrc: Icons.keyboard_arrow_right,
+              onPressed: () {
+                if (controller.page == widget.contents.length - 1) {
+                  controller.jumpToPage(
+                    0,
+                  );
+                } else {
+                  controller.nextPage(
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeIn,
+                  );
+                }
+              },
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class SimpleCarouselCard extends StatelessWidget {

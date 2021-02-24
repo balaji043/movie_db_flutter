@@ -25,14 +25,15 @@ class Caraousel<C extends Cubit<S>, S> extends StatelessWidget {
     final bool isDesktop = Responsive.isDesktop(context);
     final bool isTablet = Responsive.isTablet(context);
     final bool isMobile = Responsive.isMobile(context);
+    final Size size = MediaQuery.of(context).size;
 
     return Container(
       padding: const EdgeInsets.all(Sizes.dimen_20),
       height: isDesktop
-          ? 540
+          ? size.height * 0.8
           : isTablet
-              ? 300
-              : 200,
+              ? size.height * 0.6
+              : size.height * 0.4,
       child: ClipRRect(
         borderRadius: const BorderRadius.all(
           Radius.circular(Sizes.dimen_16),
