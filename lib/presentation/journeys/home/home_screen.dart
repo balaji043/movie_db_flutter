@@ -55,7 +55,7 @@ class HomeScreenState extends State<HomeScreen> {
       create: (context) => homeRouteBloc,
       child: Scaffold(
         key: scaffoldKey,
-        drawer: sideMenu,
+        drawer: Responsive.isMobile(context) ? sideMenu : null,
         body: Responsive(
           desktop: Row(
             children: <Expanded>[
