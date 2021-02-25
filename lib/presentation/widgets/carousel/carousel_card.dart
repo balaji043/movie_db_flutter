@@ -80,7 +80,7 @@ class CarouselTextOverlay extends StatelessWidget {
 
     return ClipRRect(
       child: BackdropFilter(
-        filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: Container(
           color: AppColor.black.withOpacity(0.3),
           padding: const EdgeInsets.all(20),

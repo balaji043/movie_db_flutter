@@ -1,5 +1,5 @@
 // Dart imports:
-import 'dart:ui' as ui;
+import 'dart:ui';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
