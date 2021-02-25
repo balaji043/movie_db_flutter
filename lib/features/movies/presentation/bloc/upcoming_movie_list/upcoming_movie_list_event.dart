@@ -4,7 +4,7 @@ abstract class UpcomingMovieListEvent extends Equatable {
   const UpcomingMovieListEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class UpcomingMovieListLoadEvent extends UpcomingMovieListEvent {}

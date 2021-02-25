@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/presentation/widgets/carousel/carousel.dart';
 import 'package:movie_db/presentation/widgets/carousel/carousel_card.dart';
@@ -15,7 +16,10 @@ class MovieCarousel extends StatelessWidget {
         builder: (BuildContext context, MovieCarouselState state) {
           if (state is MovieCarouselSuccess) {
             return Caraousel<MovieCarouselCardBloc, MovieCarouselCardState>(
-              carouselCardBuilder: (context, state) {
+              carouselCardBuilder: (
+                BuildContext context,
+                MovieCarouselCardState state,
+              ) {
                 if (state is MovieCarouselCardChange) {
                   return CarouselCard(
                     content: state.movie,
@@ -24,7 +28,11 @@ class MovieCarousel extends StatelessWidget {
                 return Container();
               },
               contents: state.movies.results,
-              listItemBuilder: (context, state, content) {
+              listItemBuilder: (
+                BuildContext context,
+                MovieCarouselCardState state,
+                UIParam content,
+              ) {
                 if (state is MovieCarouselCardChange) {
                   return ListItem(
                     content: content,
@@ -33,7 +41,7 @@ class MovieCarousel extends StatelessWidget {
                 }
                 return Container();
               },
-              onTap: (content) =>
+              onTap: (UIParam content) =>
                   BlocProvider.of<MovieCarouselCardBloc>(context)
                       .add(MovieCarouselCardChangedEvent(content)),
             );

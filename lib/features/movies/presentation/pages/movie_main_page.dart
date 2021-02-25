@@ -39,7 +39,7 @@ class _MovieMainPageState extends State<MovieMainPage> {
         extendBodyBehindAppBar: true,
         appBar: CustomAppBar(
           child: BlocProvider<MovieTabRouteBloc>(
-            create: (context) => MovieTabRouteBloc(controller),
+            create: (BuildContext context) => MovieTabRouteBloc(controller),
             child: const MovieAppBar(
               navigationItems: <NavigationItem>[
                 NavigationItem(

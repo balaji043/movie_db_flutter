@@ -4,7 +4,7 @@ abstract class TopRatedMovieListState extends Equatable {
   const TopRatedMovieListState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class TopRatedMovieListInitial extends TopRatedMovieListState {}

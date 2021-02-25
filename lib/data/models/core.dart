@@ -135,7 +135,7 @@ class Genre extends Equatable {
     this.name,
   });
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         'id': id,
         'name': name,
       };
@@ -154,5 +154,5 @@ class Genre extends Equatable {
   String toJson() => json.encode(toMap());
 
   @override
-  List<Object> get props => [id, name];
+  List<Object> get props => <Object>[id, name];
 }

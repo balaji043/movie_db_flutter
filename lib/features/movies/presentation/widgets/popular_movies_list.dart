@@ -18,7 +18,7 @@ class PopularMovieListView extends StatelessWidget {
           if (state is PopularMovieListSuccess) {
             return Container(
               padding: const EdgeInsets.all(Sizes.dimen_20),
-              child: ContentListView(
+              child: ContentListView<MovieEntity>(
                 title: Strings.popular,
                 contents: state.movies.results,
                 onTap: onTap,

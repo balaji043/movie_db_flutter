@@ -14,10 +14,10 @@ class ImageResponse extends Equatable {
     this.posters,
   });
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         'id': id,
-        'backdrops': backdrops?.map((x) => x?.toMap())?.toList(),
-        'posters': posters?.map((x) => x?.toMap())?.toList(),
+        'backdrops': backdrops?.map((ImageModel x) => x?.toMap())?.toList(),
+        'posters': posters?.map((ImageModel x) => x?.toMap())?.toList(),
       };
 
   factory ImageResponse.fromMap(Map<String, dynamic> map) {
@@ -28,10 +28,12 @@ class ImageResponse extends Equatable {
     return ImageResponse(
       id: map['id']?.toInt(),
       backdrops: List<ImageModel>.from(
-          map['backdrops']?.map((x) => ImageModel.fromMap(x))),
+        map['backdrops']
+            ?.map((Map<String, dynamic> x) => ImageModel.fromMap(x)),
+      ),
       posters: List<ImageModel>.from(
         map['posters']?.map(
-          (x) => ImageModel.fromMap(x),
+          (Map<String, dynamic> x) => ImageModel.fromMap(x),
         ),
       ),
     );
@@ -43,5 +45,5 @@ class ImageResponse extends Equatable {
       ImageResponse.fromMap(json.decode(source));
 
   @override
-  List<Object> get props => [id, backdrops, posters];
+  List<Object> get props => <Object>[id, backdrops, posters];
 }

@@ -20,7 +20,7 @@ class ImageModel extends Equatable {
     this.width,
   });
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         'aspect_ratio': aspectRatio,
         'file_path': filePath,
         'height': height,
@@ -52,7 +52,7 @@ class ImageModel extends Equatable {
       ImageModel.fromMap(json.decode(source));
 
   @override
-  List<Object> get props => [
+  List<Object> get props => <Object>[
         aspectRatio,
         filePath,
         height,

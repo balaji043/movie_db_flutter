@@ -7,7 +7,8 @@ class ApiConstants {
   static const String tMDBBaseUrlV3 = 'https://api.themoviedb.org/3';
   static const String tmdbImageBaseUrlV3 = 'https://image.tmdb.org/t/p';
 
-  static const String apiKey = String.fromEnvironment('api_key');
+  static const String apiKey = '28865138e4e85636c645f77389eac900';
+  //String.fromEnvironment('api_key');
 
   /* Base URL start */
   static const String getMovieBaseUrl = '${ApiConstants.tMDBBaseUrlV3}/movie';

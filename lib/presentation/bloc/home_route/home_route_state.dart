@@ -4,7 +4,7 @@ abstract class HomeRouteState extends Equatable {
   const HomeRouteState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class HomeRouteInitial extends HomeRouteState {}
@@ -14,5 +14,5 @@ class HomeRouteChangeState extends HomeRouteState {
 
   const HomeRouteChangeState(this.index);
   @override
-  List<Object> get props => [index];
+  List<Object> get props => <Object>[index];
 }

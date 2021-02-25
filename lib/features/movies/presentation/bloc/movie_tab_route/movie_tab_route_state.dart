@@ -4,12 +4,12 @@ abstract class MovieTabRouteState extends Equatable {
   const MovieTabRouteState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class MovieTabRouteInitial extends MovieTabRouteState {
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class MovieTabRouteChangedState extends MovieTabRouteState {
@@ -18,5 +18,5 @@ class MovieTabRouteChangedState extends MovieTabRouteState {
   const MovieTabRouteChangedState(this.index);
 
   @override
-  List<Object> get props => [index];
+  List<Object> get props => <Object>[index];
 }

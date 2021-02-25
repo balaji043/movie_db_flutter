@@ -44,7 +44,7 @@ class SideMenu extends StatelessWidget {
                     child: Logo(height: Sizes.dimen_32),
                   ),
                   BlocBuilder<HomeRouteBloc, HomeRouteState>(
-                    builder: (context, state) {
+                    builder: (BuildContext context, HomeRouteState state) {
                       int currentIndex = 0;
 
                       if (state is HomeRouteChangeState) {

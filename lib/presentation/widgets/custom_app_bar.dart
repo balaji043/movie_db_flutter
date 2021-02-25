@@ -37,7 +37,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             alignment: Alignment.bottomCenter,
             padding: const EdgeInsets.only(right: Sizes.dimen_20),
             child: Row(
-              children: [
+              children: <Widget>[
                 if (!Responsive.isDesktop(context))
                   IconButton(
                     icon: const Icon(Icons.menu),

@@ -6,5 +6,5 @@ class MovieParams extends Equatable {
   const MovieParams(this.id);
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => <Object>[id];
 }

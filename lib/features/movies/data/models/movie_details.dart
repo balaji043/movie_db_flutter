@@ -60,11 +60,11 @@ class MovieDetails extends MovieEntity {
           overview: overview,
         );
   @override
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         'adult': adult,
         'backdrop_path': backdropPath,
         'budget': budget,
-        'genres': genres?.map((x) => x?.toMap())?.toList(),
+        'genres': genres?.map((Genre x) => x?.toMap())?.toList(),
         'homepage': homepage,
         'id': id,
         'imdb_id': imdbId,
@@ -73,14 +73,17 @@ class MovieDetails extends MovieEntity {
         'overview': overview,
         'popularity': popularity,
         'poster_path': posterPath,
-        'production_companies':
-            productionCompanies?.map((x) => x?.toMap())?.toList(),
-        'production_countries':
-            productionCountries?.map((x) => x?.toMap())?.toList(),
+        'production_companies': productionCompanies
+            ?.map((ProductionCompany x) => x?.toMap())
+            ?.toList(),
+        'production_countries': productionCountries
+            ?.map((ProductionCountry x) => x?.toMap())
+            ?.toList(),
         'release_date': releaseDate,
         'revenue': revenue,
         'runtime': runtime,
-        'spoken_languages': spokenLanguages?.map((x) => x?.toMap())?.toList(),
+        'spoken_languages':
+            spokenLanguages?.map((Language x) => x?.toMap())?.toList(),
         'status': status,
         'tagline': tagline,
         'title': title,
@@ -100,8 +103,9 @@ class MovieDetails extends MovieEntity {
       backdropPath: map['backdrop_path'],
       budget: map['budget']?.toInt(),
       genres: map['geners'] != null
-          ? List<Genre>.from(map['genres']?.map((x) => Genre.fromMap(x)))
-          : [],
+          ? List<Genre>.from(
+              map['genres']?.map((Map<String, dynamic> x) => Genre.fromMap(x)))
+          : <Genre>[],
       homepage: map['homepage'],
       id: map['id']?.toInt(),
       imdbId: map['imdb_id'],
@@ -113,27 +117,27 @@ class MovieDetails extends MovieEntity {
       productionCompanies: map['production_companies'] != null
           ? List<ProductionCompany>.from(
               map['production_companies']?.map(
-                (json) => ProductionCompany.fromMap(json),
+                (Map<String, dynamic> json) => ProductionCompany.fromMap(json),
               ),
             )
-          : [],
+          : <ProductionCompany>[],
       productionCountries: map['production_countries'] != null
           ? List<ProductionCountry>.from(
               map['production_countries']?.map(
-                (json) => ProductionCountry.fromMap(json),
+                (Map<String, dynamic> json) => ProductionCountry.fromMap(json),
               ),
             )
-          : [],
+          : <ProductionCountry>[],
       releaseDate: map['release_date'],
       revenue: map['revenue']?.toInt(),
       runtime: map['runtime']?.toInt(),
       spokenLanguages: map['spoken_languages'] != null
           ? List<Language>.from(
               map['spoken_languages']?.map(
-                (json) => Language.fromMap(json),
+                (Map<String, dynamic> json) => Language.fromMap(json),
               ),
             )
-          : [],
+          : <Language>[],
       status: map['status'],
       tagline: map['tagline'],
       title: map['title'],
@@ -148,7 +152,7 @@ class MovieDetails extends MovieEntity {
       MovieDetails.fromMap(json.decode(source));
 
   @override
-  List<Object> get props => [
+  List<Object> get props => <Object>[
         adult,
         backdropPath,
         budget,

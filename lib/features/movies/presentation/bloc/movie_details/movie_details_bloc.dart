@@ -23,8 +23,8 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
       final Either<ApiError, MovieDetails> eitherResponse =
           await _getMovieDetails(MovieParams(event.movieId));
       yield eitherResponse.fold(
-        (l) => MovieDetailsError(),
-        (r) => MovieDetailsLoaded(r),
+        (ApiError l) => MovieDetailsError(),
+        (MovieDetails r) => MovieDetailsLoaded(r),
       );
     }
   }

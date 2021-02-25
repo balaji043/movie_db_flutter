@@ -18,7 +18,7 @@ class MovieDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         appBar: CustomAppBar(
           child: Row(
-            children: [
+            children: <Widget>[
               NavigationBar(
                 axis: Axis.horizontal,
                 navigationItems: const <NavigationItem>[
@@ -35,12 +35,12 @@ class MovieDetailsPage extends StatelessWidget {
         ),
         extendBodyBehindAppBar: true,
         body: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
-          builder: (context, state) {
+          builder: (BuildContext context, MovieDetailsState state) {
             if (state is MovieDetailsLoaded) {
               final MovieDetails movieDetails = state.movieDetails;
               return SingleChildScrollView(
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     const SizedBox(height: Sizes.dimen_80),
                     SimpleCarousel(
                       contents: movieDetails.images.backdrops,

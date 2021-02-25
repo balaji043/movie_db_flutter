@@ -76,10 +76,10 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<Either<ApiError, MovieDetails>> getMovieDetails(int id) async {
     try {
-      final movieDetails = await _dataSource.getMovieDetail(id);
-      return Right(movieDetails);
+      final MovieDetails movieDetails = await _dataSource.getMovieDetail(id);
+      return Right<ApiError, MovieDetails>(movieDetails);
     } on Exception catch (e) {
-      return Left(ApiError('$e'));
+      return Left<ApiError, MovieDetails>(ApiError('$e'));
     }
   }
 }

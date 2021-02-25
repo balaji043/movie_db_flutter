@@ -4,7 +4,7 @@ abstract class MovieTabRouteEvent extends Equatable {
   const MovieTabRouteEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class MovieTabRouteChangeEvent extends MovieTabRouteEvent {
@@ -13,5 +13,5 @@ class MovieTabRouteChangeEvent extends MovieTabRouteEvent {
   const MovieTabRouteChangeEvent(this.i);
 
   @override
-  List<Object> get props => [i];
+  List<Object> get props => <Object>[i];
 }

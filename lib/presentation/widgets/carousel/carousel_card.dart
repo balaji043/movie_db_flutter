@@ -38,14 +38,18 @@ class _CarouselCardState extends State<CarouselCard>
   Widget build(BuildContext context) => AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
         switchInCurve: Curves.fastOutSlowIn,
-        transitionBuilder: (child, animation) => SlideTransition(
+        transitionBuilder: (
+          Widget child,
+          Animation<double> animation,
+        ) =>
+            SlideTransition(
           position: tweenOffset.animate(animation),
           child: child,
         ),
         child: Stack(
           key: ValueKey<String>(widget.content.dId.toString()),
           fit: StackFit.expand,
-          children: [
+          children: <Widget>[
             FractionallySizedBox(
               alignment: Alignment.centerRight,
               widthFactor: 1,
@@ -88,7 +92,7 @@ class CarouselTextOverlay extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Text(
                 title ?? '',
                 style: isDesktop || isTablet

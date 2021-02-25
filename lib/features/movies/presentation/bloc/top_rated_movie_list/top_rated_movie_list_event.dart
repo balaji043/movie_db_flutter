@@ -4,7 +4,7 @@ abstract class TopRatedMovieListEvent extends Equatable {
   const TopRatedMovieListEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class TopRatedMovieListLoadEvent extends TopRatedMovieListEvent {}

@@ -4,7 +4,7 @@ abstract class MovieCarouselCardEvent extends Equatable {
   const MovieCarouselCardEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class MovieCarouselCardChangedEvent extends MovieCarouselCardEvent {
@@ -13,5 +13,5 @@ class MovieCarouselCardChangedEvent extends MovieCarouselCardEvent {
   const MovieCarouselCardChangedEvent(this.movie);
 
   @override
-  List<Object> get props => [movie];
+  List<Object> get props => <Object>[movie];
 }

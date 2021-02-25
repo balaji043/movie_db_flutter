@@ -4,7 +4,7 @@ abstract class HomeRouteEvent extends Equatable {
   const HomeRouteEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class HomeRouteChangeEvent extends HomeRouteEvent {
@@ -12,5 +12,5 @@ class HomeRouteChangeEvent extends HomeRouteEvent {
 
   const HomeRouteChangeEvent(this.index);
   @override
-  List<Object> get props => [index];
+  List<Object> get props => <Object>[index];
 }

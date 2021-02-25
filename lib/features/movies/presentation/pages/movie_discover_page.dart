@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:movie_db/di/get_di.dart';
 import 'package:movie_db/domain/entities/ui_params.dart';
+import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/features/movies/presentation/widgets/widgets.dart';
 
@@ -38,14 +39,17 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: ListView(
-          children: [
+          children: <Widget>[
             const MovieCarousel(),
             const SizedBox(height: 10),
-            PopularMovieListView(onTap: (content) => onTap(context, content)),
+            PopularMovieListView(
+                onTap: (MovieEntity content) => onTap(context, content)),
             NowPlayingMovieListView(
-                onTap: (content) => onTap(context, content)),
-            UpcomingMovieListView(onTap: (content) => onTap(context, content)),
-            TopRatedMovieListView(onTap: (content) => onTap(context, content)),
+                onTap: (MovieEntity content) => onTap(context, content)),
+            UpcomingMovieListView(
+                onTap: (MovieEntity content) => onTap(context, content)),
+            TopRatedMovieListView(
+                onTap: (MovieEntity content) => onTap(context, content)),
           ],
         ),
       );

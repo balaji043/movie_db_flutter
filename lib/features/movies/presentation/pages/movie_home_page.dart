@@ -29,7 +29,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<MovieRouteBloc, MovieRouteState>(
-        builder: (context, state) {
+        builder: (BuildContext context, MovieRouteState state) {
           if (state is MovieRouteToDetailsPageState) {
             return const MovieDetailsPage();
           } else {

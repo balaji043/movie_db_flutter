@@ -65,14 +65,16 @@ class HomeScreenState extends State<HomeScreen> {
     const SideMenu sideMenu = SideMenu();
     const PageWidget pageView = PageWidget();
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider<dynamic>>[
         BlocProvider<MovieRouteBloc>(
           create: (BuildContext context) => movieRouteBloc,
         ),
         BlocProvider<MovieDetailsBloc>(
           create: (BuildContext context) => movieDetailsBloc,
         ),
-        BlocProvider(create: (context) => homeRouteBloc),
+        BlocProvider<HomeRouteBloc>(
+          create: (BuildContext context) => homeRouteBloc,
+        ),
         BlocProvider<MovieCarouselBloc>(
           create: (BuildContext context) => movieCarouselBloc,
         ),
@@ -119,9 +121,7 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void openDrawer() {
-    scaffoldKey.currentState.openDrawer();
-  }
+  void openDrawer() => scaffoldKey.currentState.openDrawer();
 }
 
 class PageWidget extends StatelessWidget {
@@ -132,7 +132,7 @@ class PageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<HomeRouteBloc, HomeRouteState>(
-        builder: (context, state) {
+        builder: (BuildContext context, HomeRouteState state) {
           int currentIndex = 0;
           if (state is HomeRouteChangeState) {
             currentIndex = state.index;
@@ -150,4 +150,4 @@ class PageWidget extends StatelessWidget {
       );
 }
 
-final scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();

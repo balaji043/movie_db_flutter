@@ -25,7 +25,7 @@ class ContentCard<T extends UIParam> extends StatelessWidget {
       onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.circular(Sizes.dimen_16),
             child: FadeInImage.memoryNetwork(

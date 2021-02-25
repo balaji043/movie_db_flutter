@@ -4,7 +4,7 @@ abstract class TrendingMovieListEvent extends Equatable {
   const TrendingMovieListEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class TrendingMovieListLoadEvent extends TrendingMovieListEvent {}

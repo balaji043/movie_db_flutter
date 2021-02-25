@@ -25,8 +25,10 @@ class MovieAppBar extends StatefulWidget {
 class _MovieAppBarState extends State<MovieAppBar> {
   @override
   Widget build(BuildContext context) =>
-      BlocBuilder<MovieTabRouteBloc, MovieTabRouteState>(
-          builder: (context, state) {
+      BlocBuilder<MovieTabRouteBloc, MovieTabRouteState>(builder: (
+        BuildContext context,
+        MovieTabRouteState state,
+      ) {
         int currentIndex = 0;
         if (state is MovieTabRouteChangedState) {
           currentIndex = state.index;
@@ -39,7 +41,7 @@ class _MovieAppBarState extends State<MovieAppBar> {
               padding: const EdgeInsets.only(right: Sizes.dimen_20),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
+                children: <Widget>[
                   for (int i = 0; i < widget.navigationItems.length; i++)
                     NavItemWidget(
                       selectedIndex: currentIndex,

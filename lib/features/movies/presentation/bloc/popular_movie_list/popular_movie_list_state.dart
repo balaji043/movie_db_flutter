@@ -4,7 +4,7 @@ abstract class PopularMovieListState extends Equatable {
   const PopularMovieListState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class PopularMovieListInitial extends PopularMovieListState {}

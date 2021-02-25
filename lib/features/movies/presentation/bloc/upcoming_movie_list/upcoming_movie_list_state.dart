@@ -4,7 +4,7 @@ abstract class UpcomingMovieListState extends Equatable {
   const UpcomingMovieListState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
 class UpcomingMovieListInitial extends UpcomingMovieListState {}

@@ -24,7 +24,7 @@ class SideList<C extends Cubit<S>, S> extends StatelessWidget {
             behavior: HitTestBehavior.translucent,
             onTap: () => onTap(content),
             child: BlocBuilder<C, S>(
-              builder: (context, state) => listItemBuilder(
+              builder: (BuildContext context, S state) => listItemBuilder(
                 context,
                 state,
                 content,

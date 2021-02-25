@@ -50,13 +50,13 @@ class _SimpleCarouselState extends State<SimpleCarousel> {
               ? size.height * 0.6
               : size.height * 0.4,
       child: Stack(
-        children: [
+        children: <Widget>[
           FractionallySizedBox(
             widthFactor: 1,
             child: PageView.builder(
               controller: controller,
               itemCount: widget.contents.length,
-              itemBuilder: (context, index) =>
+              itemBuilder: (BuildContext context, int index) =>
                   SimpleCarouselCard(content: widget.contents[index]),
             ),
           ),

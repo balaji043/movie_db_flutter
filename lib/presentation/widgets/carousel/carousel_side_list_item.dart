@@ -23,7 +23,7 @@ class ListItem extends StatelessWidget {
           color: selected ? Colors.blue[700] : AppColor.black2,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Container(
                 height: 76,
                 width: 56,

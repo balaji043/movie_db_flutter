@@ -21,7 +21,7 @@ class NowPlayingMovieListView extends StatelessWidget {
           if (state is NowPlayingMovieListSuccess) {
             return Container(
               padding: const EdgeInsets.all(Sizes.dimen_20),
-              child: ContentListView(
+              child: ContentListView<MovieEntity>(
                 title: Strings.nowPlaying,
                 contents: state.movies.results,
                 onTap: onTap,

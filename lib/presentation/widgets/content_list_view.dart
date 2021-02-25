@@ -23,7 +23,7 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
         child: Container(
           height: 430,
           child: ListView(
-            children: [
+            children: <Widget>[
               Text(
                 title ?? '',
                 style: Theme.of(context).textTheme.headline6,
@@ -39,7 +39,7 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: contents
                       .map(
-                        (content) => ContentCard(
+                        (T content) => ContentCard<T>(
                           content: content,
                           onTap: () => onTap(content),
                         ),

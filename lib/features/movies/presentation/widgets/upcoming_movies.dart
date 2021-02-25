@@ -18,7 +18,7 @@ class UpcomingMovieListView extends StatelessWidget {
           if (state is UpcomingMovieListSuccess) {
             return Container(
               padding: const EdgeInsets.all(Sizes.dimen_20),
-              child: ContentListView(
+              child: ContentListView<MovieEntity>(
                 contents: state.movies.results,
                 title: Strings.upComing,
                 onTap: onTap,
