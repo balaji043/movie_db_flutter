@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 // Project imports:
-import 'package:movie_db/di/get_di.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/features/movies/presentation/pages/movie_home_page.dart';
 import 'package:movie_db/presentation/bloc/home_route/home_route_bloc.dart';
@@ -36,15 +36,15 @@ class HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     homeRouteBloc = HomeRouteBloc();
-    movieRouteBloc = getItInstance<MovieRouteBloc>();
-    movieDetailsBloc = getItInstance<MovieDetailsBloc>();
+    movieRouteBloc = GetIt.I<MovieRouteBloc>();
+    movieDetailsBloc = GetIt.I<MovieDetailsBloc>();
 
-    movieCarouselBloc = getItInstance<MovieCarouselBloc>();
-    topRatedMovieListBloc = getItInstance<TopRatedMovieListBloc>();
-    upcomingMovieListBloc = getItInstance<UpcomingMovieListBloc>();
-    nowPlayingMovieListBloc = getItInstance<NowPlayingMovieListBloc>();
-    popularMovieListBloc = getItInstance<PopularMovieListBloc>();
-    movieCarouselCardBloc = getItInstance<MovieCarouselCardBloc>();
+    movieCarouselBloc = GetIt.I<MovieCarouselBloc>();
+    topRatedMovieListBloc = GetIt.I<TopRatedMovieListBloc>();
+    upcomingMovieListBloc = GetIt.I<UpcomingMovieListBloc>();
+    nowPlayingMovieListBloc = GetIt.I<NowPlayingMovieListBloc>();
+    popularMovieListBloc = GetIt.I<PopularMovieListBloc>();
+    movieCarouselCardBloc = GetIt.I<MovieCarouselCardBloc>();
   }
 
   @override

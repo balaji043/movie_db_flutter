@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 // Project imports:
-import 'package:movie_db/di/get_di.dart';
 import 'package:movie_db/domain/entities/entities.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_entities.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
@@ -23,12 +23,11 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
   void initState() {
     super.initState();
 
-    getItInstance<MovieCarouselBloc>().add(const MovieCarouselLoadEvent());
-    getItInstance<TopRatedMovieListBloc>().add(TopRatedMovieListLoadEvent());
-    getItInstance<UpcomingMovieListBloc>().add(UpcomingMovieListLoadEvent());
-    getItInstance<NowPlayingMovieListBloc>()
-        .add(NowPlayingMovieListLoadEvent());
-    getItInstance<PopularMovieListBloc>().add(PopularMovieListLoadEvent());
+    GetIt.I<MovieCarouselBloc>().add(const MovieCarouselLoadEvent());
+    GetIt.I<TopRatedMovieListBloc>().add(TopRatedMovieListLoadEvent());
+    GetIt.I<UpcomingMovieListBloc>().add(UpcomingMovieListLoadEvent());
+    GetIt.I<NowPlayingMovieListBloc>().add(NowPlayingMovieListLoadEvent());
+    GetIt.I<PopularMovieListBloc>().add(PopularMovieListLoadEvent());
   }
 
   @override
