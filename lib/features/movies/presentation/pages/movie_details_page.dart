@@ -41,16 +41,13 @@ class MovieDetailsPage extends StatelessWidget {
           builder: (BuildContext context, MovieDetailsState state) {
             if (state is MovieDetailsLoaded) {
               final MovieDetails movieDetails = state.movieDetails;
-              return SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    const SizedBox(height: Sizes.dimen_80),
-                    SimpleCarousel(
-                      contents: movieDetails.images.backdrops,
-                    ),
-                    Text(movieDetails.title),
-                  ],
-                ),
+              return ListView(
+                children: <Widget>[
+                  SimpleCarousel(
+                    contents: movieDetails.images.backdrops,
+                  ),
+                  Text(movieDetails.title),
+                ],
               );
             } else {
               return Container();
