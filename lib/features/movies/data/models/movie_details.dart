@@ -3,7 +3,7 @@ import 'dart:convert';
 
 // Project imports:
 import 'package:movie_db/data/models/configuration.dart';
-import 'package:movie_db/data/models/content_images_response.dart';
+import 'package:movie_db/data/models/images_response.dart';
 import 'package:movie_db/data/models/core.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
 
@@ -119,14 +119,14 @@ class MovieDetails extends MovieEntity {
       productionCompanies: map['production_companies'] != null
           ? List<ProductionCompany>.from(
               map['production_companies']?.map(
-                (Map<String, dynamic> json) => ProductionCompany.fromMap(json),
+                (dynamic json) => ProductionCompany.fromMap(json),
               ),
             )
-          : <ProductionCompany>[],
+          : [],
       productionCountries: map['production_countries'] != null
           ? List<ProductionCountry>.from(
               map['production_countries']?.map(
-                (Map<String, dynamic> json) => ProductionCountry.fromMap(json),
+                (dynamic json) => ProductionCountry.fromMap(json),
               ),
             )
           : <ProductionCountry>[],
@@ -136,7 +136,7 @@ class MovieDetails extends MovieEntity {
       spokenLanguages: map['spoken_languages'] != null
           ? List<Language>.from(
               map['spoken_languages']?.map(
-                (Map<String, dynamic> json) => Language.fromMap(json),
+                (dynamic json) => Language.fromMap(json),
               ),
             )
           : <Language>[],

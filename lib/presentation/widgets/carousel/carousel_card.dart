@@ -86,6 +86,8 @@ class CarouselTextOverlay extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final bool isDesktop = Responsive.isDesktop(context);
     final bool isTablet = Responsive.isTablet(context);
+    final bool isMobile = Responsive.isMobile(context);
+
     return ClipRRect(
       child: BackdropFilter(
         filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
@@ -105,11 +107,11 @@ class CarouselTextOverlay extends StatelessWidget {
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
               ),
-              if (isDesktop)
+              if (!isMobile)
                 Text(
                   overview ?? '',
                   style: textTheme.subtitle1,
-                  maxLines: 12,
+                  maxLines: isTablet ? 8 : 12,
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                 ),

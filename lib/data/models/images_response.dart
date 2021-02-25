@@ -31,12 +31,11 @@ class ImageResponse extends Equatable {
     return ImageResponse(
       id: map['id']?.toInt(),
       backdrops: List<ImageModel>.from(
-        map['backdrops']
-            ?.map((Map<String, dynamic> x) => ImageModel.fromMap(x)),
+        map['backdrops']?.map((dynamic x) => ImageModel.fromMap(x)),
       ),
       posters: List<ImageModel>.from(
         map['posters']?.map(
-          (Map<String, dynamic> x) => ImageModel.fromMap(x),
+          (dynamic x) => ImageModel.fromMap(x),
         ),
       ),
     );
