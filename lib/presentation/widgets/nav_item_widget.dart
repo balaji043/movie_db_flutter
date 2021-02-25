@@ -1,8 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:movie_db/presentation/widgets/custom_button.dart';
+part of 'widgets.dart';
 
 class NavItemWidget extends StatelessWidget {
   final String label;

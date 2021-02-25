@@ -1,16 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-// Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/features/movies/presentation/bloc/movie_tab_route/movie_tab_route_bloc.dart';
-import 'package:movie_db/presentation/journeys/home/home_screen.dart';
-import 'package:movie_db/presentation/view_models/navigation_item.dart';
-import 'package:movie_db/presentation/widgets/nav_item_widget.dart';
-import 'package:movie_db/presentation/widgets/search_bar.dart';
+part of 'movie_widgets.dart';
 
 class MovieAppBar extends StatefulWidget {
   final List<NavigationItem> navigationItems;

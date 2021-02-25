@@ -2,9 +2,9 @@
 import 'package:dartz/dartz.dart';
 
 // Project imports:
-import 'package:movie_db/data/models/core.dart';
-import 'package:movie_db/domain/entities/api_error.dart';
-import 'package:movie_db/features/movies/data/models/movie_details.dart';
+import 'package:movie_db/data/models/models.dart';
+import 'package:movie_db/domain/entities/entities.dart';
+import 'package:movie_db/features/movies/data/models/movie_models.dart';
 
 abstract class MovieRepository {
   Future<Either<ApiError, PaginatedResponse<MovieDetails>>>

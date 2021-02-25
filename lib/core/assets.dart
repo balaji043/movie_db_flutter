@@ -1,3 +1,5 @@
+part of 'core.dart';
+
 class Assets {
   Assets._();
 

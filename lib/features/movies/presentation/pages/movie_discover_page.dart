@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:movie_db/di/get_di.dart';
-import 'package:movie_db/domain/entities/ui_params.dart';
-import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
+import 'package:movie_db/domain/entities/entities.dart';
+import 'package:movie_db/features/movies/domain/entities/movie_entities.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
-import 'package:movie_db/features/movies/presentation/widgets/widgets.dart';
+import 'package:movie_db/features/movies/presentation/widgets/movie_widgets.dart';
 
 class MovieDiscoverPage extends StatefulWidget {
   const MovieDiscoverPage({Key key}) : super(key: key);

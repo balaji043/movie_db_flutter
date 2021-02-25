@@ -1,5 +1,4 @@
-// Package imports:
-import 'package:equatable/equatable.dart';
+part of 'entities.dart';
 
 class NoParams extends Equatable {
   const NoParams();

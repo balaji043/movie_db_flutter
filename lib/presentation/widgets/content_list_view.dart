@@ -1,10 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/domain/entities/ui_params.dart';
-import 'package:movie_db/presentation/widgets/content_card.dart';
+part of 'widgets.dart';
 
 class ContentListView<T extends UIParam> extends StatelessWidget {
   final List<T> contents;

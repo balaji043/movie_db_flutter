@@ -1,15 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-// Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/data/core/strings.dart';
-import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
-import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
-import 'package:movie_db/presentation/widgets/content_list_view.dart';
+part of 'movie_widgets.dart';
 
 class TopRatedMovieListView extends StatelessWidget {
   final void Function(MovieEntity) onTap;

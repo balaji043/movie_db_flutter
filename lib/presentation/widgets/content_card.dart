@@ -1,13 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:transparent_image/transparent_image.dart';
-
-// Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/data/core/api_constants.dart';
-import 'package:movie_db/domain/entities/ui_params.dart';
+part of 'widgets.dart';
 
 class ContentCard<T extends UIParam> extends StatelessWidget {
   final T content;

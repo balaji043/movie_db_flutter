@@ -1,12 +1,4 @@
-// Dart imports:
-import 'dart:convert';
-
-// Package imports:
-import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
-
-// Project imports:
-import 'package:movie_db/domain/entities/ui_params.dart';
+part of 'movie_entities.dart';
 
 class MovieEntity extends Equatable implements UIParam {
   final int id;

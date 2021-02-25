@@ -12,8 +12,7 @@ import 'package:movie_db/presentation/bloc/home_route/home_route_bloc.dart';
 import 'package:movie_db/presentation/journeys/home/pages/games_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/people_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/tv_shows_home_page.dart';
-import 'package:movie_db/presentation/widgets/responsive.dart';
-import 'package:movie_db/presentation/widgets/side_menu.dart';
+import 'package:movie_db/presentation/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);

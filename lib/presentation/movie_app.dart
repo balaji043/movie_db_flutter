@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:movie_db/presentation/themes/theme_color.dart';
-import 'package:movie_db/presentation/themes/theme_text.dart';
+import 'package:movie_db/presentation/themes/themes.dart';
 import 'journeys/home/home_screen.dart';
 
 class MovieApp extends StatelessWidget {

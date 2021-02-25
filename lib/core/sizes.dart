@@ -1,4 +1,4 @@
-export 'extensions.dart';
+part of 'core.dart';
 
 /// dimension doubles to use along with SizeExtension methods
 class Sizes {

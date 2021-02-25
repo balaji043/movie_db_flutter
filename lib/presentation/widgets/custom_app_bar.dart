@@ -1,14 +1,4 @@
-// Dart imports:
-import 'dart:ui';
-
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/presentation/journeys/home/home_screen.dart';
-import 'package:movie_db/presentation/themes/theme_color.dart';
-import 'package:movie_db/presentation/widgets/responsive.dart';
+part of 'widgets.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Widget child;

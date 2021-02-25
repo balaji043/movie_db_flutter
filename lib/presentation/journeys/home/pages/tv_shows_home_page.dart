@@ -1,8 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:movie_db/data/core/strings.dart';
+import 'package:movie_db/core/core.dart';
 
 class TVShowPage extends StatelessWidget {
   const TVShowPage({Key key}) : super(key: key);

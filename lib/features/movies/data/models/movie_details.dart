@@ -1,11 +1,4 @@
-// Dart imports:
-import 'dart:convert';
-
-// Project imports:
-import 'package:movie_db/data/models/configuration.dart';
-import 'package:movie_db/data/models/images_response.dart';
-import 'package:movie_db/data/models/core.dart';
-import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
+part of 'movie_models.dart';
 
 class MovieDetails extends MovieEntity {
   final bool adult;

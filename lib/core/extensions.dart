@@ -1,3 +1,5 @@
+part of 'core.dart';
+
 extension DateTimeExtension on DateTime {
   String get paddedString =>
       '${_pad(year, 4)}-${_pad(month, 2)}-${_pad(day, 2)}';

@@ -1,14 +1,23 @@
+// Dart imports:
+import 'dart:ui' as ui;
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_db/core/core.dart';
 
 // Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/domain/entities/ui_params.dart';
-import 'package:movie_db/presentation/widgets/responsive.dart';
-import 'carousel_side_list.dart';
+import 'package:movie_db/data/core/api_constants.dart';
+import 'package:movie_db/domain/entities/entities.dart';
+import 'package:movie_db/presentation/themes/themes.dart';
+import 'package:movie_db/presentation/widgets/widgets.dart';
+import 'package:transparent_image/transparent_image.dart';
+
+part 'carousel_card.dart';
+part 'carousel_side_list.dart';
+part 'carousel_side_list_item.dart';
 
 class Caraousel<C extends Cubit<S>, S> extends StatelessWidget {
   final List<UIParam> contents;

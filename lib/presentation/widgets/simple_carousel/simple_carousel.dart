@@ -1,11 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:movie_db/core/core.dart';
 
 // Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/data/models/backdrop.dart';
-import 'package:movie_db/presentation/widgets/backdrop_image.dart';
-import 'package:movie_db/presentation/widgets/responsive.dart';
+import 'package:movie_db/data/models/models.dart';
+import 'package:movie_db/presentation/widgets/widgets.dart';
 import 'simple_carousel_button.dart';
 
 class SimpleCarousel extends StatefulWidget {

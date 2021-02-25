@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:movie_db/core/core.dart';
 
 // Project imports:
-import 'package:movie_db/data/core/strings.dart';
 
 class MovieBrowsePage extends StatelessWidget {
   const MovieBrowsePage({

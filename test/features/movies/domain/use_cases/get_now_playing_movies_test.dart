@@ -4,13 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 // Project imports:
-import 'package:movie_db/data/models/core.dart';
-import 'package:movie_db/domain/entities/api_error.dart';
-import 'package:movie_db/domain/entities/no_params.dart';
-import 'package:movie_db/features/movies/data/models/movie_details.dart';
-import 'package:movie_db/features/movies/domain/entities/movie_entity.dart';
+import 'package:movie_db/data/models/models.dart';
+import 'package:movie_db/domain/entities/entities.dart';
+import 'package:movie_db/features/movies/data/models/movie_models.dart';
+import 'package:movie_db/features/movies/domain/entities/movie_entities.dart';
 import 'package:movie_db/features/movies/domain/repositories/movie_repository.dart';
-import 'package:movie_db/features/movies/domain/usecases/get_now_playing_movies.dart';
+import 'package:movie_db/features/movies/domain/usecases/movie_usecases.dart';
 
 class MockMovieRepository extends Mock implements MovieRepository {}
 
@@ -33,7 +32,7 @@ void main() {
     posterPath: '/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
     releaseDate: '2020-12-16',
   );
-  final PaginatedResponse<MovieDetails> testPaginatedMovieReponse =
+  const PaginatedResponse<MovieDetails> testPaginatedMovieReponse =
       PaginatedResponse<MovieDetails>(
     page: 0,
     results: <MovieDetails>[testMovieEntity],
@@ -48,8 +47,9 @@ void main() {
       // mocks
       when(mockMovieRepository.getNowPlayingMovies()).thenAnswer(
         (_) => Future<Either<ApiError, PaginatedResponse<MovieDetails>>>.value(
-          Right<ApiError, PaginatedResponse<MovieDetails>>(
-              testPaginatedMovieReponse),
+          const Right<ApiError, PaginatedResponse<MovieDetails>>(
+            testPaginatedMovieReponse,
+          ),
         ),
       );
 
@@ -61,7 +61,7 @@ void main() {
       // asserts
       expect(
         actualPageResponseMovie,
-        Right<ApiError, PaginatedResponse<MovieDetails>>(
+        const Right<ApiError, PaginatedResponse<MovieDetails>>(
             testPaginatedMovieReponse),
       );
       verify(

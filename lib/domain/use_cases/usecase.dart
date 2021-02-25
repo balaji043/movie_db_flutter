@@ -1,8 +1,6 @@
 // Package imports:
 import 'package:dartz/dartz.dart';
-
-// Project imports:
-import 'package:movie_db/domain/entities/api_error.dart';
+import 'package:movie_db/domain/entities/entities.dart';
 
 // ignore: one_member_abstracts
 abstract class UseCase<Type, Params> {

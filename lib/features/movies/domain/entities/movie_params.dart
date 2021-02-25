@@ -1,5 +1,4 @@
-// Package imports:
-import 'package:equatable/equatable.dart';
+part of 'movie_entities.dart';
 
 class MovieParams extends Equatable {
   final int id;

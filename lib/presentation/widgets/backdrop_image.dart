@@ -1,11 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:transparent_image/transparent_image.dart';
-
-// Project imports:
-import 'package:movie_db/data/core/api_constants.dart';
+part of 'widgets.dart';
 
 class BackdropImage extends StatelessWidget {
   const BackdropImage({

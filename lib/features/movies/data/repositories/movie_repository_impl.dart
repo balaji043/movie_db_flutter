@@ -2,10 +2,10 @@
 import 'package:dartz/dartz.dart';
 
 // Project imports:
-import 'package:movie_db/data/models/core.dart';
-import 'package:movie_db/domain/entities/api_error.dart';
+import 'package:movie_db/data/models/models.dart';
+import 'package:movie_db/domain/entities/entities.dart';
 import 'package:movie_db/features/movies/data/datasources/movie_data_source.dart';
-import 'package:movie_db/features/movies/data/models/movie_details.dart';
+import 'package:movie_db/features/movies/data/models/movie_models.dart';
 import 'package:movie_db/features/movies/domain/repositories/movie_repository.dart';
 
 class MovieRepositoryImpl implements MovieRepository {

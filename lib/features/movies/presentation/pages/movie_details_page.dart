@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_db/core/core.dart';
 
 // Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/data/core/strings.dart';
-import 'package:movie_db/features/movies/data/models/movie_details.dart';
+import 'package:movie_db/features/movies/data/models/movie_models.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
-import 'package:movie_db/presentation/widgets/custom_app_bar.dart';
-import 'package:movie_db/presentation/widgets/nav_bar.dart';
+import 'package:movie_db/presentation/widgets/widgets.dart';
 import 'package:movie_db/presentation/widgets/simple_carousel/simple_carousel.dart';
 
 class MovieDetailsPage extends StatelessWidget {

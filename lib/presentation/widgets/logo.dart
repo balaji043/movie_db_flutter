@@ -1,8 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:movie_db/data/core/assets.dart';
+part of 'widgets.dart';
 
 class Logo extends StatelessWidget {
   final double height;

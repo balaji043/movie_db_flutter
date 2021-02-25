@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 
 // Project imports:
 import 'package:movie_db/data/core/api_constants.dart';
-import 'package:movie_db/data/models/core.dart';
-import 'package:movie_db/features/movies/data/models/movie_details.dart';
+import 'package:movie_db/data/models/models.dart';
+import 'package:movie_db/features/movies/data/models/movie_models.dart';
 import 'movie_data_source.dart';
 
 class TMDBMovieDataSource implements MovieDataSource {

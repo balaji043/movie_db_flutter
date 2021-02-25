@@ -1,5 +1,4 @@
-// Dart imports:
-import 'dart:convert';
+part of 'models.dart';
 
 class AppConfiguration {
   Images images;

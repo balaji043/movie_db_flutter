@@ -1,3 +1,5 @@
+part of 'entities.dart';
+
 abstract class UIParam {
   String get dTitle;
   String get dBackdropPath;

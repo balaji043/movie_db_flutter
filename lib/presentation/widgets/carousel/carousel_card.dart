@@ -1,14 +1,4 @@
-// Dart imports:
-import 'dart:ui' as ui;
-
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:movie_db/domain/entities/ui_params.dart';
-import 'package:movie_db/presentation/themes/theme_color.dart';
-import 'package:movie_db/presentation/widgets/backdrop_image.dart';
-import 'package:movie_db/presentation/widgets/responsive.dart';
+part of 'carousel.dart';
 
 class CarouselCard extends StatefulWidget {
   final UIParam content;

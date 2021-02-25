@@ -1,11 +1,4 @@
-// Dart imports:
-import 'dart:convert';
-
-// Package imports:
-import 'package:equatable/equatable.dart';
-
-// Project imports:
-import 'backdrop.dart';
+part of 'models.dart';
 
 class ImageResponse extends Equatable {
   final int id;

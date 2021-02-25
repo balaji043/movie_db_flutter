@@ -1,15 +1,11 @@
-// Dart imports:
-import 'dart:convert';
-
-// Package imports:
-import 'package:equatable/equatable.dart';
+part of 'models.dart';
 
 class ImageModel extends Equatable {
   final double aspectRatio;
   final String filePath;
   final int height;
   final String iso6391;
-  final double voteAverage;
+  final int voteAverage;
   final int voteCount;
   final int width;
   const ImageModel({
@@ -26,7 +22,7 @@ class ImageModel extends Equatable {
         'aspect_ratio': aspectRatio,
         'file_path': filePath,
         'height': height,
-        'iso_639_1': iso6391,
+        'iso_639_1': String,
         'vote_average': voteAverage,
         'vote_count': voteCount,
         'width': width,
@@ -42,7 +38,7 @@ class ImageModel extends Equatable {
       filePath: map['file_path'],
       height: map['height']?.toInt(),
       iso6391: map['iso_639_1'],
-      voteAverage: map['vote_average']?.toDouble(),
+      voteAverage: map['vote_average']?.toInt(),
       voteCount: map['vote_count']?.toInt(),
       width: map['width']?.toInt(),
     );

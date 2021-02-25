@@ -1,6 +1,6 @@
 // Project imports:
-import 'package:movie_db/data/models/core.dart';
-import 'package:movie_db/features/movies/data/models/movie_details.dart';
+import 'package:movie_db/data/models/models.dart';
+import 'package:movie_db/features/movies/data/models/movie_models.dart';
 
 abstract class MovieDataSource {
   Future<PaginatedResponse<MovieDetails>> getNowPlayingMovies();

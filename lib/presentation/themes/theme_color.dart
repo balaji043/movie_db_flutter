@@ -1,5 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
+part of 'themes.dart';
 
 class AppColor {
   const AppColor._();

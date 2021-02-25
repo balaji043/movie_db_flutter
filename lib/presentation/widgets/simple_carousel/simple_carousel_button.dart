@@ -1,9 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:movie_db/core/core.dart';
 
 // Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/presentation/themes/theme_color.dart';
+import 'package:movie_db/presentation/themes/themes.dart';
 
 class SimpleCarouselButton extends StatelessWidget {
   final void Function() onPressed;

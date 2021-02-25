@@ -1,3 +1,5 @@
+part of 'core.dart';
+
 class Strings {
   Strings._();
 

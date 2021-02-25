@@ -5,12 +5,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_db/domain/entities/entities.dart';
 
 // Project imports:
-import 'package:movie_db/domain/entities/api_error.dart';
-import 'package:movie_db/features/movies/data/models/movie_details.dart';
-import 'package:movie_db/features/movies/domain/entities/movie_params.dart';
-import 'package:movie_db/features/movies/domain/usecases/usecases.dart';
+import 'package:movie_db/features/movies/data/models/movie_models.dart';
+import 'package:movie_db/features/movies/domain/entities/movie_entities.dart';
+import 'package:movie_db/features/movies/domain/usecases/movie_usecases.dart';
 
 part 'movie_details_event.dart';
 part 'movie_details_state.dart';

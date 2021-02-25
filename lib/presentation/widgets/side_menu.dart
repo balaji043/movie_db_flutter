@@ -1,19 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-// Project imports:
-import 'package:movie_db/core/sizes_constants.dart';
-import 'package:movie_db/data/core/strings.dart';
-import 'package:movie_db/presentation/bloc/home_route/home_route_bloc.dart';
-import 'package:movie_db/presentation/journeys/home/home_screen.dart';
-import 'package:movie_db/presentation/themes/theme_color.dart';
-import 'package:movie_db/presentation/view_models/navigation_item.dart';
-import 'package:movie_db/presentation/widgets/logo.dart';
-import 'package:movie_db/presentation/widgets/nav_bar.dart';
-import 'custom_button.dart';
+part of 'widgets.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({Key key}) : super(key: key);
