@@ -1,16 +1,21 @@
+// Dart imports:
 import 'dart:ui';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transparent_image/transparent_image.dart';
+
+// Project imports:
 import 'package:movie_db/core/core.dart';
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/domain/entities/entities.dart';
-
 import 'package:movie_db/presentation/bloc/home_route/home_route_bloc.dart';
 import 'package:movie_db/presentation/journeys/home/home_screen.dart';
 import 'package:movie_db/presentation/themes/themes.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 part 'backdrop_image.dart';
 part 'content_card.dart';

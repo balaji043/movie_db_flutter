@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:movie_db/core/core.dart';
 
 class GamesPage extends StatelessWidget {

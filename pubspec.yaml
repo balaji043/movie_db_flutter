@@ -9,8 +9,7 @@ environment:
   sdk: '>=2.7.0 <3.0.0'
 
 dependencies:
-  cached_network_image: 2.4.0
-  cupertino_icons: ^1.0.2
+  # cached_network_image: 2.4.0
   dartz: ^0.9.2
   dio: ^3.0.10
   equatable: ^1.2.6
@@ -18,16 +17,14 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^6.1.2
   flutter_swiper: ^1.1.6
-  get:
   get_it: ^5.0.6
   google_fonts: ^1.1.2
-  shared_preferences: ^0.5.12+4
   transparent_image: ^1.0.0
 
-  window_size:
-    git:
-      url: git://github.com/google/flutter-desktop-embedding.git
-      path: plugins/window_size
+  # window_size:
+  #   git:
+  #     url: git://github.com/google/flutter-desktop-embedding.git
+  #     path: plugins/window_size
 
 dev_dependencies:
   flutter_test:
@@ -43,4 +40,3 @@ flutter:
   assets:
     - assets/google_fonts/
     - assets/pngs/tmdb_logo.png
-

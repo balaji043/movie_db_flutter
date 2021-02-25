@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_db/core/core.dart';
 
 // Project imports:
+import 'package:movie_db/core/core.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/features/movies/presentation/widgets/movie_widgets.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';

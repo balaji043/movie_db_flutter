@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:movie_db/core/core.dart';
 
 // Project imports:
+import 'package:movie_db/core/core.dart';
 import 'package:movie_db/data/models/models.dart';
 import 'package:movie_db/presentation/widgets/widgets.dart';
 import 'simple_carousel_button.dart';

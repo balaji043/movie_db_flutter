@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_db/core/core.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 // Project imports:
+import 'package:movie_db/core/core.dart';
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/domain/entities/entities.dart';
 import 'package:movie_db/presentation/themes/themes.dart';
 import 'package:movie_db/presentation/widgets/widgets.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 part 'carousel_card.dart';
 part 'carousel_side_list.dart';
