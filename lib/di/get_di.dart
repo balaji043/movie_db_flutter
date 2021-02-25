@@ -5,8 +5,8 @@ import 'package:get_it/get_it.dart';
 // Project imports:
 import 'package:movie_db/features/movies/data/datasources/movie_data_source.dart';
 import 'package:movie_db/features/movies/data/datasources/tmdb_movie_data_source.dart';
-import 'package:movie_db/features/movies/domain/repositories/movie_repository.dart';
 import 'package:movie_db/features/movies/data/repositories/movie_repository_impl.dart';
+import 'package:movie_db/features/movies/domain/repositories/movie_repository.dart';
 import 'package:movie_db/features/movies/domain/usecases/usecases.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 

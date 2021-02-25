@@ -1,9 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/domain/entities/ui_params.dart';
 import 'package:movie_db/presentation/widgets/responsive.dart';
-
 import 'carousel_side_list.dart';
 
 class Caraousel<C extends Cubit<S>, S> extends StatelessWidget {

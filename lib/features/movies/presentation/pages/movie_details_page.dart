@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:movie_db/core/sizes_constants.dart';
 import 'package:movie_db/data/core/strings.dart';
 import 'package:movie_db/features/movies/data/models/movie_details.dart';

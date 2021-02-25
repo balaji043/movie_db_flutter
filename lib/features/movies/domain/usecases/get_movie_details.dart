@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
 import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/domain/use_cases/usecase.dart';
 import 'package:movie_db/features/movies/data/models/movie_details.dart';

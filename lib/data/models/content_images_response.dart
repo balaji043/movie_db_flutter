@@ -1,7 +1,10 @@
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:equatable/equatable.dart';
 
+// Project imports:
 import 'backdrop.dart';
 
 class ImageResponse extends Equatable {

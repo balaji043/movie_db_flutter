@@ -1,8 +1,12 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+
+// Project imports:
 import 'package:movie_db/domain/entities/api_error.dart';
 import 'package:movie_db/features/movies/data/models/movie_details.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_params.dart';
