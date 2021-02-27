@@ -39,10 +39,11 @@ class PaginatedResponse<T> extends Equatable {
     data['page'] = page;
     if (results != null) {
       data['results'] = results
-          .map(
-            (dynamic v) => toJsonModel(),
-          )
-          .toList();
+              .map(
+                (dynamic v) => toJsonModel(),
+              )
+              .toList() ??
+          [];
     }
     data['total_pages'] = totalPages;
     data['total_results'] = totalResults;

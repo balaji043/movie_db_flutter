@@ -59,7 +59,7 @@ class MovieDetails extends MovieEntity {
         'adult': adult,
         'backdrop_path': backdropPath,
         'budget': budget,
-        'genres': genres?.map((Genre x) => x?.toMap())?.toList(),
+        'genres': genres?.map((Genre x) => x?.toMap())?.toList() ?? [],
         'homepage': homepage,
         'id': id,
         'imdb_id': imdbId,
@@ -69,16 +69,18 @@ class MovieDetails extends MovieEntity {
         'popularity': popularity,
         'poster_path': posterPath,
         'production_companies': productionCompanies
-            ?.map((ProductionCompany x) => x?.toMap())
-            ?.toList(),
+                ?.map((ProductionCompany x) => x?.toMap())
+                ?.toList() ??
+            [],
         'production_countries': productionCountries
-            ?.map((ProductionCountry x) => x?.toMap())
-            ?.toList(),
+                ?.map((ProductionCountry x) => x?.toMap())
+                ?.toList() ??
+            [],
         'release_date': releaseDate,
         'revenue': revenue,
         'runtime': runtime,
         'spoken_languages':
-            spokenLanguages?.map((Language x) => x?.toMap())?.toList(),
+            spokenLanguages?.map((Language x) => x?.toMap())?.toList() ?? [],
         'status': status,
         'tagline': tagline,
         'title': title,

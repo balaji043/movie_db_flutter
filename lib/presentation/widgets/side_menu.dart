@@ -30,26 +30,18 @@ class SideMenu extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: Sizes.dimen_10),
                     child: Logo(height: Sizes.dimen_32),
                   ),
-                  BlocBuilder<HomeRouteBloc, HomeRouteState>(
-                    builder: (BuildContext context, HomeRouteState state) {
-                      int currentIndex = 0;
-
-                      if (state is HomeRouteChangeState) {
-                        currentIndex = state.index;
-                      }
-                      return NavigationBar(
-                        navigationItems: navigationItems,
-                        axis: Axis.vertical,
-                        selectedIndex: currentIndex,
-                        onTap: (int i) {
-                          BlocProvider.of<HomeRouteBloc>(context)
-                              .add(HomeRouteChangeEvent(i));
-                          if (scaffoldKey.currentState.isDrawerOpen) {
-                            scaffoldKey.currentState.openEndDrawer();
-                          }
-                        },
-                      );
-                    },
+                  BlocBuilder<HomeRouteCubit, int>(
+                    builder: (BuildContext context, int state) => NavigationBar(
+                      navigationItems: navigationItems,
+                      axis: Axis.vertical,
+                      selectedIndex: state,
+                      onTap: (int i) {
+                        context.read<HomeRouteCubit>().changeIndex(i);
+                        if (scaffoldKey.currentState.isDrawerOpen) {
+                          scaffoldKey.currentState.openEndDrawer();
+                        }
+                      },
+                    ),
                   )
                 ],
               ),

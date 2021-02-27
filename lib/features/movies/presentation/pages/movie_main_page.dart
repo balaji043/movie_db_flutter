@@ -40,8 +40,8 @@ class _MovieMainPageState extends State<MovieMainPage> {
   Widget build(BuildContext context) => Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CustomAppBar(
-          child: BlocProvider<MovieTabRouteBloc>(
-            create: (BuildContext context) => MovieTabRouteBloc(controller),
+          child: BlocProvider<MovieTabRouteCubit>(
+            create: (BuildContext context) => MovieTabRouteCubit(controller),
             child: const MovieAppBar(
               navigationItems: <NavigationItem>[
                 NavigationItem(

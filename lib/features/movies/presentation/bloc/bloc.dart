@@ -2,7 +2,7 @@ export '../../presentation/bloc/movie_carousel/movie_carousel_bloc.dart';
 export '../../presentation/bloc/movie_carousel_card/movie_carousel_card_bloc.dart';
 export '../../presentation/bloc/movie_details/movie_details_bloc.dart';
 export '../../presentation/bloc/movie_route/movie_route_bloc.dart';
-export '../../presentation/bloc/movie_tab_route/movie_tab_route_bloc.dart';
+export '../../presentation/bloc/movie_tab_route/movie_tab_route_cubit.dart';
 export '../../presentation/bloc/now_playing_movie_list/now_playing_movie_list_bloc.dart';
 export '../../presentation/bloc/popular_movie_list/popular_movie_list_bloc.dart';
 export '../../presentation/bloc/top_rated_movie_list/top_rated_movie_list_bloc.dart';

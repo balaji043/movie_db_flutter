@@ -12,8 +12,9 @@ class ImageResponse extends Equatable {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         'id': id,
-        'backdrops': backdrops?.map((ImageModel x) => x?.toMap())?.toList(),
-        'posters': posters?.map((ImageModel x) => x?.toMap())?.toList(),
+        'backdrops':
+            backdrops?.map((ImageModel x) => x?.toMap())?.toList() ?? [],
+        'posters': posters?.map((ImageModel x) => x?.toMap())?.toList() ?? [],
       };
 
   factory ImageResponse.fromMap(Map<String, dynamic> map) {

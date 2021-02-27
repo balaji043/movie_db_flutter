@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 // Project imports:
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/features/movies/presentation/pages/movie_home_page.dart';
-import 'package:movie_db/presentation/bloc/home_route/home_route_bloc.dart';
+import 'package:movie_db/presentation/cubit/cubits.dart';
 import 'package:movie_db/presentation/journeys/home/pages/games_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/people_home_page.dart';
 import 'package:movie_db/presentation/journeys/home/pages/tv_shows_home_page.dart';
@@ -22,7 +22,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  HomeRouteBloc homeRouteBloc;
+  HomeRouteCubit homeRouteBloc;
   MovieCarouselBloc movieCarouselBloc;
   TopRatedMovieListBloc topRatedMovieListBloc;
   UpcomingMovieListBloc upcomingMovieListBloc;
@@ -35,7 +35,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    homeRouteBloc = HomeRouteBloc();
+    homeRouteBloc = HomeRouteCubit();
     movieRouteBloc = GetIt.I<MovieRouteBloc>();
     movieDetailsBloc = GetIt.I<MovieDetailsBloc>();
 
@@ -73,7 +73,7 @@ class HomeScreenState extends State<HomeScreen> {
         BlocProvider<MovieDetailsBloc>(
           create: (BuildContext context) => movieDetailsBloc,
         ),
-        BlocProvider<HomeRouteBloc>(
+        BlocProvider<HomeRouteCubit>(
           create: (BuildContext context) => homeRouteBloc,
         ),
         BlocProvider<MovieCarouselBloc>(
@@ -131,23 +131,16 @@ class PageWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      BlocBuilder<HomeRouteBloc, HomeRouteState>(
-        builder: (BuildContext context, HomeRouteState state) {
-          int currentIndex = 0;
-          if (state is HomeRouteChangeState) {
-            currentIndex = state.index;
-          }
-          return IndexedStack(
-            index: currentIndex,
-            children: const <Widget>[
-              MovieHomePage(),
-              TVShowPage(),
-              GamesPage(),
-              PeoplePage()
-            ],
-          );
-        },
+  Widget build(BuildContext context) => BlocBuilder<HomeRouteCubit, int>(
+        builder: (BuildContext context, int state) => IndexedStack(
+          index: state,
+          children: const <Widget>[
+            MovieHomePage(),
+            TVShowPage(),
+            GamesPage(),
+            PeoplePage()
+          ],
+        ),
       );
 }
 
