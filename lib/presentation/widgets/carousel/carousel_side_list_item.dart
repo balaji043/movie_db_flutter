@@ -10,39 +10,35 @@ class ListItem extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => AnimatedSwitcher(
-        duration: const Duration(milliseconds: 400),
-        child: Container(
-          key: ValueKey<String>(content.dId.toString()),
-          padding: const EdgeInsets.all(Sizes.dimen_12),
-          color: selected ? Colors.blue[700] : AppColor.black2,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                height: 76,
-                width: 56,
-                child: Image(
-                  image: CacheImage(
-                    getBDUrl(content.dPosterPath, ImageUrl.w154),
-                  ),
-                  fit: BoxFit.fill,
-                  errorBuilder: (context, error, stackTrace) => const Image(
-                    image: AssetImage(
-                      Assets.placeholderImage,
-                    ),
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.all(Sizes.dimen_12),
+        color: selected ? Colors.blue[700] : AppColor.black2,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: 76,
+              width: 56,
+              child: Image(
+                image: CacheImage(
+                  getBDUrl(content.dPosterPath, ImageUrl.w154),
+                ),
+                fit: BoxFit.fill,
+                errorBuilder: (context, error, stackTrace) => const Image(
+                  image: AssetImage(
+                    Assets.placeholderImage,
                   ),
                 ),
               ),
-              const SizedBox(width: Sizes.dimen_12),
-              Expanded(
-                child: Text(
-                  content.dTitle ?? '',
-                  style: Theme.of(context).textTheme.bodyText2,
-                ),
-              )
-            ],
-          ),
+            ),
+            const SizedBox(width: Sizes.dimen_12),
+            Expanded(
+              child: Text(
+                content.dTitle ?? '',
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
+            )
+          ],
         ),
       );
 }
