@@ -25,6 +25,7 @@ class ListItem extends StatelessWidget {
                 ),
                 fit: BoxFit.fill,
                 errorBuilder: (context, error, stackTrace) => const Image(
+                  fit: BoxFit.scaleDown,
                   image: AssetImage(
                     Assets.placeholderImage,
                   ),

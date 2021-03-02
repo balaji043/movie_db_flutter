@@ -15,11 +15,11 @@ class CustomImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FadeInImage(
-        fadeInDuration: const Duration(milliseconds: 10),
         height: size.height,
         width: size.width,
         fit: fit,
         imageErrorBuilder: (context, error, stackTrace) => const Image(
+          fit: BoxFit.scaleDown,
           image: AssetImage(Assets.placeholderImage),
         ),
         image: CacheImage(
