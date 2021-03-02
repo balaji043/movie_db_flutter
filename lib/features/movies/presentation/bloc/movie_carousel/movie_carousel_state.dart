@@ -12,7 +12,7 @@ class MovieCarouselInitial extends MovieCarouselState {}
 class MovieCarouselError extends MovieCarouselState {}
 
 class MovieCarouselSuccess extends MovieCarouselState {
-  final PaginatedResponse<MovieEntity> movies;
+  final List<MovieEntity> movies;
   final int defaultIndex;
 
   const MovieCarouselSuccess({

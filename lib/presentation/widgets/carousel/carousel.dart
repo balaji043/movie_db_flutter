@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:cache_image/cache_image.dart';
 
 // Project imports:
 import 'package:movie_db/core/core.dart';

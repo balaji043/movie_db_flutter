@@ -22,10 +22,16 @@ class ListItem extends StatelessWidget {
               Container(
                 height: 76,
                 width: 56,
-                child: FadeInImage.memoryNetwork(
-                  image: getBDUrl(content.dPosterPath, ImageUrl.w154),
-                  placeholder: kTransparentImage,
+                child: Image(
+                  image: CacheImage(
+                    getBDUrl(content.dPosterPath, ImageUrl.w154),
+                  ),
                   fit: BoxFit.fill,
+                  errorBuilder: (context, error, stackTrace) => const Image(
+                    image: AssetImage(
+                      Assets.placeholderImage,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(width: Sizes.dimen_12),

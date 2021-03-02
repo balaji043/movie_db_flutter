@@ -16,6 +16,10 @@ class PopularMovieListView extends StatelessWidget {
                 title: Strings.popular,
                 contents: state.movies.results,
                 onTap: onTap,
+                viewAll: () {},
+                isPosterImage: false,
+                height: 250,
+                imageWidth: ImageUrl.w342,
               ),
             );
           } else if (state is MovieCarouselError) {

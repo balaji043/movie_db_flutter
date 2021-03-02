@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_db/presentation/cubit/cubits.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:cache_image/cache_image.dart';
 
 // Project imports:
 import 'package:movie_db/core/core.dart';
@@ -28,3 +28,4 @@ part 'nav_item_widget.dart';
 part 'responsive.dart';
 part 'search_bar.dart';
 part 'side_menu.dart';
+part 'custom_image.dart';

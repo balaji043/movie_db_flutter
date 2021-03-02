@@ -16,6 +16,7 @@ class UpcomingMovieListView extends StatelessWidget {
                 contents: state.movies.results,
                 title: Strings.upComing,
                 onTap: onTap,
+                viewAll: () {},
               ),
             );
           } else if (state is MovieCarouselError) {

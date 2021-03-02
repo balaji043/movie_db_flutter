@@ -23,4 +23,6 @@ class Strings {
   static const String topRated = 'Top Rated';
   static const String upComing = 'Up Coming';
   static const String nowPlaying = 'Now Playing';
+
+  static const String viewAll = 'View All';
 }

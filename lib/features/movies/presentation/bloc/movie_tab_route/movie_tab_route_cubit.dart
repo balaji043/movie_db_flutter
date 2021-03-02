@@ -1,15 +1,14 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Package imports:
-import 'package:movie_db/core/core.dart';
 
-class MovieTabRouteCubit extends IndexedCubit {
+class MovieTabRouteCubit extends Cubit<int> {
   final PageController _controller;
 
-  MovieTabRouteCubit(this._controller);
+  MovieTabRouteCubit(this._controller) : super(0);
 
-  @override
   void changeIndex(int index) {
     if (_controller.page == index) {
       return;

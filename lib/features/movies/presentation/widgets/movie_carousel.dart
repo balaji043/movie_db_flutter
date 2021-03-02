@@ -20,7 +20,7 @@ class MovieCarousel extends StatelessWidget {
                 }
                 return Container();
               },
-              contents: state.movies.results,
+              contents: state.movies,
               listItemBuilder: (
                 BuildContext context,
                 MovieCarouselCardState state,

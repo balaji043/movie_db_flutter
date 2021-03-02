@@ -1,72 +1,72 @@
 part of 'widgets.dart';
 
-class ContentCard<T extends UIParam> extends StatelessWidget {
-  final T content;
+class ContentCard extends StatelessWidget {
+  final String image;
+  final String title;
+  final String subtitle;
+  final String badge;
   final void Function() onTap;
+
   const ContentCard({
-    @required this.content,
+    @required this.image,
+    @required this.title,
     @required this.onTap,
+    this.subtitle,
+    this.badge,
     Key key,
-  }) : super(key: key);
+  })  : assert(image != null, 'image url is required'),
+        assert(title != null, 'title is required'),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return GestureDetector(
       onTap: onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(Sizes.dimen_16),
-            child: FadeInImage.memoryNetwork(
-              image: getBDUrl(content.dPosterPath, ImageUrl.w185),
-              placeholder: kTransparentImage,
-              fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(height: Sizes.dimen_10),
-          if (content.dTitle != null)
-            Text(
-              content.dTitle ?? '',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              softWrap: true,
-              style: textTheme.headline6,
-            )
-          else
-            const SizedBox.shrink(),
-          if (content.dReleaseDate != null)
-            Text(
-              content.dReleaseDate ?? '',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              softWrap: true,
-              style: textTheme.subtitle2,
-            )
-          else
-            const SizedBox.shrink(),
-          if (content.dRating != null)
+      child: Container(
+        margin: const EdgeInsets.all(5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
             ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-              child: Container(
-                color: Colors.blue,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 4,
-                ),
-                child: Text(
-                  content.dRating ?? '',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: true,
-                  style: textTheme.bodyText1,
+              borderRadius: BorderRadius.circular(Sizes.dimen_16),
+              child: CustomImage(
+                image: image,
+              ),
+            ),
+            const SizedBox(height: Sizes.dimen_10),
+            if (title != null)
+              Text(
+                title,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.headline6,
+              ),
+            if (subtitle != null)
+              Text(
+                subtitle,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.subtitle2,
+              ),
+            if (badge != null)
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                child: Container(
+                  color: Colors.blue,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 4,
+                  ),
+                  child: Text(
+                    badge ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: true,
+                    style: textTheme.bodyText1,
+                  ),
                 ),
               ),
-            )
-          else
-            const SizedBox.shrink()
-        ],
+          ],
+        ),
       ),
     );
   }

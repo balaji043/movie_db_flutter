@@ -38,11 +38,14 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
       yield response.fold(
         (ApiError l) => MovieCarouselError(),
         (PaginatedResponse<MovieEntity> r) {
+          final List<MovieEntity> movieEntities = r.results
+              .where((element) => element.backdropPath != null)
+              .toList();
           _movieCarouselCardBloc.add(
-            MovieCarouselCardChangedEvent(r.results[event.defaultIndex]),
+            MovieCarouselCardChangedEvent(movieEntities[event.defaultIndex]),
           );
           return MovieCarouselSuccess(
-            movies: r,
+            movies: movieEntities,
             defaultIndex: event.defaultIndex,
           );
         },

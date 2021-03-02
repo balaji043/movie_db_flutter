@@ -9,9 +9,10 @@ class BackdropImage extends StatelessWidget {
   final String backdropPath;
 
   @override
-  Widget build(BuildContext context) => FadeInImage.memoryNetwork(
-        placeholder: kTransparentImage,
-        image: getBDUrl(backdropPath, ImageUrl.w1280),
+  Widget build(BuildContext context) => Image(
+        image: CacheImage(
+          getBDUrl(backdropPath, ImageUrl.w1280),
+        ),
         fit: BoxFit.fitHeight,
       );
 }

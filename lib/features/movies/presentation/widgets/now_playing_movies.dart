@@ -19,6 +19,7 @@ class NowPlayingMovieListView extends StatelessWidget {
                 title: Strings.nowPlaying,
                 contents: state.movies.results,
                 onTap: onTap,
+                viewAll: () {},
               ),
             );
           } else if (state is MovieCarouselError) {

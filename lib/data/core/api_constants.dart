@@ -60,7 +60,7 @@ class ImageUrl {
 }
 
 String getBDUrl(String path, String size) =>
-    '${ApiConstants.tmdbImageBaseUrlV3}/$size$path';
+    '${ApiConstants.tmdbImageBaseUrlV3}/$size/$path';
 
 class RequestParams {
   static const String language = 'language';

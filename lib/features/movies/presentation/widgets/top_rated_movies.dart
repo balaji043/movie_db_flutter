@@ -16,6 +16,7 @@ class TopRatedMovieListView extends StatelessWidget {
                 title: Strings.topRated,
                 contents: state.movies.results,
                 onTap: onTap,
+                viewAll: () {},
               ),
             );
           } else if (state is MovieCarouselError) {
