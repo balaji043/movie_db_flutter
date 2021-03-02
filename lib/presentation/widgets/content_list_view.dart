@@ -3,22 +3,16 @@ part of 'widgets.dart';
 class ContentListView<T extends UIParam> extends StatelessWidget {
   final List<T> contents;
   final String title;
+  final Size imageSize;
   final void Function(T) onTap;
   final void Function() viewAll;
-  final double itemExtent;
-  final double height;
-  final Size imageSize;
-  final bool isPosterImage;
 
   const ContentListView({
     @required this.contents,
     @required this.title,
     @required this.onTap,
-    this.itemExtent = 200,
-    this.height = 380,
     this.imageSize = PosterSize.w185,
     this.viewAll,
-    this.isPosterImage = true,
     Key key,
   }) : super(key: key);
 
@@ -44,25 +38,22 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
             height: Sizes.dimen_12,
           ),
           Container(
-            height: height,
-            child: ListView.builder(
-              itemCount: contents.length,
+            height: imageSize.height * 1.35,
+            child: ListView(
               scrollDirection: Axis.horizontal,
-              itemExtent: itemExtent,
-              itemBuilder: (context, index) {
-                final content = contents.elementAt(index);
-                return ContentCard(
-                  imageSize: imageSize,
-                  image: getBDUrl(
-                    isPosterImage ? content.dPosterPath : content.dBackdropPath,
-                    imageSize,
-                  ),
-                  title: content.dTitle,
-                  subtitle: content.dReleaseDate,
-                  badge: content.dRating,
-                  onTap: () => onTap(content),
-                );
-              },
+              itemExtent: imageSize.width * 1.1,
+              children: contents
+                  .map(
+                    (content) => ContentCard(
+                      imageSize: imageSize,
+                      posterPath: content.dPosterPath,
+                      title: content.dTitle,
+                      subtitle: content.dReleaseDate,
+                      badge: content.dRating,
+                      onTap: () => onTap(content),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         ],

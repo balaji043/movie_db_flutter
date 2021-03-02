@@ -46,7 +46,11 @@ class _CarouselCardState extends State<CarouselCard>
             FractionallySizedBox(
               alignment: Alignment.centerRight,
               widthFactor: 1,
-              child: BackdropImage(backdropPath: widget.content.dBackdropPath),
+              child: CustomImage(
+                path: widget.content.dBackdropPath,
+                size: BackdropSize.w780,
+                fit: BoxFit.cover,
+              ),
             ),
             FractionallySizedBox(
               alignment: Alignment.centerLeft,

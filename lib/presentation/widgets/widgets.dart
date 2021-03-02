@@ -17,7 +17,6 @@ import 'package:movie_db/presentation/journeys/home/home_screen.dart';
 import 'package:movie_db/presentation/themes/themes.dart';
 import 'package:movie_db/presentation/view_models/navigation_item.dart';
 
-part 'backdrop_image.dart';
 part 'content_card.dart';
 part 'content_list_view.dart';
 part 'custom_app_bar.dart';

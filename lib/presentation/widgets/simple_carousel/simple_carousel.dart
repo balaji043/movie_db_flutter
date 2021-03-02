@@ -118,8 +118,9 @@ class SimpleCarouselCard extends StatelessWidget {
           borderRadius: const BorderRadius.all(
             Radius.circular(Sizes.dimen_16),
           ),
-          child: BackdropImage(
-            backdropPath: content.filePath,
+          child: CustomImage(
+            path: content.filePath,
+            size: BackdropSize.w780,
           ),
         ),
       );

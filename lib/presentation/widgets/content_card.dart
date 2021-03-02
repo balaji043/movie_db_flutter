@@ -1,7 +1,7 @@
 part of 'widgets.dart';
 
 class ContentCard extends StatelessWidget {
-  final String image;
+  final String posterPath;
   final Size imageSize;
   final String title;
   final String subtitle;
@@ -9,14 +9,14 @@ class ContentCard extends StatelessWidget {
   final void Function() onTap;
 
   const ContentCard({
-    @required this.image,
+    @required this.posterPath,
     @required this.imageSize,
     @required this.title,
     @required this.onTap,
     this.subtitle,
     this.badge,
     Key key,
-  })  : assert(image != null, 'image url is required'),
+  })  : assert(posterPath != null, 'image url is required'),
         assert(title != null, 'title is required'),
         super(key: key);
 
@@ -33,7 +33,8 @@ class ContentCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(Sizes.dimen_16),
               child: CustomImage(
-                image: image,
+                path: posterPath,
+                size: imageSize,
               ),
             ),
             const SizedBox(height: Sizes.dimen_12),
