@@ -2,6 +2,7 @@ part of 'widgets.dart';
 
 class ContentCard extends StatelessWidget {
   final String image;
+  final Size imageSize;
   final String title;
   final String subtitle;
   final String badge;
@@ -9,6 +10,7 @@ class ContentCard extends StatelessWidget {
 
   const ContentCard({
     @required this.image,
+    @required this.imageSize,
     @required this.title,
     @required this.onTap,
     this.subtitle,
@@ -34,7 +36,7 @@ class ContentCard extends StatelessWidget {
                 image: image,
               ),
             ),
-            const SizedBox(height: Sizes.dimen_10),
+            const SizedBox(height: Sizes.dimen_12),
             if (title != null)
               Text(
                 title,

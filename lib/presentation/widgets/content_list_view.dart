@@ -7,7 +7,7 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
   final void Function() viewAll;
   final double itemExtent;
   final double height;
-  final String imageWidth;
+  final Size imageSize;
   final bool isPosterImage;
 
   const ContentListView({
@@ -16,7 +16,7 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
     @required this.onTap,
     this.itemExtent = 200,
     this.height = 380,
-    this.imageWidth = ImageUrl.w185,
+    this.imageSize = PosterSize.w185,
     this.viewAll,
     this.isPosterImage = true,
     Key key,
@@ -52,9 +52,10 @@ class ContentListView<T extends UIParam> extends StatelessWidget {
               itemBuilder: (context, index) {
                 final content = contents.elementAt(index);
                 return ContentCard(
+                  imageSize: imageSize,
                   image: getBDUrl(
                     isPosterImage ? content.dPosterPath : content.dBackdropPath,
-                    imageWidth,
+                    imageSize,
                   ),
                   title: content.dTitle,
                   subtitle: content.dReleaseDate,

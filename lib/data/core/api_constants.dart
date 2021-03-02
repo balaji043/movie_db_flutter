@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class ApiConstants {
   ApiConstants._();
@@ -49,18 +50,8 @@ class TrendingMediaType {
   static const String person = 'person';
 }
 
-class ImageUrl {
-  static const String w92 = 'w92';
-  static const String w154 = 'w154';
-  static const String w185 = 'w185';
-  static const String w342 = 'w342';
-  static const String w500 = 'w500';
-  static const String w780 = 'w780';
-  static const String w1280 = 'w1280';
-}
-
-String getBDUrl(String path, String size) =>
-    '${ApiConstants.tmdbImageBaseUrlV3}/$size/$path';
+String getBDUrl(String path, Size size) =>
+    '${ApiConstants.tmdbImageBaseUrlV3}/w${size.width.toInt()}/$path';
 
 class RequestParams {
   static const String language = 'language';

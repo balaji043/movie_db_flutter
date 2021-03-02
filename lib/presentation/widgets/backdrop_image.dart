@@ -11,7 +11,7 @@ class BackdropImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Image(
         image: CacheImage(
-          getBDUrl(backdropPath, ImageUrl.w1280),
+          getBDUrl(backdropPath, BackdropSize.w780),
         ),
         fit: BoxFit.fitHeight,
       );

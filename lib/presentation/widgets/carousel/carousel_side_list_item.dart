@@ -21,7 +21,7 @@ class ListItem extends StatelessWidget {
               width: 56,
               child: Image(
                 image: CacheImage(
-                  getBDUrl(content.dPosterPath, ImageUrl.w154),
+                  getBDUrl(content.dPosterPath, PosterSize.w92),
                 ),
                 fit: BoxFit.fill,
                 errorBuilder: (context, error, stackTrace) => const Image(

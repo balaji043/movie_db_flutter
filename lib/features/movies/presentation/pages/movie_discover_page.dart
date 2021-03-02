@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movie_db/core/core.dart';
 
 // Project imports:
 import 'package:movie_db/domain/entities/entities.dart';
@@ -40,15 +41,21 @@ class _MovieDiscoverPageState extends State<MovieDiscoverPage> {
         body: ListView(
           children: <Widget>[
             const MovieCarousel(),
-            const SizedBox(height: 10),
+            const SizedBox(
+              height: Sizes.dimen_12,
+            ),
             PopularMovieListView(
-                onTap: (MovieEntity content) => onTap(context, content)),
+              onTap: (MovieEntity content) => onTap(context, content),
+            ),
             NowPlayingMovieListView(
-                onTap: (MovieEntity content) => onTap(context, content)),
+              onTap: (MovieEntity content) => onTap(context, content),
+            ),
             UpcomingMovieListView(
-                onTap: (MovieEntity content) => onTap(context, content)),
+              onTap: (MovieEntity content) => onTap(context, content),
+            ),
             TopRatedMovieListView(
-                onTap: (MovieEntity content) => onTap(context, content)),
+              onTap: (MovieEntity content) => onTap(context, content),
+            ),
           ],
         ),
       );

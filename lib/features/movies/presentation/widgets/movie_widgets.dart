@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:movie_db/core/core.dart';
-import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/domain/entities/entities.dart';
 import 'package:movie_db/features/movies/domain/entities/movie_entities.dart';
 import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
