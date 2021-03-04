@@ -21,19 +21,6 @@ class MovieCarousel extends StatelessWidget {
                 return Container();
               },
               contents: state.movies,
-              listItemBuilder: (
-                BuildContext context,
-                MovieCarouselCardState state,
-                UIParam content,
-              ) {
-                if (state is MovieCarouselCardChange) {
-                  return ListItem(
-                    content: content,
-                    selected: state.movie.dId == content.dId,
-                  );
-                }
-                return Container();
-              },
               onTap: (UIParam content) =>
                   BlocProvider.of<MovieCarouselCardBloc>(context)
                       .add(MovieCarouselCardChangedEvent(content)),

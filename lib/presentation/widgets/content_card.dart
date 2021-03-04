@@ -42,7 +42,7 @@ class ContentCard extends StatelessWidget {
               Text(
                 title,
                 overflow: TextOverflow.ellipsis,
-                style: textTheme.headline6,
+                style: textTheme.bodyText1,
               ),
             if (subtitle != null)
               Text(

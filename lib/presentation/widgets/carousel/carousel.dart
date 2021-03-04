@@ -2,16 +2,17 @@
 import 'dart:ui';
 
 // Flutter imports:
+import 'package:cache_image/cache_image.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cache_image/cache_image.dart';
 
 // Project imports:
 import 'package:movie_db/core/core.dart';
 import 'package:movie_db/data/core/api_constants.dart';
 import 'package:movie_db/domain/entities/entities.dart';
+import 'package:movie_db/features/movies/presentation/bloc/bloc.dart';
 import 'package:movie_db/presentation/themes/themes.dart';
 import 'package:movie_db/presentation/widgets/widgets.dart';
 
@@ -22,14 +23,12 @@ part 'carousel_side_list_item.dart';
 class Caraousel<C extends Cubit<S>, S> extends StatelessWidget {
   final List<UIParam> contents;
   final BlocWidgetBuilder<S> carouselCardBuilder;
-  final ListItemBuilder<S> listItemBuilder;
   final void Function(UIParam) onTap;
 
   const Caraousel({
     @required this.contents,
     @required this.carouselCardBuilder,
     @required this.onTap,
-    @required this.listItemBuilder,
     Key key,
   }) : super(key: key);
 
@@ -68,7 +67,6 @@ class Caraousel<C extends Cubit<S>, S> extends StatelessWidget {
                 child: SideList<C, S>(
                   contents: contents,
                   onTap: onTap,
-                  listItemBuilder: listItemBuilder,
                 ),
               )
           ],

@@ -2,14 +2,12 @@ part of 'carousel.dart';
 
 class SideList<C extends Cubit<S>, S> extends StatelessWidget {
   final List<UIParam> contents;
-  final ListItemBuilder<S> listItemBuilder;
 
   final void Function(UIParam) onTap;
 
   const SideList({
     @required this.contents,
     @required this.onTap,
-    @required this.listItemBuilder,
     Key key,
   }) : super(key: key);
 
@@ -21,12 +19,8 @@ class SideList<C extends Cubit<S>, S> extends StatelessWidget {
           return GestureDetector(
             behavior: HitTestBehavior.translucent,
             onTap: () => onTap(content),
-            child: BlocBuilder<C, S>(
-              builder: (BuildContext context, S state) => listItemBuilder(
-                context,
-                state,
-                content,
-              ),
+            child: ListItem(
+              content: contents[index],
             ),
           );
         },
